@@ -1,20 +1,21 @@
 #pragma once
 #include <iostream>
 #include <fstream>
-#include <string>
 
 using namespace std;
 
 class matrix {
 public:
 	inline matrix();
+	//matrix(ifstream& ifile, unsigned rows = 0, unsigned cols = 0);
+	matrix(const matrix& origin);
+	matrix(const char* file, unsigned rows = 0, unsigned cols = 0);
 	template <typename Type> matrix(const Type num, const unsigned nsqare = 1);
 	template <typename Type> matrix(const Type* num, const unsigned ncols);
-	matrix(const string& str);
-	matrix(const ifstream& ifile);
+	~matrix();
 
-	void print();
 	inline double* operator[](const unsigned i);
+	void print();
 	friend matrix operator+(const matrix& matrix1, const matrix& matrix2);
 	friend matrix operator-(const matrix& matrix1, const matrix& matrix2);
 	friend matrix operator*(const matrix& matrix1, const matrix& matrix2);
@@ -28,9 +29,80 @@ private:
 inline matrix::matrix() :
 	nrows(1), ncols(1), point(NULL)
 {
-	point = new double*[1];
-	point[0] = new double[1];
-	point[0][0] = 1.0;
+	point = new double*;
+	*point = new double;
+	**point = 0.0;
+}
+/*
+matrix::matrix(ifstream& ifile, unsigned rows, unsigned cols) :
+	nrows(1), ncols(1), point(NULL)
+{
+	if (!ifile) {
+		cout << "can't find file\n";
+		point = new double*;
+		*point = new double;
+		**point = 0.0;
+		return;
+	}
+	if (rows == 0)
+		ifile >> nrows;
+	else
+		nrows = rows;
+	if (cols == 0)
+		ifile >> ncols;
+	else
+		ncols = cols;
+
+	point = new double* [nrows];
+	for (unsigned i = 0; i < nrows; i++) {
+		*point = new double[ncols];
+		for (unsigned j = 0; j < ncols; j++) {
+			ifile >> point[i][j];
+		}
+	}
+	ifile.close();
+}*/
+
+matrix::matrix(const matrix& origin) :
+	nrows(origin.nrows), ncols(origin.ncols), point(NULL)
+{
+	point = new double* [nrows];
+	for (unsigned i = 0; i < nrows; i++) {
+		point[i] = new double[ncols];
+		for (unsigned j = 0; j < ncols; j++) {
+			point[i][j] = origin.point[i][j];
+		}
+	}
+}
+
+matrix::matrix(const char* pfile, unsigned rows, unsigned cols) :
+	nrows(1), ncols(1), point(NULL)
+{
+	ifstream ifile(pfile);
+	if (!ifile) {
+		cout << "can't find file\n";
+		point = new double*;
+		*point = new double;
+		**point = 0.0;
+		return;
+	}
+	if (rows == 0)
+		ifile >> nrows;
+	else
+		nrows = rows;
+	if (cols == 0)
+		ifile >> ncols;
+	else
+		ncols = cols;
+
+	point = new double* [nrows];
+	for (unsigned i = 0; i < nrows; i++) {
+		*point = new double[ncols];
+		for (unsigned j = 0; j < ncols; j++) {
+			ifile >> point[i][j];
+		}
+	}
+	ifile.close();
 }
 
 template<typename Type>
@@ -58,19 +130,18 @@ matrix::matrix(const Type* num, const unsigned ncols) :
 	}
 }
 
+matrix::~matrix()
+{
+	for (unsigned i = 0; i < nrows; i++) {
+		delete[] point[i];
+	}
+	delete[] point;
+	point = NULL;
+}
+
 inline double* matrix::operator[](const unsigned i)
 {
 	return point[i];
-}
-
-matrix::matrix(const string& str)
-{
-
-}
-
-matrix::matrix(const ifstream& ifile)
-{
-	
 }
 
 void matrix::print()

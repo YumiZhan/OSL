@@ -6,8 +6,8 @@
 
 int main()
 {
-    matrix m(1, 5);
-    cout << m[2][1] << endl;
+    ifstream ifile("..\\matrix\\matrix.txt");
+    matrix m("..\\matrix\\matrix.txt");
     m.print();
     return 0;
 }
