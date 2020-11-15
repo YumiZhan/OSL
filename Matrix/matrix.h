@@ -36,12 +36,13 @@ public:
 	typedef int position;
 	inline void insert(unsigned lct_i, unsigned lct_j, 
 		unsigned inst_rows = 1U, unsigned inst_cols = 0U, elemtype fillnumber = 0.0);
-	void insert_rows(unsigned lct_i, unsigned inst_rows = 0U, elemtype fillnumber = 0.0);
-	void insert_cols(unsigned lct_j, unsigned inst_cols = 0U, elemtype fillnumber = 0.0);
+	void insert_rows(unsigned lct_i, unsigned inst_rows = 1U, elemtype fillnumber = 0.0);
+	void insert_cols(unsigned lct_j, unsigned inst_cols = 1U, elemtype fillnumber = 0.0);
 	inline void remove(unsigned lct_i, unsigned lct_j, int rmv_rows = 1, int rmv_cols = 0);
 	void remove_rows(unsigned lct_i, int rmv_rows = 1);
 	void remove_cols(unsigned lct_j, int rmv_cols = 1);
-	void print();
+	void print(unsigned start_row = 0U, unsigned start_col = 0U,
+		unsigned print_nrows = 0U, unsigned print_ncols = 0U);
 
 	friend void Add(
 		const matrix& matrix1, const matrix& matrix2,
@@ -250,25 +251,25 @@ void matrix::insert_rows(unsigned lct_i, unsigned inst_rows, elemtype fillnumber
 	if (inst_rows == 0)return;
 	if (lct_i > nrows) {
 		cout << "lct_i : " << lct_i << ", is larger than nrows: " << nrows << endl;
-		cout << "let lct_i = " << nrows << endl;
+		inst_rows += lct_i - nrows;
 		lct_i = nrows;
+		cout << "set lct_i = " << lct_i << ", inst_rows = " << inst_rows << endl;
 	}
 	nrows += inst_rows;
 	elemtype** newpoint = new elemtype* [nrows];
 	unsigned i, j;
-	for (i = 0; i < inst_rows; i++) {
+	for (i = 0; i < lct_i; i++) {
 		newpoint[i] = new elemtype[ncols];
 		for (j = 0; j < ncols; j++) {
 			newpoint[i][j] = point[i][j];
 		}
 		delete[] point[i];
 	}
-	for (i = inst_rows; i < lct_i + inst_rows; i++) {
+	for (i = lct_i; i < lct_i + inst_rows; i++) {
 		newpoint[i] = new elemtype[ncols];
 		for (j = 0; j < ncols; j++) {
 			newpoint[i][j] = fillnumber;
 		}
-		delete[] point[i];
 	}
 	for (i = lct_i + inst_rows; i < nrows; i++) {
 		newpoint[i] = new elemtype[ncols];
@@ -289,8 +290,9 @@ void matrix::insert_cols(unsigned lct_j, unsigned inst_cols, elemtype fillnumber
 	if (inst_cols == 0)return;
 	if (lct_j > ncols) {
 		cout << "lct_j : " << lct_j << ", is larger than ncols: " << ncols << endl;
-		cout << "let lct_j = " << ncols << endl;
+		inst_cols += lct_j - ncols;
 		lct_j = ncols;
+		cout << "set lct_j = " << ncols << ", inst_cols = " << inst_cols << endl;
 	}
 	ncols += inst_cols;
 	unsigned i, j;
@@ -417,12 +419,25 @@ void matrix::remove_cols(unsigned lct_j, int rmv_cols)
 	return;
 }
 
-void matrix::print()
+void matrix::print(unsigned start_row, unsigned start_col, unsigned print_nrows, unsigned print_ncols)
 {
-	for (unsigned i = 0U; i < nrows; i++) {
-		for (unsigned j = 0U; j < ncols; j++) {
+	if (start_row >= nrows) {
+		start_row = nrows - 1;
+	}
+	if (start_col >= ncols) {
+		start_col = ncols - 1;
+	}
+	if (print_nrows == 0 || start_row + print_nrows > nrows) {
+		print_nrows = nrows - start_row;
+	}
+	if (print_ncols == 0 || start_col + print_ncols > ncols) {
+		print_ncols = ncols - start_col;
+	}
+	for (unsigned i = start_row; i < start_row + print_nrows; i++) {
+		for (unsigned j = start_col; j < start_col + print_ncols; j++) {
 			cout << point[i][j];
-			if (j != ncols - 1)cout << '\t';
+			if (j != start_col + print_ncols - 1)
+				cout << '\t';
 		}
 		cout << endl;
 	}

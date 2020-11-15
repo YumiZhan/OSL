@@ -4,7 +4,9 @@
 
 int main()
 {
-	if (-1)cout << -1;
+	matrix m(1, 3, 4);
+	m.insert(4, 5, 2, 1);
+	m.print(0, 0, 6, 6);
 	return 0;
 }
 
