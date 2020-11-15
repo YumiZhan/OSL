@@ -82,7 +82,7 @@ inline matrix::matrix() :
 matrix::matrix(const matrix& origin) :
 	max(origin.max), min(origin.min)
 {
-	submatrix(origin, 0U, 0U, nrows, ncols);
+	submatrix(origin, 0U, 0U, origin.nrows, origin.ncols);
 }
 
 matrix::matrix(const matrix& origin,
@@ -502,12 +502,12 @@ void matrix::submatrix(const matrix& origin, unsigned start_row, unsigned start_
 		cout << "start_col(" << start_col << ") >= origin.ncols(" << origin.ncols << ")\n";
 		emptymatrix();
 	}
-	if (start_row + nrows >= origin.nrows) {
+	if (start_row + nrows > origin.nrows) {
 		cout << "start_row + nrows(" << start_row + nrows << ") >= origin.nrows(" << origin.nrows << ")\n";
 		nrows = origin.nrows - start_row - 1;
 		cout << "set nrows = " << nrows << endl;
 	}
-	if (start_col + ncols >= origin.ncols) {
+	if (start_col + ncols > origin.ncols) {
 		cout << "start_col + ncols(" << start_col + ncols << ") >= origin.ncols(" << origin.ncols << ")\n";
 		ncols = origin.ncols - start_col - 1;
 		cout << "set ncols = " << ncols << endl;
