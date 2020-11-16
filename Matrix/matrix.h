@@ -5,6 +5,7 @@
 using namespace std;
 
 #define NO false
+#define YES true
 typedef double elemtype;
 
 class matrix {
@@ -21,14 +22,14 @@ private:
 
 public:
 	inline matrix();
-	matrix(const matrix& origin);
-	matrix(const matrix& origin,
+	inline matrix(const matrix& origin);
+	inline matrix(const matrix& origin,
 		unsigned start_row, unsigned start_col,
 		unsigned nrows, unsigned ncols);
 	typedef const char* path;
 	matrix(path file, unsigned nrows, unsigned ncols);
-	matrix(unsigned nsquare = 1U, elemtype num = 0.0);
-	matrix(unsigned nrows, unsigned ncols, elemtype num = 0.0);
+	inline matrix(unsigned nsquare = 1U, elemtype num = 0.0);
+	inline matrix(unsigned nrows, unsigned ncols, elemtype num = 0.0);
 	matrix(void* ary, unsigned n, bool transpose = NO);
 	matrix(void** ary, unsigned nlines, unsigned nlists, bool transpose = NO);
 	~matrix();
@@ -63,7 +64,7 @@ private:
 	elemtype** point;
 	unsigned nrows, ncols;
 	particular max, min;
-	inline void emptymatrix();
+	inline void empty_matrix(bool showtip = NO);
 	void normal_matrix(unsigned nrows, unsigned ncols, elemtype num = 0.0);
 	void submatrix(const matrix& origin, unsigned start_row, unsigned start_col, unsigned nrows, unsigned ncols);
 	inline void expmatrix(unsigned nrows, unsigned ncols, const matrix& origin, 
@@ -74,18 +75,16 @@ private:
 inline matrix::matrix() :
 	point(NULL), nrows(1U), ncols(1U), max(0U, 0U, 0.0), min(0U, 0U, 0.0)
 {
-	point = new elemtype*;
-	*point = new elemtype;
-	**point = 0.0;
+	empty_matrix();
 }
 
-matrix::matrix(const matrix& origin) :
+inline matrix::matrix(const matrix& origin) :
 	max(origin.max), min(origin.min)
 {
 	submatrix(origin, 0U, 0U, origin.nrows, origin.ncols);
 }
 
-matrix::matrix(const matrix& origin,
+inline matrix::matrix(const matrix& origin,
 	unsigned start_row, unsigned start_col,
 	unsigned nrows, unsigned ncols) :
 	max(0U, 0U, 0.0), min(0U, 0U, 0.0)
@@ -105,7 +104,7 @@ matrix::matrix(path file, unsigned nlines, unsigned nlists) :
 	ifstream ifile(file);
 	if (!ifile) {
 		cout << "can't find file\n";
-		emptymatrix();
+		empty_matrix();
 		return;
 	}
 	if (!nrows)
@@ -115,7 +114,7 @@ matrix::matrix(path file, unsigned nlines, unsigned nlists) :
 
 	if (nrows == 0 || ncols == 0) {
 		cout << "nrows(" << nrows << "), ncols(" << ncols << ")\n";
-		emptymatrix();
+		empty_matrix(YES);
 		return;
 	}
 	point = new elemtype* [nrows];
@@ -129,26 +128,13 @@ matrix::matrix(path file, unsigned nlines, unsigned nlists) :
 	max_and_min();
 }
 
-matrix::matrix(unsigned nsquare, elemtype num) :
-	point(NULL), nrows(nsquare), ncols(nsquare), max(0U, 0U, 0.0), min(0U, 0U, 0.0)
+inline matrix::matrix(unsigned nsquare, elemtype num) :
+	max(0U, 0U, 0.0), min(0U, 0U, 0.0)
 {
-	if (nsquare == 0) {
-		cout << "nsquare(0)\n";
-		emptymatrix();
-		return;
-	}
-	point = new elemtype* [nrows];
-	for (unsigned i = 0U; i < nrows; i++) {
-		point[i] = new elemtype[ncols];
-		for (unsigned j = 0U; j < ncols; j++) {
-			point[i][j] = 0;
-		}
-		point[i][i] = (elemtype)num;
-	}
-	max_and_min();
+	normal_matrix(nsquare, nsquare, num);
 }
 
-matrix::matrix(unsigned nrows, unsigned ncols, elemtype num) :
+inline matrix::matrix(unsigned nrows, unsigned ncols, elemtype num) :
 	max(0U, 0U, num), min(0U, 0U, num)
 {
 	normal_matrix(nrows, ncols, num);
@@ -159,7 +145,7 @@ matrix::matrix(void* ary, unsigned n, bool transpose) :
 {
 	if (n == 0) {
 		cout << "n(0)\n";
-		emptymatrix();
+		empty_matrix(YES);
 		return;
 	}
 	unsigned i, j;
@@ -188,7 +174,7 @@ matrix::matrix(void** ary, unsigned nlines, unsigned nlists, bool transpose) :
 	/**/
 	if (nlines == 0 || nlists == 0) {
 		cout << "nlines(" << nlines << "), nlists(" << nlists << ")\n";
-		emptymatrix();
+		empty_matrix(YES);
 		return;
 	}
 	unsigned i, j;
@@ -320,20 +306,19 @@ inline void matrix::remove(unsigned lct_i, unsigned lct_j, int rmv_rows, int rmv
 	return;
 }
 
-#define Forward 1
-#define Backward -1
 void matrix::remove_rows(unsigned lct_i, int rmv_rows)
 {
-	if (rmv_rows == 0)return;
-	int Direction = Backward;
+	if (rmv_rows == 0)
+		return;
+	int Direction = -1;
 	if (rmv_rows > 0) {
-		Direction = Forward;
+		Direction = 1;
 	}
 	rmv_rows = abs(rmv_rows);
 	nrows -= rmv_rows;
 	elemtype** newpoint = new elemtype* [nrows];
 	unsigned i, j;
-	if (Direction == Backward) {
+	if (Direction == -1) {
 		if (unsigned(rmv_rows) > lct_i) {
 			cout << "rmv_rows(" << rmv_rows << ") > lct_i(" << lct_i << ")\n";
 			rmv_rows = lct_i - 1;
@@ -387,15 +372,15 @@ void matrix::remove_rows(unsigned lct_i, int rmv_rows)
 void matrix::remove_cols(unsigned lct_j, int rmv_cols)
 {
 	if (rmv_cols == 0)return;
-	int Direction = Backward;
+	int Direction = -1;
 	if (rmv_cols > 0) {
-		Direction = Forward;
+		Direction = 1;
 	}
 	rmv_cols = abs(rmv_cols);
 	ncols -= rmv_cols;
 	elemtype** newpoint = new elemtype* [ncols];
 	unsigned i, j;
-	if (Direction == Backward) {
+	if (Direction == -1) {
 		if (unsigned(rmv_cols) > lct_j) {
 			cout << "rmv_cols(" << rmv_cols << ") > lct_j(" << lct_j << ")\n";
 			rmv_cols = lct_j - 1;
@@ -458,9 +443,10 @@ void matrix::print(unsigned start_row, unsigned start_col, unsigned print_nrows,
 	}
 }
 
-inline void matrix::emptymatrix()
+inline void matrix::empty_matrix(bool showtip)
 {
-	cout << "the matrix is created as a 1¡Á1 matrix\n";
+	if (showtip == YES)
+		cout << "the matrix is created as a 1¡Á1 matrix\n";
 	point = new elemtype*;
 	*point = new elemtype;
 	**point = 0.0;
@@ -473,7 +459,7 @@ void matrix::normal_matrix(unsigned nrows, unsigned ncols, elemtype num)
 {
 	if (nrows == 0 || ncols == 0) {
 		cout << "nrows(" << nrows << "), ncols(" << nrows << ")\n";
-		emptymatrix();
+		empty_matrix(YES);
 		return;
 	}
 	this->nrows = nrows, this->ncols = ncols;
@@ -490,17 +476,17 @@ void matrix::submatrix(const matrix& origin, unsigned start_row, unsigned start_
 {
 	if (nrows == 0 || ncols == 0) {
 		cout << "nrows(" << nrows << "), ncols(" << ncols << ")\n";
-		emptymatrix();
+		empty_matrix(YES);
 		return;
 	}
 	if (start_row >= origin.nrows) {
 		cout << "start_row(" << start_row << ") >= origin.nrows(" << origin.nrows << ")\n";
-		emptymatrix();
+		empty_matrix(YES);
 		return;
 	}
 	if (start_col >= origin.ncols) {
 		cout << "start_col(" << start_col << ") >= origin.ncols(" << origin.ncols << ")\n";
-		emptymatrix();
+		empty_matrix(YES);
 	}
 	if (start_row + nrows > origin.nrows) {
 		cout << "start_row + nrows(" << start_row + nrows << ") >= origin.nrows(" << origin.nrows << ")\n";
