@@ -13,20 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\real">
+      <UniqueIdentifier>{63dd66a2-da7b-4def-8f74-5ab6a082a25b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="matrix.h">
+    <ClInclude Include="framework.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="real\real.h">
+      <Filter>头文件\real</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="matrix.txt">
-      <Filter>资源文件</Filter>
-    </Text>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="real\operator.cpp">
+      <Filter>头文件\real</Filter>
+    </ClCompile>
+    <ClCompile Include="real\real.cpp">
+      <Filter>头文件\real</Filter>
+    </ClCompile>
+    <ClCompile Include="real\object_operation.cpp">
+      <Filter>头文件\real</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
