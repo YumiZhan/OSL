@@ -2,33 +2,36 @@
 #include "real.h"
 
 inline real::real() :
-	finite(true), known(false), _denominator(1), _numerator(0), name()
+	known(false), finite(true), _denominator(1), _numerator(0)
 {}
 
-inline real::real(const real& origin, string name) :
-	finite(origin.finite), known(origin.known), name(name), _denominator(origin._denominator), _numerator(origin._numerator)
-{
-	if (!name.empty()) {
-		return;
-	}
-	else if (!origin.name.empty()) {
-		this->name = origin.name + "_copy";
-	}
-}
-
-inline real::real(double num, string name) :
-	finite(true), known(true), name(name), _denominator(1), _numerator(num)
+inline real::real(const real& origin) :
+	known(origin.known), finite(origin.finite), _denominator(origin._denominator), _numerator(origin._numerator)
 {}
 
-inline real::real(double numerator, double denominator, string name) :
-	finite(true), known(true), _denominator(denominator), _numerator(numerator), name(name)
+inline real::real(double num) :
+	known(true), finite(true), _denominator(1), _numerator(num)
+{}
+
+inline real::real(double numerator, double denominator) :
+	known(true), _denominator(denominator), _numerator(numerator)
 {
 	finite = !infinite();
 }
 
 inline real abs(const real& origin)
 {
-	return real(fabs(origin._denominator), fabs(origin._numerator));
+	return real(fabs(origin._numerator), fabs(origin._denominator));
+}
+
+inline real real::abs() const
+{
+	return real(::fabs(_numerator), ::fabs(_denominator));
+}
+
+inline double fabs(const real& real)
+{
+	return ::fabs(real.to_double());
 }
 
 inline double real::fabs() const

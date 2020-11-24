@@ -1,7 +1,6 @@
 #pragma once
 #include "..\pch.h"
 #include <iostream>
-#include <string>
 using namespace std;
 
 #ifndef ZERO
@@ -12,15 +11,16 @@ class real
 {
 public:
 	bool known;
-	string name;
 
 	//real.cpp
 	inline real();
-	inline real(const real& origin, string name = "");
-	inline real(double num, string name = "");
-	inline real(double numerator, double denominator, string name = "");
+	inline real(const real& origin);
+	inline real(double num);
+	inline real(double numerator, double denominator);
 
 	friend inline real abs(const real& origin);
+	inline real abs()const;
+	friend inline double fabs(const real& real);
 	inline double fabs()const;
 	inline double to_double()const;
 	inline bool zero(double num = 1)const;
@@ -37,7 +37,7 @@ public:
 	inline void add(double num);
 	inline void add(const real& real);
 	inline void subtract(double num);
-	inline void subtract(const real& real);
+	inline void subtract(const real& real); 
 	inline void multiply(double num);
 	inline void multiply(const real& real);
 	inline void divide(double num);
@@ -63,54 +63,49 @@ public:
 	inline real& operator/=(double num);
 	inline real& operator/=(const real& origin);
 
-	friend inline real operator+(const real& real, double num);
-	friend inline real operator+(double num, const real& real);
-	friend inline real operator+(const real& real_1, const real& real_2);
+	friend inline real operator+(const real& origin, double num);
+	friend inline real operator+(double num, const real& origin);
+	friend inline real operator+(const real& origin_1, const real& origin_2);
 
-	friend real operator-(const real& real, double num);
-	friend real operator-(const real& real_1, const real& real_2);
-	friend real operator-(double num, const real& real);
+	friend inline real operator-(const real& origin, double num);
+	friend inline real operator-(double num, const real& origin);
+	friend inline real operator-(const real& real_1, const real& real_2);
 
-	friend real operator-(const real& origin);
+	friend inline real operator-(const real& origin);
 
-	friend real operator*(const real& real_1, double num);
-	friend real operator*(const real& real_1, const real& real_2);
-	friend real operator*(double num, const real& real);
+	friend inline real operator*(const real& origin, double num);
+	friend inline real operator*(double num, const real& origin);
+	friend inline real operator*(const real& real_1, const real& real_2);
 
-	friend real operator/(const real& real, double num);
-	friend real operator/(const real& real_1, const real& real_2);
-	friend real operator/(double num, const real& real);
+	friend inline real operator/(const real& origin, double num);
+	friend inline real operator/(double num, const real& origin);
+	friend inline real operator/(const real& real_1, const real& real_2);
 
-	friend bool operator==(const real& real, double num);
-	friend bool operator==(double num, const real& real);
-	friend bool operator==(const real& real_1, const real& real_2);
+	friend inline bool operator==(const real& origin, double num);
+	friend inline bool operator==(double num, const real& origin);
+	friend inline bool operator==(const real& real_1, const real& real_2);
 
-	friend bool operator!=(const real& real, double num);
-	friend bool operator!=(double num, const real& real);
-	friend bool operator!=(const real& real_1, const real& real_2);
+	friend inline bool operator!=(const real& origin, double num);
+	friend inline bool operator!=(double num, const real& origin);
+	friend inline bool operator!=(const real& real_1, const real& real_2);
 
-	friend bool operator<(const real& real, double num);
-	friend bool operator<(double num, const real& real);
-	friend bool operator<(const real& real_1, const real& real_2);
+	friend inline bool operator<(const real& origin, double num);
+	friend inline bool operator<(double num, const real& origin);
+	friend inline bool operator<(const real& real_1, const real& real_2);
 
-	friend bool operator<=(const real& real, double num);
-	friend bool operator<=(double num, const real& real);
-	friend bool operator<=(const real& real_1, const real& real_2);
+	friend inline bool operator<=(const real& origin, double num) { return origin < num; }
+	friend inline bool operator<=(double num, const real& origin) { return num < origin; }
+	friend inline bool operator<=(const real& real_1, const real& real_2) { return real_1 < real_2; }
 
-	friend bool operator>(const real& real, double num);
-	friend bool operator>(double num, const real& real);
-	friend bool operator>(const real& real_1, const real& real_2);
+	friend inline bool operator>(const real& origin, double num);
+	friend inline bool operator>(double num, const real& origin);
+	friend inline bool operator>(const real& real_1, const real& real_2);
 
-	friend bool operator>=(const real& real, double num);
-	friend bool operator>=(double num, const real& real);
-	friend bool operator>=(const real& real_1, const real& real_2);
+	friend inline bool operator>=(const real& origin, double num) { return origin > num; }
+	friend inline bool operator>=(double num, const real& origin) { return num > origin; }
+	friend inline bool operator>=(const real& real_1, const real& real_2) { return real_1 > real_2; }
 
 private:
 	bool finite;
 	double _denominator, _numerator;
 };
-
-inline double fabs(const real& num)
-{
-	return num.fabs();
-}
