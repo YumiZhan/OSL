@@ -86,6 +86,35 @@
 - `>()`判断大于
 - `>=()`判断不小于
 
+#### （四）`<cmath>`函数重载（rcmath.cpp）
+
+[C 标准库 | 菜鸟教程 (runoob.com)](https://www.runoob.com/cprogramming/c-standard-library-math-h.html)
+
+- `acos()`反余弦
+- `asin()`反正弦
+- `atan()`反正切
+- `atan2()`双参数的反正切
+- `cos()`余弦
+- `cosh()`双曲余弦
+- `sin()`正弦
+- `sinh()`双曲正弦
+- `tan()`正切
+- `tanh()`双曲正切
+- `exp(x)`e 的 x 次幂
+- `frexp(x, *exponent)`把浮点数分解成尾数和指数，返回尾数，指数存入`exponent`中
+- `ldexp(x, exponent)`乘以 2 的`exponent`次幂
+- `log()`对数
+- `ln()`以 e 为底的对数
+- `log2()`以 2 为底的对数
+- `log10()`以 10 为底的对数
+- `modf(x, *integer)`返回 x 的小数部分，整数部分存入`integer`
+- `pow(x, y)`返回 x 的 y 次幂
+- `pow2()`平方
+- `sqrt()`平方根
+- `ceil(x)`不小于 x 的整数值
+- `fabs()`绝对值
+- `floor(x)`不大于 x 的整数值
+- `fmod(x, y)`返回 x 除以 y 的余数
 
 ## complex 类
 

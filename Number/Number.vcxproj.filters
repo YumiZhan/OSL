@@ -13,8 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\real">
-      <UniqueIdentifier>{63dd66a2-da7b-4def-8f74-5ab6a082a25b}</UniqueIdentifier>
+    <Filter Include="real">
+      <UniqueIdentifier>{f64eb748-a30f-45dd-8aa0-3316632fbcaa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -25,21 +25,24 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="real\real.h">
-      <Filter>头文件\real</Filter>
+      <Filter>real</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="real\object_operation.cpp">
+      <Filter>real</Filter>
+    </ClCompile>
     <ClCompile Include="real\operator.cpp">
-      <Filter>头文件\real</Filter>
+      <Filter>real</Filter>
+    </ClCompile>
+    <ClCompile Include="real\rcmath.cpp">
+      <Filter>real</Filter>
     </ClCompile>
     <ClCompile Include="real\real.cpp">
-      <Filter>头文件\real</Filter>
-    </ClCompile>
-    <ClCompile Include="real\object_operation.cpp">
-      <Filter>头文件\real</Filter>
+      <Filter>real</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
