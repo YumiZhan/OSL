@@ -6,7 +6,11 @@
 
 以`double`类型数值为分子和分母的分数形式记录数值，拥有已知性标识、有限大标识。由于使用分数的方式记录数值，在数值计算过程中，它有效地规避了计算机内存有限地储存无限循环小数造成的精度损失，因次其运算精度不低于`double`类型。即使拥有更精确的运算和功能，其定义、初始化和使用的方式却与`double`类型几乎完全相同，使用者不会觉得难以接受。不过由于这是一种对象（C++ class），运算效率不及`double`类。
 
-### 二、数据成员
+### 二、使用方式
+
+在需要 real 或 complex 类的项目中放置 number.h 并在使用这些类的文件中包含（如`#include "number.h"`），把 number.dll 放置在可执行文件的同一目录下。
+
+### 三、数据成员
 
 #### （一）公有
 
@@ -18,7 +22,7 @@
 - `double denominator`分母
 - `double numerator`分子
 
-### 三、函数
+### 四、函数
 
 #### （一）构造函数（real.cpp）
 
@@ -86,7 +90,7 @@
 - `>()`判断大于
 - `>=()`判断不小于
 
-#### （四）`<cmath>`函数重载（rcmath.cpp）
+#### （五）`<cmath>`函数重载（rcmath.cpp）
 
 [C 标准库 | 菜鸟教程 (runoob.com)](https://www.runoob.com/cprogramming/c-standard-library-math-h.html)
 

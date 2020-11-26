@@ -1,4 +1,5 @@
-#include "real.h"
+#include "pch.h"
+#include "number.h"
 
 inline void real::reciprocal()
 {

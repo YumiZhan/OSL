@@ -1,4 +1,5 @@
-#include "real.h"
+#include "pch.h"
+#include "number.h"
 
 inline ostream& operator<<(ostream& os, const real& origin)
 {
@@ -8,7 +9,6 @@ inline ostream& operator<<(ostream& os, const real& origin)
 
 inline istream& operator>>(istream& is, real& origin)
 {
-	origin.finite = true;
 	origin.known = true;
 	is >> origin._numerator;
 	origin._denominator = 1;
@@ -80,10 +80,10 @@ inline real& real::operator/=(const real& origin)
 	return *this;
 }
 
-inline real operator+(real& origin, double num)
+inline real operator+(const real& origin, double num)
 {
 	real temp(origin);
-	origin.add(num);
+	temp.add(num);
 	return temp;
 }
 

@@ -1,5 +1,5 @@
-//#include "pch.h"
-#include "real.h"
+#include "pch.h"
+#include "number.h"
 
 inline real::real() :
 	known(false), _denominator(1), _numerator(0)
