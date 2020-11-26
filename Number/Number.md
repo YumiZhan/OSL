@@ -8,7 +8,7 @@
 
 ### 二、使用方式
 
-在需要 real 或 complex 类的项目中放置 number.h 并在使用这些类的文件中包含（如`#include "number.h"`），把 number.dll 放置在可执行文件的同一目录下。
+将 number.h 和 number.lib 放置到项目的同一个文件夹中，调用 real 或 complex 类前包含头文件（如`#include "number.h"`）。运行程序前，把 number.dll 放置在可执行文件（如 example.exe）所在的文件夹里。
 
 ### 三、数据成员
 
