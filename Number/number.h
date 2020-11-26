@@ -2,6 +2,7 @@
 #define NUMBER_API __declspec(dllexport)
 #else
 #define NUMBER_API __declspec(dllimport)
+#pragma	comment(lib, "number")
 #endif // _NUMBER_EXPORTS
 
 #include <iostream>
