@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "framework.h"
 #include "number.h"
 
 inline void real::reciprocal()
@@ -32,7 +33,7 @@ inline void real::subtract(double num)
 
 inline void real::subtract(const real& real)
 {
-	_numerator = _numerator * real._denominator - _denominator * real._denominator;
+	_numerator = _numerator * real._denominator - _denominator * real._numerator;
 	_denominator *= real._denominator;
 }
 
@@ -54,6 +55,6 @@ inline void real::divide(double num)
 
 inline void real::divide(const real& real)
 {
-	_numerator *= real._numerator;
-	_denominator *= real._denominator;
+	_numerator *= real._denominator;
+	_denominator *= real._numerator;
 }

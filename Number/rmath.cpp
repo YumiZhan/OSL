@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "framework.h"
 #include "number.h"
 #include <cmath>
 

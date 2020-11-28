@@ -1,5 +1,8 @@
 #include "pch.h"
+#include "framework.h"
 #include "number.h"
+#include <iostream>
+using namespace std;
 
 inline ostream& operator<<(ostream& os, const real& origin)
 {
