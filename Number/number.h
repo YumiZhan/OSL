@@ -1,4 +1,5 @@
-﻿#ifdef NUMBER_EXPORTS
+﻿#pragma once
+#ifdef NUMBER_EXPORTS
 #define NUMBER_API __declspec(dllexport)
 #else
 #define NUMBER_API __declspec(dllimport)
@@ -34,6 +35,8 @@ public:
 	inline double numerator()const;
 	inline void print()const;
 	friend NUMBER_API inline void print(const real& num);
+	inline real to_radian();
+	inline real to_degree();
 
 	//object_operation.cpp
 	inline void reciprocal();

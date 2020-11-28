@@ -168,7 +168,7 @@
     <ClCompile Include="number.cpp" />
     <ClCompile Include="object_operation.cpp" />
     <ClCompile Include="operator.cpp" />
-    <ClCompile Include="rcmath.cpp" />
+    <ClCompile Include="rmath.cpp" />
     <ClCompile Include="real.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -90,3 +90,13 @@ inline void print(const real& num)
 {
 	cout << num << endl;
 }
+
+inline real real::to_radian()
+{
+	return real(this->_numerator * PI, this->_denominator * 180);
+}
+
+inline real real::to_degree()
+{
+	return real(this->_numerator * 180, this->_denominator * PI);
+}

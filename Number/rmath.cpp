@@ -14,33 +14,21 @@ inline double asin(const real& origin)
 
 inline double atan(const real& origin)
 {
-	if (origin.infinite()) {
-		return PI / 2;
-	}
 	return atan(origin.to_double());
 }
 
 inline double atan2(const real& origin, double num)
 {
-	if (origin.infinite(num)) {
-		return PI / 2;
-	}
 	return atan2(origin._numerator, num * origin._denominator);
 }
 
 inline double atan2(double num, const real& origin)
 {
-	if (origin.zero(num)) {
-		return PI / 2;
-	}
 	return atan2(num * origin._denominator, origin._numerator);
 }
 
 inline double atan2(const real& real_1, const real& real_2)
 {
-	if (real_2.zero(real_1)) {
-		return PI / 2;
-	}
 	return atan2(real_1._numerator * real_2._denominator, real_1._denominator * real_2._numerator);
 }
 
@@ -66,10 +54,7 @@ inline double sinh(const real& origin)
 
 inline double tan(const real& origin)
 {
-	if (origin.infinite()) {
-		return 0;
-	}
-	return 0.0;
+	return tan(origin.to_double());
 }
 
 inline double tanh(const real& origin)
