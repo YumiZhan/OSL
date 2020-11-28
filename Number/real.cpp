@@ -1,5 +1,7 @@
 #include "pch.h"
+#include "framework.h"
 #include "number.h"
+using namespace std;
 
 inline real::real() :
 	known(false), _denominator(1), _numerator(0)
@@ -91,12 +93,12 @@ inline void print(const real& num)
 	cout << num << endl;
 }
 
-inline real real::to_radian()
+inline real real::to_radian() const
 {
 	return real(this->_numerator * PI, this->_denominator * 180);
 }
 
-inline real real::to_degree()
+inline real real::to_degree() const
 {
 	return real(this->_numerator * 180, this->_denominator * PI);
 }

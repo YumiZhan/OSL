@@ -7,10 +7,8 @@
 #endif // _NUMBER_EXPORTS
 
 #include <iostream>
-using namespace std;
 
 #define PI 3.141592653589793
-//#define ZERO 1E-10
 extern NUMBER_API double ZERO;
 
 class NUMBER_API real {
@@ -35,8 +33,8 @@ public:
 	inline double numerator()const;
 	inline void print()const;
 	friend NUMBER_API inline void print(const real& num);
-	inline real to_radian();
-	inline real to_degree();
+	inline real to_radian()const;
+	inline real to_degree()const;
 
 	//object_operation.cpp
 	inline void reciprocal();
@@ -51,8 +49,8 @@ public:
 	inline void divide(const real& real);
 
 	//operator.cpp
-	friend NUMBER_API inline ostream& operator<<(ostream& os, const real& output_real);
-	friend NUMBER_API inline istream& operator>>(istream& is, real& input_real);
+	friend NUMBER_API inline std::ostream& operator<<(std::ostream& os, const real& output_real);
+	friend NUMBER_API inline std::istream& operator>>(std::istream& is, real& input_real);
 
 	friend NUMBER_API inline real operator~(const real& origin);
 	friend NUMBER_API inline real operator&(const real& real_1, const real& real_2);

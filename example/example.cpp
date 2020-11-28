@@ -1,4 +1,6 @@
-﻿#include "..\Number\number.h"
+﻿#include <iostream>
+#include "..\Number\number.h"
+using namespace std;
 
 int main()
 {
