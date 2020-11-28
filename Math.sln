@@ -6,8 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Number", "Number\Number.vcxproj", "{7B51D311-A370-4528-8BC9-2B7017E5BAF7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Matrix", "Matrix\Matrix.vcxproj", "{A967B7DA-70F6-4C93-946B-E4037E1FEC95}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7B51D311-A370-4528-8BC9-2B7017E5BAF7} = {7B51D311-A370-4528-8BC9-2B7017E5BAF7}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example", "example\example.vcxproj", "{B4527AA8-2A4F-42BA-9828-C7F2DAEE7340}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7B51D311-A370-4528-8BC9-2B7017E5BAF7} = {7B51D311-A370-4528-8BC9-2B7017E5BAF7}
+		{A967B7DA-70F6-4C93-946B-E4037E1FEC95} = {A967B7DA-70F6-4C93-946B-E4037E1FEC95}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

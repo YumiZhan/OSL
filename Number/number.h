@@ -32,7 +32,8 @@ public:
 	inline bool infinite(const real& real)const;
 	inline double denominator()const;
 	inline double numerator()const;
-	inline void print(double reference = 1)const;
+	inline void print()const;
+	friend NUMBER_API inline void print(const real& num);
 
 	//object_operation.cpp
 	inline void reciprocal();

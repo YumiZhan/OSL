@@ -81,12 +81,12 @@ inline double real::numerator() const
 	return _numerator;
 }
 
-inline void real::print(double reference) const
+inline void real::print() const
 {
-	if (infinite(reference)) {
-		cout << "INFINITE\n";
-	}
-	else {
-		cout << to_double() << endl;
-	}
+	cout << *this << endl;
+}
+
+inline void print(const real& num)
+{
+	cout << num << endl;
 }

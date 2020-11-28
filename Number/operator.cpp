@@ -3,7 +3,12 @@
 
 inline ostream& operator<<(ostream& os, const real& origin)
 {
-	os << origin.to_double();
+	if (origin.known) {
+		os << origin.to_double();
+	}
+	else {
+		os << "unknow";
+	}
 	return os;
 }
 
