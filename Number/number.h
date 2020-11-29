@@ -20,6 +20,7 @@ public:
 	inline real(const real& origin);
 	inline real(double num);
 	inline real(double numerator, double denominator);
+	real(const char* str, const int length);
 
 	friend NUMBER_API inline real abs(const real& origin);
 	inline real abs()const;
