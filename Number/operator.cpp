@@ -215,32 +215,62 @@ inline bool operator!=(const real& real_1, const real& real_2)
 		> ZERO * real_1._denominator * real_2._denominator);
 }
 
-inline bool operator<(const real& origin, double num)
+inline bool operator<(const real& num_1, double num_2)
 {
-	return (origin._numerator < num * origin._denominator);
+	return num_1.less_than(num_2);
 }
 
-inline bool operator<(double num, const real& origin)
+inline bool operator<(double num_1, const real& num_2)
 {
-	return (num * origin._denominator < origin._numerator);
+	return num_2.larger_than(num_1);
 }
 
-inline bool operator<(const real& real_1, const real& real_2)
+inline bool operator<(const real& num_1, const real& num_2)
 {
-	return (real_1._numerator * real_2._denominator < real_1._denominator * real_2._numerator);
+	return num_1.less_than(num_2);
 }
 
-inline bool operator>(const real& origin, double num)
+inline bool operator<=(const real& num_1, double num_2)
 {
-	return (origin._numerator > num * origin._denominator);
+	return num_1.not_larger_than(num_2);
 }
 
-inline bool operator>(double num, const real& origin)
+inline bool operator<=(double num_1, const real& num_2)
 {
-	return (num * origin._denominator > origin._numerator);
+	return num_2.not_less_than(num_1);
 }
 
-inline bool operator>(const real& real_1, const real& real_2)
+inline bool operator<=(const real& num_1, const real& num_2)
 {
-	return (real_1._numerator * real_2._denominator > real_1._denominator * real_2._numerator);
+	return num_1.not_larger_than(num_2);
+}
+
+inline bool operator>(const real& num_1, double num_2)
+{
+	return num_1.larger_than(num_2);
+}
+
+inline bool operator>(double num_1, const real& num_2)
+{
+	return num_2.less_than(num_1);
+}
+
+inline bool operator>(const real& num_1, const real& num_2)
+{
+	return num_1.larger_than(num_2);
+}
+
+inline bool operator>=(const real& num_1, double num_2)
+{
+	return num_1.not_less_than(num_2);
+}
+
+inline bool operator>=(double num_1, const real& num_2)
+{
+	return num_2.not_larger_than(num_1);
+}
+
+inline bool operator>=(const real& num_1, const real& num_2)
+{
+	return num_1.not_less_than(num_2);
 }

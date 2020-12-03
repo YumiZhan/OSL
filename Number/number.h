@@ -26,10 +26,12 @@ public:
 	inline real abs()const;
 	inline double fabs()const;
 	inline double to_double()const;
+
 	inline bool zero(double reference = 1)const;
 	inline bool zero(const real& real)const;
 	inline bool infinite(double reference = 1)const;
 	inline bool infinite(const real& real)const;
+
 	inline double denominator()const;
 	inline double numerator()const;
 	inline void print()const;
@@ -99,17 +101,17 @@ public:
 	friend NUMBER_API inline bool operator<(double num_1, const real& num_2);
 	friend NUMBER_API inline bool operator<(const real& num_1, const real& num_2);
 
-	friend NUMBER_API inline bool operator<=(const real& num_1, double num_2) { return num_1 < num_2; }
-	friend NUMBER_API inline bool operator<=(double num_1, const real& num_2) { return num_1 < num_2; }
-	friend NUMBER_API inline bool operator<=(const real& num_1, const real& num_2) { return num_1 < num_2; }
+	friend NUMBER_API inline bool operator<=(const real& num_1, double num_2);
+	friend NUMBER_API inline bool operator<=(double num_1, const real& num_2);
+	friend NUMBER_API inline bool operator<=(const real& num_1, const real& num_2);
 
 	friend NUMBER_API inline bool operator>(const real& num_1, double num_2);
 	friend NUMBER_API inline bool operator>(double num_1, const real& num_2);
 	friend NUMBER_API inline bool operator>(const real& num_1, const real& num_2);
 
-	friend NUMBER_API inline bool operator>=(const real& origin, double num) { return origin > num; }
-	friend NUMBER_API inline bool operator>=(double num, const real& origin) { return num > origin; }
-	friend NUMBER_API inline bool operator>=(const real& real_1, const real& real_2) { return real_1 > real_2; }
+	friend NUMBER_API inline bool operator>=(const real& origin, double num);
+	friend NUMBER_API inline bool operator>=(double num, const real& origin);
+	friend NUMBER_API inline bool operator>=(const real& real_1, const real& real_2);
 
 	//rcmath.cpp
 	friend NUMBER_API inline double acos(const real& num);
@@ -159,6 +161,17 @@ public:
 
 private:
 	double _denominator, _numerator;
+	
+	//real.cpp
+	inline bool larger_than(double num)const;
+	inline bool larger_than(const real& num)const;
+	inline bool not_less_than(double num)const;
+	inline bool not_less_than(const real& num)const;
+	inline bool less_than(double num)const;
+	inline bool less_than(const real& num)const;
+	inline bool not_larger_than(double num)const;
+	inline bool not_larger_than(const real& num)const;
+
 };
 
 class NUMBER_API complex {
