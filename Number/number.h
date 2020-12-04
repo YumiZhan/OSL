@@ -71,6 +71,9 @@ public:
 	inline real& operator/=(double num);
 	inline real& operator/=(const real& origin);
 
+	inline real operator++();
+	inline real operator++(int);
+
 	friend NUMBER_API inline real operator+(const real& origin, double num);
 	friend NUMBER_API inline real operator+(double num, const real& origin);
 	friend NUMBER_API inline real operator+(const real& origin_1, const real& origin_2);

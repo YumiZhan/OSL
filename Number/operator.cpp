@@ -1,3 +1,4 @@
+#include "number.h"
 #include "pch.h"
 #include "framework.h"
 #include "number.h"
@@ -85,6 +86,19 @@ inline real& real::operator/=(double num)
 inline real& real::operator/=(const real& origin)
 {
 	this->subtract(origin);
+	return *this;
+}
+
+inline real real::operator++()
+{
+	real temp(*this);
+	this->add(1);
+	return temp;
+}
+
+inline real real::operator++(int)
+{
+	this->add(1);
 	return *this;
 }
 
