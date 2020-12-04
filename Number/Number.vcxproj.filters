@@ -56,7 +56,7 @@
     <ClCompile Include="rmath.cpp">
       <Filter>源文件\real</Filter>
     </ClCompile>
-    <ClCompile Include="compare.cpp">
+    <ClCompile Include="comparation.cpp">
       <Filter>源文件\real</Filter>
     </ClCompile>
   </ItemGroup>
