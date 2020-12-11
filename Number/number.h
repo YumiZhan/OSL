@@ -177,10 +177,16 @@ private:
 
 };
 
+template <class num = real>
 class NUMBER_API complex {
 public:
 	bool known;
 	inline complex();
+	inline complex(const num& real);
+	inline complex(const num& real, const num& imag);
+
+	inline num real();
+	inline num imag();
 private:
-	real _real, _imag;
+	num _real, _imag;
 };
