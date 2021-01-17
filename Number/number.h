@@ -15,7 +15,7 @@ class NUMBER_API real {
 public:
 	bool known;
 
-	//real.cpp
+	// real.cpp
 	inline real();
 	inline real(const real& origin);
 	inline real(double num);
@@ -39,7 +39,7 @@ public:
 	inline real to_radian()const;
 	inline real to_degree()const;
 
-	//object_operation.cpp
+	// object_operation.cpp
 	inline void reciprocal();
 	inline void rabs();
 	inline void add(double num);
@@ -51,7 +51,7 @@ public:
 	inline void divide(double num);
 	inline void divide(const real& real);
 
-	//operator.cpp
+	// operator.cpp
 	friend NUMBER_API inline std::ostream& operator<<(std::ostream& os, const real& output_real);
 	friend NUMBER_API inline std::istream& operator>>(std::istream& is, real& input_real);
 
@@ -116,7 +116,7 @@ public:
 	friend NUMBER_API inline bool operator>=(double num, const real& origin);
 	friend NUMBER_API inline bool operator>=(const real& real_1, const real& real_2);
 
-	//rcmath.cpp
+	// rcmath.cpp
 	friend NUMBER_API inline double acos(const real& num);
 	friend NUMBER_API inline double asin(const real& num);
 	friend NUMBER_API inline double atan(const real& num);
@@ -165,7 +165,7 @@ public:
 private:
 	double _denominator, _numerator;
 	
-	//real.cpp
+	// comparation.cpp
 	inline bool larger_than(double num)const;
 	inline bool larger_than(const real& num)const;
 	inline bool not_less_than(double num)const;
@@ -174,7 +174,8 @@ private:
 	inline bool less_than(const real& num)const;
 	inline bool not_larger_than(double num)const;
 	inline bool not_larger_than(const real& num)const;
-
+	inline bool equal_to(double num, double precision = ZERO) const;
+	inline bool equal_to(const real& num, const real& precision = ZERO) const;
 };
 
 template <class num = real>

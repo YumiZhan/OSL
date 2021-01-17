@@ -195,38 +195,32 @@ inline real operator/(const real& real_1, const real& real_2)
 
 inline bool operator==(const real& origin, double num)
 {
-	return (::fabs(origin._numerator - num * origin._denominator)
-		< ZERO * origin._denominator);
+	return origin.equal_to(num);
 }
 
 inline bool operator==(double num, const real& origin)
 {
-	return (::fabs(num * origin._denominator - origin._numerator)
-		< ZERO * origin._denominator);
+	return origin.equal_to(num);
 }
 
 inline bool operator==(const real& real_1, const real& real_2)
 {
-	return (::fabs(real_1._numerator * real_2._denominator - real_1._denominator * real_2._numerator)
-		< ZERO * real_1._denominator * real_2._denominator);
+	return real_1.equal_to(real_2);
 }
 
 inline bool operator!=(const real& origin, double num)
 {
-	return (::fabs(origin._numerator - num * origin._denominator)
-		> ZERO * origin._denominator);
+	return !origin.equal_to(num);
 }
 
 inline bool operator!=(double num, const real& origin)
 {
-	return (::fabs(num * origin._denominator - origin._numerator)
-		> ZERO * origin._denominator);
+	return !origin.equal_to(num);
 }
 
 inline bool operator!=(const real& real_1, const real& real_2)
 {
-	return (::fabs(real_1._numerator * real_2._denominator - real_1._denominator * real_2._numerator)
-		> ZERO * real_1._denominator * real_2._denominator);
+	return !real_1.equal_to(real_2);
 }
 
 inline bool operator<(const real& num_1, double num_2)
