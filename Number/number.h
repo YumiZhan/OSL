@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#define PI 3.141592653589793
+extern NUMBER_API double PI;
 extern NUMBER_API double ZERO;
 
 class NUMBER_API real {
@@ -20,7 +20,8 @@ public:
 	inline real(const real& origin);
 	inline real(double num);
 	inline real(double numerator, double denominator);
-	real(const char* str, const int length);
+	inline real(const char* c_str);
+	inline real(const wchar_t* w_str);
 
 	friend NUMBER_API inline real abs(const real& origin);
 	inline real abs()const;
@@ -60,37 +61,37 @@ public:
 	friend NUMBER_API inline real operator|(const real& real_1, const real& real_2);
 
 	inline real& operator+=(double num);
-	inline real& operator+=(const real& origin);
+	inline real& operator+=(const real& num);
 
 	inline real& operator-=(double num);
-	inline real& operator-=(const real& origin);
+	inline real& operator-=(const real& num);
 
 	inline real& operator*=(double num);
-	inline real& operator*=(const real& origin);
+	inline real& operator*=(const real& num);
 
 	inline real& operator/=(double num);
-	inline real& operator/=(const real& origin);
+	inline real& operator/=(const real& num);
 
 	inline real operator++();
 	inline real operator++(int);
 
-	friend NUMBER_API inline real operator+(const real& origin, double num);
-	friend NUMBER_API inline real operator+(double num, const real& origin);
-	friend NUMBER_API inline real operator+(const real& origin_1, const real& origin_2);
+	friend NUMBER_API inline real operator+(const real& num_1, double num_2);
+	friend NUMBER_API inline real operator+(double num_1, const real& num_2);
+	friend NUMBER_API inline real operator+(const real& num_1, const real& num_2);
 
-	friend NUMBER_API inline real operator-(const real& origin, double num);
-	friend NUMBER_API inline real operator-(double num, const real& origin);
-	friend NUMBER_API inline real operator-(const real& real_1, const real& real_2);
+	friend NUMBER_API inline real operator-(const real& num_1, double num_2);
+	friend NUMBER_API inline real operator-(double num_1, const real& num_2);
+	friend NUMBER_API inline real operator-(const real& num_1, const real& num_2);
 
-	friend NUMBER_API inline real operator-(const real& origin);
+	friend NUMBER_API inline real operator-(const real& num);
 
-	friend NUMBER_API inline real operator*(const real& origin, double num);
-	friend NUMBER_API inline real operator*(double num, const real& origin);
-	friend NUMBER_API inline real operator*(const real& real_1, const real& real_2);
+	friend NUMBER_API inline real operator*(const real& num_1, double num_2);
+	friend NUMBER_API inline real operator*(double num_1, const real& num_2);
+	friend NUMBER_API inline real operator*(const real& num_1, const real& num_2);
 
-	friend NUMBER_API inline real operator/(const real& origin, double num);
-	friend NUMBER_API inline real operator/(double num, const real& origin);
-	friend NUMBER_API inline real operator/(const real& real_1, const real& real_2);
+	friend NUMBER_API inline real operator/(const real& num_1, double num_2);
+	friend NUMBER_API inline real operator/(double num_1, const real& num_2);
+	friend NUMBER_API inline real operator/(const real& num_1, const real& num_2);
 
 	friend NUMBER_API inline bool operator==(const real& num_1, double num_2);
 	friend NUMBER_API inline bool operator==(double num_1, const real& num_2);
@@ -112,9 +113,9 @@ public:
 	friend NUMBER_API inline bool operator>(double num_1, const real& num_2);
 	friend NUMBER_API inline bool operator>(const real& num_1, const real& num_2);
 
-	friend NUMBER_API inline bool operator>=(const real& origin, double num);
-	friend NUMBER_API inline bool operator>=(double num, const real& origin);
-	friend NUMBER_API inline bool operator>=(const real& real_1, const real& real_2);
+	friend NUMBER_API inline bool operator>=(const real& num_1, double num_2);
+	friend NUMBER_API inline bool operator>=(double num_1, const real& num_2);
+	friend NUMBER_API inline bool operator>=(const real& num_1, const real& num_2);
 
 	// rcmath.cpp
 	friend NUMBER_API inline double cos(const real& num);
@@ -151,6 +152,7 @@ public:
 	friend NUMBER_API inline double ln(const real& num);
 	friend NUMBER_API inline double log2(const real& num);
 	friend NUMBER_API inline double log10(const real& num);
+	friend NUMBER_API inline double log1p(const real& num);
 
 	friend NUMBER_API inline double copysign(const real& num_1, const real& num_2);
 	friend NUMBER_API inline double modf(const real& num, int* integer);
@@ -165,6 +167,7 @@ public:
 	friend NUMBER_API inline double poly(const real& x, int n, double* c);
 
 	friend NUMBER_API inline double ceil(const real& num);
+	friend NUMBER_API inline double round(const real& num);
 	friend NUMBER_API inline double floor(const real& num);
 	friend NUMBER_API inline double trunc(const real& num);
 	friend NUMBER_API inline double fabs(const real& num);
