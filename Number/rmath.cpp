@@ -143,6 +143,11 @@ inline double log10(const real& num)
 	return log10(num._numerator) - log10(num._denominator);
 }
 
+inline double log1p(const real& num)
+{
+	return log1p(num.todouble());
+}
+
 inline double copysign(const real& num_1, const real& num_2)
 {
 	return copysign(num_1.todouble(), num_2.todouble());
@@ -196,6 +201,11 @@ inline double poly(const real& x, int n, double* c)
 inline double ceil(const real& num)
 {
 	return ceil(num.todouble());
+}
+
+inline double round(const real& num)
+{
+	return round(num.todouble());
 }
 
 inline double floor(const real& num)

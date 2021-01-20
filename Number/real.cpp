@@ -19,23 +19,28 @@ inline real::real(double numerator, double denominator) :
 	known(true), _denominator(denominator), _numerator(numerator)
 {}
 
-real::real(const char* str, const int length) :
-	known(true), _denominator(1), _numerator(0)
+inline real::real(const char* c_str) :
+	known(true), _denominator(1), _numerator(atof(c_str))
 {
+	/*
 	int i, decimal = 0;
 	for (i = 0; i < length; i++) {
-		if (str[i] == '.') {
+		if (c_str[i] == '.') {
 			i++;
 			decimal = length - i;
 			break;
 		}
 		_numerator *= 10;
-		_numerator += double(str[i]) - '0';
+		_numerator += double(c_str[i]) - '0';
 	}
 	for (i = 0; i < decimal; i++) {
-		_numerator += (double(str[i + length - decimal]) - '0') * pow(10, i - decimal);
-	}
+		_numerator += (double(c_str[i + length - decimal]) - '0') * pow(10, i - decimal);
+	}*/
 }
+
+inline real::real(const wchar_t* w_str) :
+	known(true), _denominator(1), _numerator(_wtof(w_str))
+{}
 
 inline real abs(const real& origin)
 {

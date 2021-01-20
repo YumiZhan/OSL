@@ -20,10 +20,13 @@ inline void real::add(double num)
 	_numerator += num * _denominator;
 }
 
-inline void real::add(const real& real)
+inline void real::add(const real& num)
 {
-	_numerator = _numerator * real._denominator + _denominator * real._denominator;
-	_denominator *= real._denominator;
+	_numerator = _numerator * num._denominator + _denominator * num._denominator;
+	_denominator *= num._denominator;
+	if (!num.known) {
+		known = false;
+	}
 }
 
 inline void real::subtract(double num)
@@ -31,10 +34,13 @@ inline void real::subtract(double num)
 	_numerator -= num * _denominator;
 }
 
-inline void real::subtract(const real& real)
+inline void real::subtract(const real& num)
 {
-	_numerator = _numerator * real._denominator - _denominator * real._numerator;
-	_denominator *= real._denominator;
+	_numerator = _numerator * num._denominator - _denominator * num._numerator;
+	_denominator *= num._denominator;
+	if (!num.known) {
+		known = false;
+	}
 }
 
 inline void real::multiply(double num)
@@ -42,10 +48,13 @@ inline void real::multiply(double num)
 	_numerator *= num;
 }
 
-inline void real::multiply(const real& real)
+inline void real::multiply(const real& num)
 {
-	_numerator *= real._numerator;
-	_denominator *= real._denominator;
+	_numerator *= num._numerator;
+	_denominator *= num._denominator;
+	if (!num.known) {
+		known = false;
+	}
 }
 
 inline void real::divide(double num)
@@ -53,8 +62,11 @@ inline void real::divide(double num)
 	_denominator *= num;
 }
 
-inline void real::divide(const real& real)
+inline void real::divide(const real& num)
 {
-	_numerator *= real._denominator;
-	_denominator *= real._numerator;
+	_numerator *= num._denominator;
+	_denominator *= num._numerator;
+	if (!num.known) {
+		known = false;
+	}
 }

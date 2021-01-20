@@ -5,10 +5,10 @@
 #include <iostream>
 using namespace std;
 
-inline ostream& operator<<(ostream& os, const real& origin)
+inline ostream& operator<<(ostream& os, const real& num)
 {
-	if (origin.known) {
-		os << origin.todouble();
+	if (num.known) {
+		os << num.todouble();
 	}
 	else {
 		os << "unknow";
@@ -16,29 +16,29 @@ inline ostream& operator<<(ostream& os, const real& origin)
 	return os;
 }
 
-inline istream& operator>>(istream& is, real& origin)
+inline istream& operator>>(istream& is, real& num)
 {
-	origin.known = true;
-	is >> origin._numerator;
-	origin._denominator = 1;
+	num.known = true;
+	is >> num._numerator;
+	num._denominator = 1;
 	return is;
 }
 
-inline real operator~(const real& origin)
+inline real operator~(const real& num)
 {
-	real temp(origin);
+	real temp(num);
 	temp.reciprocal();
 	return temp;
 }
 
-inline real operator&(const real& real_1, const real& real_2)
+inline real operator&(const real& num_1, const real& num_2)
 {
-	return real(real_1._numerator + real_2._numerator, real_1._denominator + real_2._denominator);
+	return real(num_1._numerator + num_2._numerator, num_1._denominator + num_2._denominator);
 }
 
-inline real operator|(const real& real_1, const real& real_2)
+inline real operator|(const real& num_1, const real& num_2)
 {
-	return real(real_1._numerator - real_2._numerator, real_1._denominator - real_2._denominator);
+	return real(num_1._numerator - num_2._numerator, num_1._denominator - num_2._denominator);
 }
 
 inline real& real::operator+=(double num)
@@ -47,9 +47,9 @@ inline real& real::operator+=(double num)
 	return *this;
 }
 
-inline real& real::operator+=(const real& origin)
+inline real& real::operator+=(const real& num)
 {
-	this->add(origin);
+	this->add(num);
 	return *this;
 }
 
@@ -59,9 +59,9 @@ inline real& real::operator-=(double num)
 	return *this;
 }
 
-inline real& real::operator-=(const real& origin)
+inline real& real::operator-=(const real& num)
 {
-	this->subtract(origin);
+	this->subtract(num);
 	return *this;
 }
 
@@ -71,9 +71,9 @@ inline real& real::operator*=(double num)
 	return *this;
 }
 
-inline real& real::operator*=(const real& origin)
+inline real& real::operator*=(const real& num)
 {
-	this->multiply(origin);
+	this->multiply(num);
 	return *this;
 }
 
@@ -83,9 +83,9 @@ inline real& real::operator/=(double num)
 	return *this;
 }
 
-inline real& real::operator/=(const real& origin)
+inline real& real::operator/=(const real& num)
 {
-	this->subtract(origin);
+	this->subtract(num);
 	return *this;
 }
 
@@ -102,125 +102,125 @@ inline real real::operator++(int)
 	return *this;
 }
 
-inline real operator+(const real& origin, double num)
+inline real operator+(const real& num_1, double num_2)
 {
-	real temp(origin);
-	temp.add(num);
+	real temp(num_1);
+	temp.add(num_2);
 	return temp;
 }
 
-inline real operator+(double num, const real& origin)
+inline real operator+(double num_1, const real& num_2)
 {
-	real temp(origin);
-	temp.add(num);
+	real temp(num_1);
+	temp.add(num_2);
 	return temp;
 }
 
-inline real operator+(const real& real_1, const real& real_2)
+inline real operator+(const real& num_1, const real& num_2)
 {
-	real temp(real_1);
-	temp.add(real_2);
+	real temp(num_1);
+	temp.add(num_2);
 	return temp;
 }
 
-inline real operator-(const real& origin, double num)
+inline real operator-(const real& num_1, double num_2)
 {
-	real temp(origin);
-	temp.subtract(num);
+	real temp(num_1);
+	temp.subtract(num_2);
 	return temp;
 }
 
-inline real operator-(double num, const real& origin)
+inline real operator-(double num_1, const real& num_2)
 {
-	real temp(origin);
-	temp.subtract(num);
+	real temp(num_1);
+	temp.subtract(num_2);
 	return temp;
 }
 
-inline real operator-(const real& real_1, const real& real_2)
+inline real operator-(const real& num_1, const real& num_2)
 {
-	real temp(real_1);
-	temp.subtract(real_2);
+	real temp(num_1);
+	temp.subtract(num_2);
 	return temp;
 }
 
-inline real operator-(const real& origin)
+inline real operator-(const real& num)
 {
-	real temp(origin);
+	real temp(num);
 	temp._numerator = -temp._numerator;
 	return temp;
 }
 
-inline real operator*(const real& origin, double num)
+inline real operator*(const real& num_1, double num_2)
 {
-	real temp(origin);
-	temp.multiply(num);
+	real temp(num_1);
+	temp.multiply(num_2);
 	return temp;
 }
 
-inline real operator*(double num, const real& origin)
+inline real operator*(double num_1, const real& num_2)
 {
-	real temp(origin);
-	temp.multiply(num);
+	real temp(num_1);
+	temp.multiply(num_2);
 	return temp;
 }
 
-inline real operator*(const real& real_1, const real& real_2)
+inline real operator*(const real& num_1, const real& num_2)
 {
-	real temp(real_1);
-	temp.multiply(real_2);
+	real temp(num_1);
+	temp.multiply(num_2);
 	return temp;
 }
 
-inline real operator/(const real& origin, double num)
+inline real operator/(const real& num_1, double num_2)
 {
-	real temp(origin);
-	temp.divide(num);
+	real temp(num_1);
+	temp.divide(num_2);
 	return temp;
 }
 
-inline real operator/(double num, const real& origin)
+inline real operator/(double num_1, const real& num_2)
 {
-	real temp(origin);
-	temp.divide(num);
+	real temp(num_1);
+	temp.divide(num_2);
 	return temp;
 }
 
-inline real operator/(const real& real_1, const real& real_2)
+inline real operator/(const real& num_1, const real& num_2)
 {
-	real temp(real_1);
-	temp.divide(real_2);
+	real temp(num_1);
+	temp.divide(num_2);
 	return temp;
 }
 
-inline bool operator==(const real& origin, double num)
+inline bool operator==(const real& num_1, double num_2)
 {
-	return origin.equal_to(num);
+	return num_1.equal_to(num_2);
 }
 
-inline bool operator==(double num, const real& origin)
+inline bool operator==(double num_1, const real& num_2)
 {
-	return origin.equal_to(num);
+	return num_2.equal_to(num_1);
 }
 
-inline bool operator==(const real& real_1, const real& real_2)
+inline bool operator==(const real& num_1, const real& num_2)
 {
-	return real_1.equal_to(real_2);
+	return num_1.equal_to(num_2);
 }
 
-inline bool operator!=(const real& origin, double num)
+inline bool operator!=(const real& num_1, double num_2)
 {
-	return !origin.equal_to(num);
+	return !num_1.equal_to(num_2);
 }
 
-inline bool operator!=(double num, const real& origin)
+inline bool operator!=(double num_1, const real& num_2)
 {
-	return !origin.equal_to(num);
+	return !num_2.equal_to(num_1);
 }
 
-inline bool operator!=(const real& real_1, const real& real_2)
+inline bool operator!=(const real& num_1, const real& num_2)
 {
-	return !real_1.equal_to(real_2);
+	return !num_1.equal_to(num_2);
 }
 
 inline bool operator<(const real& num_1, double num_2)
