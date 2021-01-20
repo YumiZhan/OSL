@@ -8,7 +8,7 @@ using namespace std;
 inline ostream& operator<<(ostream& os, const real& origin)
 {
 	if (origin.known) {
-		os << origin.to_double();
+		os << origin.todouble();
 	}
 	else {
 		os << "unknow";
