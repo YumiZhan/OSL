@@ -152,6 +152,7 @@ public:
 	friend NUMBER_API inline double ln(const real& num);
 	friend NUMBER_API inline double log2(const real& num);
 	friend NUMBER_API inline double log10(const real& num);
+	friend NUMBER_API inline double lg(const real& num);
 	friend NUMBER_API inline double log1p(const real& num);
 
 	friend NUMBER_API inline double copysign(const real& num_1, const real& num_2);

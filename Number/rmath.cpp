@@ -143,6 +143,11 @@ inline double log10(const real& num)
 	return log10(num._numerator) - log10(num._denominator);
 }
 
+inline double lg(const real& num)
+{
+	return log10(num);
+}
+
 inline double log1p(const real& num)
 {
 	return log1p(num.todouble());
