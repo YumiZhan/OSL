@@ -3,74 +3,89 @@
 #include "number.h"
 #include <cmath>
 
-inline double acos(const real& origin)
+inline double cos(const real& num)
 {
-	return acos(origin.to_double());
+	return cos(num.todouble());
 }
 
-inline double asin(const real& origin)
+inline double cosh(const real& num)
 {
-	return asin(origin.to_double());
+	return cosh(num.todouble());
 }
 
-inline double atan(const real& origin)
+inline double sin(const real& num)
 {
-	return atan(origin.to_double());
+	return sin(num.todouble());
 }
 
-inline double atan2(const real& origin, double num)
+inline double sinh(const real& num)
 {
-	return atan2(origin._numerator, num * origin._denominator);
+	return sinh(num.todouble());
 }
 
-inline double atan2(double num, const real& origin)
+inline double tan(const real& num)
 {
-	return atan2(num * origin._denominator, origin._numerator);
+	return tan(num.todouble());
 }
 
-inline double atan2(const real& real_1, const real& real_2)
+inline double tanh(const real& num)
 {
-	return atan2(real_1._numerator * real_2._denominator, real_1._denominator * real_2._numerator);
+	return tanh(num.todouble());
 }
 
-inline double cos(const real& origin)
+inline double acos(const real& num)
 {
-	return cos(origin.to_double());
+	return acos(num.todouble());
 }
 
-inline double cosh(const real& origin)
+inline double asin(const real& num)
 {
-	return cosh(origin.to_double());
+	return asin(num.todouble());
 }
 
-inline double sin(const real& origin)
+inline double atan(const real& num)
 {
-	return sin(origin.to_double());
+	return atan(num.todouble());
 }
 
-inline double sinh(const real& origin)
+inline double atan2(const real& num_1, double num_2)
 {
-	return sinh(origin.to_double());
+	return atan2(num_1._numerator, num_2 * num_1._denominator);
 }
 
-inline double tan(const real& origin)
+inline double atan2(double num_1, const real& num_2)
 {
-	return tan(origin.to_double());
+	return atan2(num_1 * num_2._denominator, num_2._numerator);
 }
 
-inline double tanh(const real& origin)
+inline double atan2(const real& num_1, const real& num_2)
 {
-	return tanh(origin.to_double());
+	return atan2(num_1._numerator * num_2._denominator, num_1._denominator * num_2._numerator);
 }
 
-inline double exp(const real& origin)
+inline double atanh(const real& num)
 {
-	return exp(origin.to_double());
+	return atanh(num.todouble());
 }
 
-inline double frexp(const real& origin, double* exponent)
+inline double exp(const real& num)
 {
-	return frexp(origin.to_double(), exponent);
+	return exp(num.todouble());
+}
+
+inline double exp2(const real& num)
+{
+	return exp2(num.todouble());
+}
+
+inline double expm1(const real& num)
+{
+	return expm1(num.todouble());
+}
+
+inline double frexp(const real& num, double* exponent)
+{
+	return frexp(num.todouble(), exponent);
 }
 
 inline double frexp(double num, real& exponent)
@@ -80,92 +95,122 @@ inline double frexp(double num, real& exponent)
 	return frexp(num, &(exponent._numerator));
 }
 
-inline double frexp(const real& origin, real& exponent)
+inline double frexp(const real& num, real& exponent)
 {
 	exponent.known = true;
 	exponent._denominator = 1;
-	return frexp(origin.to_double(), &(exponent._numerator));
+	return frexp(num.todouble(), &(exponent._numerator));
 }
 
-inline double ldexp(const real& origin, int exponent)
+inline double ldexp(const real& num, int exponent)
 {
-	return ldexp(origin._denominator, exponent);
+	return ldexp(num._denominator, exponent);
 }
 
-inline double log(const real& origin, double base)
+inline double log(const real& num, double base)
 {
-	return (log(origin._numerator) - log(origin._denominator)) / log(base);
+	return (log(num._numerator) - log(num._denominator)) / log(base);
 }
 
-inline double log(double origin, const real& base)
+inline double log(double num, const real& base)
 {
-	return log(origin) / (log(base._numerator) - log(base._denominator));
+	return log(num) / (log(base._numerator) - log(base._denominator));
 }
 
-inline double log(const real& origin, const real& base)
+inline double log(const real& num, const real& base)
 {
-	return (log(origin._numerator) - log(origin._denominator))
+	return (log(num._numerator) - log(num._denominator))
 		/ (log(base._numerator) - log(base._denominator));
 }
 
-inline double ln(const real& origin)
+inline double log(const real& num)
 {
-	return log(origin._numerator) - log(origin._denominator);
+	return log(num._numerator) - log(num._denominator);
 }
 
-inline double log2(const real& origin)
+inline double ln(const real& num)
 {
-	return log2(origin._numerator) - log2(origin._denominator);
+	return log(num);
 }
 
-inline double log10(const real& origin)
+inline double log2(const real& num)
 {
-	return log10(origin._numerator) - log10(origin._denominator);
+	return log2(num._numerator) - log2(num._denominator);
 }
 
-inline double modf(const real& origin, int* integer)
+inline double log10(const real& num)
 {
-	return modf(origin.to_double(), integer);
+	return log10(num._numerator) - log10(num._denominator);
 }
 
-inline double pow(const real& origin, double exponent)
+inline double copysign(const real& num_1, const real& num_2)
 {
-	return pow(origin.to_double(), exponent);
+	return copysign(num_1.todouble(), num_2.todouble());
+}
+
+inline double modf(const real& num, int* integer)
+{
+	return modf(num.todouble(), integer);
+}
+
+inline double pow(const real& num, double exponent)
+{
+	return pow(num.todouble(), exponent);
 }
 
 inline double pow(double num, const real& exponent)
 {
-	return pow(num, exponent.to_double());
+	return pow(num, exponent.todouble());
 }
 
-inline double pow(const real& origin, const real& exponent)
+inline double pow(const real& num, const real& exponent)
 {
-	return pow(origin.to_double(), exponent.to_double());
+	return pow(num.todouble(), exponent.todouble());
 }
 
-inline double pow2(const real& origin)
+inline double pow2(const real& num)
 {
-	return pow(origin.to_double(), 2.0);
+	return pow(num.todouble(), 2.0);
 }
 
-inline double sqrt(const real& origin)
+inline double pow10(const real& num)
 {
-	return sqrt(origin.to_double());
+	return pow10(num.todouble());
 }
 
-inline double ceil(const real& origin)
+inline double sqrt(const real& num)
 {
-	return ceil(origin.to_double());
+	return sqrt(num.todouble());
 }
 
-inline double floor(const real& origin)
+inline double hypot(const real& x, const real& y)
 {
-	return floor(origin.to_double());
+	return hypot(x.todouble(), y.todouble());
 }
 
-inline double fabs(const real& real)
+inline double poly(const real& x, int n, double* c)
 {
-	return fabs(real.to_double());
+	return poly(x.todouble(), n, c);
+}
+
+inline double ceil(const real& num)
+{
+	return ceil(num.todouble());
+}
+
+inline double floor(const real& num)
+{
+	return floor(num.todouble());
+}
+
+inline double trunc(const real& num)
+{
+	return trunc(num.todouble());
+}
+
+inline double fabs(const real& num)
+{
+	return fabs(num.todouble());
 }
 
 inline double fmod(const real& num_1, double num_2)

@@ -52,7 +52,7 @@ inline double real::fabs() const
 	return ::fabs(_numerator / _denominator);
 }
 
-inline double real::to_double() const
+inline double real::todouble() const
 {
 	return _numerator / _denominator;
 }
