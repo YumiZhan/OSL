@@ -65,7 +65,15 @@
 - `multiply()`: 倍乘一个数
 - `divide()`: 除去一个数
 
-##### (四) 运算符重载 (operator.cpp)
+##### (四) 比较 (comparation.cpp)
+
+- `larger_than()`: 判断大于
+- `not_less_than()`: 判断不小于
+- `less_than()`: 判断小于
+- `not_larger_than()`: 判断不大于
+- `equal_to()`: 判断一定精度下的绝对相等
+
+##### (五) 运算符重载 (operator.cpp)
 
 以下内容省略`operator`符号
 
@@ -103,8 +111,9 @@
 - `<=()`: 小于等于
 - `>()`: 大于
 - `>=()`: 大于等于
+- `!()`: 是否未知
 
-##### (五) `<cmath>`函数重载 (rcmath.cpp)
+##### (六) `<cmath>`函数重载 (rcmath.cpp)
 
 参考：http://www.cppfans.com/cbknowledge/reference/cmath/
 
@@ -146,14 +155,6 @@
 - `trunc()`: 丢弃小数部分取整
 - `fabs()`: 绝对值
 - `fmod(x, y)`: 返回 x 除以 y 的余数
-
-##### （六）比较 (comparation.cpp)
-
-- `larger_than()`: 判断大于
-- `not_less_than()`: 判断不小于
-- `less_than()`: 判断小于
-- `not_larger_than()`: 判断不大于
-- `equal_to()`: 判断一定精度下的绝对相等
 
 
 
