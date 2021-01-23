@@ -89,30 +89,30 @@ inline real& real::operator/=(const real& num)
 	return *this;
 }
 
-inline real real::operator++()
+inline real& real::operator++()
+{
+	this->add(1);
+	return *this;
+}
+
+inline real real::operator++(int)
 {
 	real temp(*this);
 	this->add(1);
 	return temp;
 }
 
-inline real& real::operator++(int)
+inline real& real::operator--()
 {
-	this->add(1);
+	this->subtract(1);
 	return *this;
 }
 
-inline real real::operator--()
+inline real real::operator--(int)
 {
 	real temp(*this);
 	this->subtract(1);
 	return temp;
-}
-
-inline real& real::operator--(int)
-{
-	this->subtract(1);
-	return *this;
 }
 
 inline real operator+(const real& num_1, double num_2)
