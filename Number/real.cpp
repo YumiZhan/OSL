@@ -47,11 +47,6 @@ inline real abs(const real& origin)
 	return real(fabs(origin._numerator), fabs(origin._denominator));
 }
 
-inline real real::abs() const
-{
-	return real(::fabs(_numerator), ::fabs(_denominator));
-}
-
 inline double real::fabs() const
 {
 	return ::fabs(_numerator / _denominator);

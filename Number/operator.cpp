@@ -282,3 +282,8 @@ inline bool operator>=(const real& num_1, const real& num_2)
 {
 	return num_1.not_less_than(num_2);
 }
+
+inline bool operator!(const real& num)
+{
+	return !num.known;
+}

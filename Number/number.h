@@ -24,7 +24,6 @@ public:
 	inline real(const wchar_t* w_str);
 
 	friend NUMBER_API inline real abs(const real& origin);
-	inline real abs()const;
 	inline double fabs()const;
 	inline double todouble()const;
 
@@ -51,6 +50,18 @@ public:
 	inline void multiply(const real& real);
 	inline void divide(double num);
 	inline void divide(const real& real);
+
+	// comparation.cpp
+	inline bool larger_than(double num)const;
+	inline bool larger_than(const real& num)const;
+	inline bool not_less_than(double num)const;
+	inline bool not_less_than(const real& num)const;
+	inline bool less_than(double num)const;
+	inline bool less_than(const real& num)const;
+	inline bool not_larger_than(double num)const;
+	inline bool not_larger_than(const real& num)const;
+	inline bool equal_to(double num, double precision = ZERO)const;
+	inline bool equal_to(const real& num, const real& precision = ZERO)const;
 
 	// operator.cpp
 	friend NUMBER_API inline std::ostream& operator<<(std::ostream& os, const real& output_real);
@@ -117,6 +128,8 @@ public:
 	friend NUMBER_API inline bool operator>=(double num_1, const real& num_2);
 	friend NUMBER_API inline bool operator>=(const real& num_1, const real& num_2);
 
+	friend NUMBER_API inline bool operator!(const real& num);
+
 	// rcmath.cpp
 	friend NUMBER_API inline double cos(const real& num);
 	friend NUMBER_API inline double cosh(const real& num);
@@ -179,18 +192,6 @@ public:
 
 private:
 	double _denominator, _numerator;
-	
-	// comparation.cpp
-	inline bool larger_than(double num)const;
-	inline bool larger_than(const real& num)const;
-	inline bool not_less_than(double num)const;
-	inline bool not_less_than(const real& num)const;
-	inline bool less_than(double num)const;
-	inline bool less_than(const real& num)const;
-	inline bool not_larger_than(double num)const;
-	inline bool not_larger_than(const real& num)const;
-	inline bool equal_to(double num, double precision = ZERO)const;
-	inline bool equal_to(const real& num, const real& precision = ZERO)const;
 };
 
 template <class num = real>
