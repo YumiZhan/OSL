@@ -96,9 +96,22 @@ inline real real::operator++()
 	return temp;
 }
 
-inline real real::operator++(int)
+inline real& real::operator++(int)
 {
 	this->add(1);
+	return *this;
+}
+
+inline real real::operator--()
+{
+	real temp(*this);
+	this->subtract(1);
+	return temp;
+}
+
+inline real& real::operator--(int)
+{
+	this->subtract(1);
 	return *this;
 }
 
