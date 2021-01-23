@@ -52,11 +52,6 @@ inline double real::fabs() const
 	return ::fabs(_numerator / _denominator);
 }
 
-inline double real::todouble() const
-{
-	return _numerator / _denominator;
-}
-
 inline bool real::zero(double reference) const
 {
 	if (::fabs(_numerator) < ::fabs(_denominator * reference * ZERO)) {

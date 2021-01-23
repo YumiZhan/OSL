@@ -5,10 +5,15 @@
 #include <iostream>
 using namespace std;
 
+inline real::operator double() const
+{
+	return _numerator / _denominator;
+}
+
 inline ostream& operator<<(ostream& os, const real& num)
 {
 	if (num.known) {
-		os << num.todouble();
+		os << double(num);
 	}
 	else {
 		os << "unknow";
