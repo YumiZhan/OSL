@@ -42,16 +42,6 @@ inline real::real(const wchar_t* w_str) :
 	known(true), _denominator(1), _numerator(_wtof(w_str))
 {}
 
-inline real abs(const real& origin)
-{
-	return real(fabs(origin._numerator), fabs(origin._denominator));
-}
-
-inline double real::fabs() const
-{
-	return ::fabs(_numerator / _denominator);
-}
-
 inline bool real::zero(double reference) const
 {
 	if (::fabs(_numerator) < ::fabs(_denominator * reference * ZERO)) {

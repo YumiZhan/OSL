@@ -47,8 +47,6 @@
 
 ##### (二) 功能函数 (real.cpp)
 
-- `abs()`: 返回绝对值
-- `fabs()`: 以`double`返回绝对值
 - `zero()`: 判断是否为零
 - `infinite()`: 判断是否无穷大
 - `denominator()`: 以`double`返回分母

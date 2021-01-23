@@ -23,9 +23,6 @@ public:
 	inline real(const char* c_str);
 	inline real(const wchar_t* w_str);
 
-	friend NUMBER_API inline real abs(const real& origin);
-	inline double fabs()const;
-
 	inline bool zero(double reference = 1)const;
 	inline bool zero(const real& real)const;
 	inline bool infinite(double reference = 1)const;
