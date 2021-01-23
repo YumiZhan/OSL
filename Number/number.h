@@ -25,7 +25,6 @@ public:
 
 	friend NUMBER_API inline real abs(const real& origin);
 	inline double fabs()const;
-	inline double todouble()const;
 
 	inline bool zero(double reference = 1)const;
 	inline bool zero(const real& real)const;
@@ -64,6 +63,8 @@ public:
 	inline bool equal_to(const real& num, const real& precision = ZERO)const;
 
 	// operator.cpp
+	inline operator double()const;
+
 	friend NUMBER_API inline std::ostream& operator<<(std::ostream& os, const real& output_real);
 	friend NUMBER_API inline std::istream& operator>>(std::istream& is, real& input_real);
 
