@@ -83,23 +83,9 @@ inline double expm1(const real& num)
 	return expm1(double(num));
 }
 
-inline double frexp(const real& num, double* exponent)
+inline double frexp(const real& num, int* exponent)
 {
 	return frexp(double(num), exponent);
-}
-
-inline double frexp(double num, real& exponent)
-{
-	exponent.known = true;
-	exponent._denominator = 1;
-	return frexp(num, &(exponent._numerator));
-}
-
-inline double frexp(const real& num, real& exponent)
-{
-	exponent.known = true;
-	exponent._denominator = 1;
-	return frexp(double(num), &(exponent._numerator));
 }
 
 inline double ldexp(const real& num, int exponent)

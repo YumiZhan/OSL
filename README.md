@@ -142,8 +142,8 @@
 - `exp(x)`: 计算 $e^x$
 - `exp2(x)`: 计算 $2^x$
 - `expm1(x)`: 计算 $e^x - 1$
-- `frexp(x, *exponent)`: 把浮点数分解成尾数和指数，返回尾数，指数存入`exponent`中
-- `ldexp(x, exponent)`: 乘以 2 的`exponent`次幂
+- `frexp(num, *exponent)`: 把`num`分解成有效数字和指数，返回有效数字，指数存入`exponent`中
+- `ldexp(num, exponent)`: `num`乘以 2 的`exponent`次幂
 - `log()`: 取对数
 - `ln()`: 以 e 为底的对数
 - `log2()`: 以 2 为底的对数

@@ -152,10 +152,7 @@ public:
 	friend NUMBER_API inline double exp2(const real& num);
 	friend NUMBER_API inline double expm1(const real& num);
 
-	friend NUMBER_API inline double frexp(const real& num, double* exponent);
-	friend NUMBER_API inline double frexp(double num, real& exponent);
-	friend NUMBER_API inline double frexp(const real& num, real& exponent);
-
+	friend NUMBER_API inline double frexp(const real& num, int* exponent);
 	friend NUMBER_API inline double ldexp(const real& num, int exponent);
 
 	friend NUMBER_API inline double log(const real& num, double base);
