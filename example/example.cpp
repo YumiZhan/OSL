@@ -1,10 +1,10 @@
 ﻿#include <iostream>
 #include "..\Number\number.h"
 using namespace std;
+// double PI = 3.14;
 
 int main()
 {
-    real example("16");
-    cout << example << endl;
-    return 0;
+	cout << PI << endl;
+	return 0;
 }
