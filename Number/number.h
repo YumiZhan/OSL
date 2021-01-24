@@ -8,8 +8,8 @@
 
 #include <iostream>
 
-extern NUMBER_API double PI;
-extern NUMBER_API double ZERO;
+extern NUMBER_API double PI; // 3.1415926535897932
+extern NUMBER_API double ZERO; // 1E-10
 
 class NUMBER_API real {
 public:
@@ -31,7 +31,7 @@ public:
 	inline double denominator()const;
 	inline double numerator()const;
 	inline void print()const;
-	friend NUMBER_API inline void print(const real& num);
+	inline void show()const;
 	inline real to_radian()const;
 	inline real to_degree()const;
 

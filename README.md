@@ -49,9 +49,12 @@
 
 - `zero()`: 判断是否为零
 - `infinite()`: 判断是否无穷大
-- `denominator()`: 以`double`返回分母
-- `numerator()`: 以`double`返回分子
-- `print()`: 流输出到屏幕
+- `denominator()`: 返回`double`的分母
+- `numerator()`: 返回``double`的分子
+- `print()`: 以 `double` 的形式打印，并输出一个回车
+- `show()`: 以 “分子 / 分母” 的形式打印，并输出一个回车
+- `to_radian()`: 将角度转换成弧度
+- `to_degree()`: 将弧度转换成角度
 
 ##### (三) 操作运算对象本身的函数 (object_operation.cpp)
 

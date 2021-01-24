@@ -73,12 +73,12 @@ inline double real::numerator() const
 
 inline void real::print() const
 {
-	cout << *this << endl;
+	cout << this->operator double() << endl;
 }
 
-inline void print(const real& num)
+inline void real::show() const
 {
-	cout << num << endl;
+	cout << _numerator << '/' << _denominator << endl;
 }
 
 inline real real::to_radian() const
