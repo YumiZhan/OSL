@@ -22,15 +22,14 @@
 
 #### 三、数据成员
 
-##### (一) 公有
+##### (一) 私有
 
-- `bool known`已知性标识
-
-##### (二) 私有
-
-- `bool finite`有限大标识
 - `double denominator`分母
 - `double numerator`分子
+
+##### (二) 公有
+
+- `bool known`已知性标识
 
 
 
