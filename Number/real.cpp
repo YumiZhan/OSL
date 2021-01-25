@@ -4,27 +4,27 @@
 using namespace std;
 
 inline real::real() :
-	known(false), _denominator(1), _numerator(0)
+	_denominator(1), _numerator(0), known(false)
 {}
 
 inline real::real(const real& origin) :
-	known(origin.known), _denominator(origin._denominator), _numerator(origin._numerator)
+	_denominator(origin._denominator), _numerator(origin._numerator), known(origin.known)
 {}
 
 inline real::real(double num) :
-	known(true), _denominator(1), _numerator(num)
+	_denominator(1), _numerator(num), known(true)
 {}
 
 inline real::real(double numerator, double denominator) :
-	known(true), _denominator(denominator), _numerator(numerator)
+	_denominator(denominator), _numerator(numerator), known(true)
 {}
 
 inline real::real(const char* c_str) :
-	known(true), _denominator(1), _numerator(atof(c_str))
+	_denominator(1), _numerator(atof(c_str)), known(true)
 {}
 
 inline real::real(const wchar_t* w_str) :
-	known(true), _denominator(1), _numerator(_wtof(w_str))
+	_denominator(1), _numerator(_wtof(w_str)), known(true)
 {}
 
 inline bool real::zero(double reference) const

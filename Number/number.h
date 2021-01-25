@@ -12,6 +12,8 @@ extern NUMBER_API double PI; // 3.1415926535897932
 extern NUMBER_API double ZERO; // 1E-10
 
 class NUMBER_API real {
+	double _denominator, _numerator;
+
 public:
 	bool known;
 
@@ -186,13 +188,12 @@ public:
 	friend NUMBER_API inline double fmod(const real& num_1, double num_2);
 	friend NUMBER_API inline double fmod(double num_1, const real& num_2);
 	friend NUMBER_API inline double fmod(const real& num_1, const real& num_2);
-
-private:
-	double _denominator, _numerator;
 };
 
 template <class num = real>
 class NUMBER_API complex {
+	num _real, _imag;
+
 public:
 	bool known;
 	inline complex();
@@ -201,6 +202,4 @@ public:
 
 	inline num real();
 	inline num imag();
-private:
-	num _real, _imag;
 };
