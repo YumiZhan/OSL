@@ -1,4 +1,6 @@
-# Math —— 面向对象的专业数学计算库
+# Object Oriented Scientific Library
+
+面向对象的科学计算库
 
 ## 简介
 
@@ -156,7 +158,6 @@
 - `pow10()`: 10 次方
 - `sqrt()`: 平方根
 - `hypot(x, y)`: 计算 $\sqrt{x^2+y^2}$
-- `poly()`: 求 n 次多项式
 - `ceil()`: 向上取整
 - `round()`: 四舍五入取整
 - `floor()`: 向下取整
