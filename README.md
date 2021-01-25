@@ -1,4 +1,4 @@
-# Object Oriented Scientific Library
+# Object Oriented Scientific Library (OSL)
 
 面向对象的科学计算库
 
@@ -26,8 +26,8 @@
 
 ##### (一) 私有
 
-- `double denominator`分母
-- `double numerator`分子
+- `double _denominator`分母
+- `double _numerator`分子
 
 ##### (二) 公有
 
@@ -123,7 +123,7 @@
 - `>=()`: 大于等于
 - `!()`: 是否未知
 
-##### (六) `<cmath>`函数重载 (rcmath.cpp)
+##### (六) `<cmath>`函数重载 (overload_cmath.cpp)
 
 参考：http://www.cppfans.com/cbknowledge/reference/cmath/
 
@@ -175,17 +175,27 @@
 
 #### 二、数据成员
 
-##### （一）公有
+##### (一) 私有
 
+- _real
+- _imag
 
+##### (二) 公有
 
-##### （二）私有
-
-
+- known
 
 #### 三、函数
 
+##### (一) 构造函数 (complex.cpp)
 
+- 默认构造函数
+- 复制构造函数
+- 双 num 对象构造函数
+
+##### (二) 功能函数 (complex.cpp)
+
+- `real()`: 返回实部
+- `imag()`: 返回虚部
 
 ## Matrix 库
 
