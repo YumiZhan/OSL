@@ -1,4 +1,4 @@
-# Object Oriented Scientific Library (OSL)
+# Object-oriented Scientific Library (OSL)
 
 面向对象的科学计算库
 
