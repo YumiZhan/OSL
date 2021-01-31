@@ -4,7 +4,15 @@
 
 ## 简介
 
-（空）
+本项目是基于 GSL (GNU Scientific Library) 构建的用于解决数值方法问题的科学计算库，其主要形式为源文件和带有接口的动态链接库。OSL 使用面向对象的设计方式，可以极大地简化数值方法问题求解的程序设计，在工程或教学活动中能使用户更专注于问题本身而不是忙于思考具体的编写方式。
+
+
+
+## 使用方式
+
+在项目的 [Github 主页](https://github.com/YumiZhan/OSL) 中选择合适的分支（推荐 master 或 develop 分支）点击 “code” 按钮即可下载对应最新的源码用于查看，推荐使用 Visual Studio 作为 IDE。如果希望直接将该库用于编译 C/C++ 程序而不需要查看各功能的具体实现，请到 [Release 页面](https://github.com/YumiZhan/OSL/releases) 的 “Asset” 标签下载所需的包。如果遇到相关的问题，欢迎到 [Issues 栏目](https://github.com/YumiZhan/OSL/issues) 中讨论！OSL 各库的使用方式详见其 “使用方式” 标题下的内容。本项目依赖的额外资源被放在 “Dependent package backup” 目录中以便临时使用。
+
+
 
 ## Number 库
 
@@ -14,13 +22,9 @@
 
 以`double`类型数值为分子和分母的分数形式记录数值，拥有已知性标识、有限大标识。由于使用分数的方式记录数值，在数值计算过程中，它有效地规避了计算机内存有限地储存无限循环小数造成的精度损失，因次其运算精度不低于`double`类型。即使拥有更精确的运算和功能，其定义、初始化和使用的方式却与`double`类型几乎完全相同，使用者不会觉得难以接受。不过由于这是一种对象（C++ class），运算效率不及`double`类。
 
-
-
 #### 二、使用方式
 
 将 number.h 和 number.lib 放置到项目的同一个文件夹中，调用 real 或 complex 类前包含头文件（如`#include "number.h"`）。运行程序前，把 number.dll 放置在可执行文件（如 example.exe）所在的文件夹里。
-
-
 
 #### 三、数据成员
 
@@ -32,8 +36,6 @@
 ##### (二) 公有
 
 - `bool known`已知性标识
-
-
 
 #### 四、函数
 
@@ -51,7 +53,7 @@
 - `zero()`: 判断是否为零
 - `infinite()`: 判断是否无穷大
 - `denominator()`: 返回`double`的分母
-- `numerator()`: 返回``double`的分子
+- `numerator()`: 返回`double`的分子
 - `print()`: 以 `double` 的形式打印，并输出一个回车
 - `show()`: 以 “分子 / 分母” 的形式打印，并输出一个回车
 - `to_radian()`: 将角度转换成弧度
@@ -196,6 +198,8 @@
 
 - `real()`: 返回实部
 - `imag()`: 返回虚部
+
+
 
 ## Matrix 库
 
