@@ -19,6 +19,7 @@ namespace osl {
 	inline void real::add(double num)
 	{
 		_numerator += num * _denominator;
+		simplify_fraction(_denominator, _numerator);
 	}
 
 	inline void real::add(const real& num)
@@ -28,11 +29,13 @@ namespace osl {
 		if (!num.known) {
 			known = false;
 		}
+		simplify_fraction(_denominator, _numerator);
 	}
 
 	inline void real::subtract(double num)
 	{
 		_numerator -= num * _denominator;
+		simplify_fraction(_denominator, _numerator);
 	}
 
 	inline void real::subtract(const real& num)
@@ -42,6 +45,7 @@ namespace osl {
 		if (!num.known) {
 			known = false;
 		}
+		simplify_fraction(_denominator, _numerator);
 	}
 
 	inline void real::multiply(double num)
@@ -56,11 +60,13 @@ namespace osl {
 		if (!num.known) {
 			known = false;
 		}
+		simplify_fraction(_denominator, _numerator);
 	}
 
 	inline void real::divide(double num)
 	{
 		_denominator *= num;
+		simplify_fraction(_denominator, _numerator);
 	}
 
 	inline void real::divide(const real& num)
@@ -70,5 +76,6 @@ namespace osl {
 		if (!num.known) {
 			known = false;
 		}
+		simplify_fraction(_denominator, _numerator);
 	}
 }
