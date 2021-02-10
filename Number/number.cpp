@@ -23,8 +23,8 @@ namespace osl {
 
 		numerator_copy.db = numerator; denominator_copy.db = denominator;
 		exp_of_numerator.db = numerator; exp_of_denominator.db = denominator;
-		exp_of_numerator.ull = exp_of_numerator.ull << 1; exp_of_denominator.ull = exp_of_denominator.ull << 1;
-		exp_of_numerator.ull = exp_of_numerator.ull >> 53; exp_of_denominator.ull = exp_of_denominator.ull >> 53;
+		exp_of_numerator.ull <<= 1; exp_of_denominator.ull <<= 1;
+		exp_of_numerator.ull >>= 53; exp_of_denominator.ull >>= 53;
 		
 		unsigned short difference(0);
 		if (exp_of_numerator.ush > exp_of_denominator.ush + ALLOW_DEVIATION
@@ -60,7 +60,7 @@ namespace osl {
 		else {
 			return;
 		}
-		exp_of_numerator.ull = exp_of_numerator.ull << 52; exp_of_denominator.ull = exp_of_denominator.ull << 52;
+		exp_of_numerator.ull <<= 52; exp_of_denominator.ull <<= 52;
 
 		const unsigned long long bit_operator(0x800FFFFFFFFFFFFFU);
 		numerator_copy.ull &= bit_operator; denominator_copy.ull &= bit_operator;
