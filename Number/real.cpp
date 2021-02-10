@@ -15,19 +15,27 @@ namespace osl {
 
 	inline real::real(double num) :
 		_denominator(1), _numerator(num), known(true)
-	{}
+	{
+		simplify_fraction(_denominator, _numerator);
+	}
 
 	inline real::real(double numerator, double denominator) :
 		_denominator(denominator), _numerator(numerator), known(true)
-	{}
+	{
+		simplify_fraction(_denominator, _numerator);
+	}
 
 	inline real::real(const char* c_str) :
 		_denominator(1), _numerator(atof(c_str)), known(true)
-	{}
+	{
+		simplify_fraction(_denominator, _numerator);
+	}
 
 	inline real::real(const wchar_t* w_str) :
 		_denominator(1), _numerator(_wtof(w_str)), known(true)
-	{}
+	{
+		simplify_fraction(_denominator, _numerator);
+	}
 
 	inline bool real::zero(double reference) const
 	{

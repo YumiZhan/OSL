@@ -6,6 +6,8 @@ using namespace osl;
 
 int main()
 {
-	cout << PI << endl;
+	double denominator(1000.0), numerator(0.0);
+	simplify_fraction(denominator, numerator);
+	cout << denominator << '\t' << numerator << endl;
 	return 0;
 }
