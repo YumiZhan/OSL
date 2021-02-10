@@ -1,15 +1,13 @@
-﻿#include "..\Number\number.h"
+﻿#include <iostream>
+#include "..\Number\number.h"
+using namespace std;
+using namespace osl;
+// double PI = 3.14;
 
 int main()
 {
-    real example(PI);
-    cout << "example = " << example << endl
-        << "fabs = " << fabs(example) << endl
-        << "floor = " << floor(example) << endl
-        << "numerator = " << example.numerator() << endl
-        << "PI^2 = " << pow2(example) << endl;
-    cout << "PI + 1 = " << example + 1.0 << endl
-        << "known? = " << example.known << endl
-        << "/0 = " << example / 0 << endl;
-    return 0;
+	double denominator(1000.0), numerator(0.0);
+	simplify_fraction(denominator, numerator);
+	cout << denominator << '\t' << numerator << endl;
+	return 0;
 }

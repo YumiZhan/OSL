@@ -126,7 +126,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;NUMBER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -163,12 +163,13 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="comparation.cpp" />
     <ClCompile Include="complex.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="number.cpp" />
     <ClCompile Include="object_operation.cpp" />
     <ClCompile Include="operator.cpp" />
-    <ClCompile Include="rcmath.cpp" />
+    <ClCompile Include="overload_cmath.cpp" />
     <ClCompile Include="real.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

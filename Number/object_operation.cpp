@@ -1,59 +1,81 @@
 #include "pch.h"
+#include "framework.h"
 #include "number.h"
 
-inline void real::reciprocal()
-{
-	double temp = _denominator;
-	_denominator = _numerator;
-	_numerator = temp;
-}
+namespace osl {
+	inline void real::reciprocal()
+	{
+		double temp = _denominator;
+		_denominator = _numerator;
+		_numerator = temp;
+	}
 
-inline void real::rabs()
-{
-	_numerator = ::fabs(_numerator);
-	_denominator = ::fabs(_denominator);
-}
+	inline void real::rabs()
+	{
+		_numerator = ::fabs(_numerator);
+		_denominator = ::fabs(_denominator);
+	}
 
-inline void real::add(double num)
-{
-	_numerator += num * _denominator;
-}
+	inline void real::add(double num)
+	{
+		_numerator += num * _denominator;
+		simplify_fraction(_denominator, _numerator);
+	}
 
-inline void real::add(const real& real)
-{
-	_numerator = _numerator * real._denominator + _denominator * real._denominator;
-	_denominator *= real._denominator;
-}
+	inline void real::add(const real& num)
+	{
+		_numerator = _numerator * num._denominator + _denominator * num._denominator;
+		_denominator *= num._denominator;
+		if (!num.known) {
+			known = false;
+		}
+		simplify_fraction(_denominator, _numerator);
+	}
 
-inline void real::subtract(double num)
-{
-	_numerator -= num * _denominator;
-}
+	inline void real::subtract(double num)
+	{
+		_numerator -= num * _denominator;
+		simplify_fraction(_denominator, _numerator);
+	}
 
-inline void real::subtract(const real& real)
-{
-	_numerator = _numerator * real._denominator - _denominator * real._denominator;
-	_denominator *= real._denominator;
-}
+	inline void real::subtract(const real& num)
+	{
+		_numerator = _numerator * num._denominator - _denominator * num._numerator;
+		_denominator *= num._denominator;
+		if (!num.known) {
+			known = false;
+		}
+		simplify_fraction(_denominator, _numerator);
+	}
 
-inline void real::multiply(double num)
-{
-	_numerator *= num;
-}
+	inline void real::multiply(double num)
+	{
+		_numerator *= num;
+	}
 
-inline void real::multiply(const real& real)
-{
-	_numerator *= real._numerator;
-	_denominator *= real._denominator;
-}
+	inline void real::multiply(const real& num)
+	{
+		_numerator *= num._numerator;
+		_denominator *= num._denominator;
+		if (!num.known) {
+			known = false;
+		}
+		simplify_fraction(_denominator, _numerator);
+	}
 
-inline void real::divide(double num)
-{
-	_denominator *= num;
-}
+	inline void real::divide(double num)
+	{
+		_denominator *= num;
+		simplify_fraction(_denominator, _numerator);
+	}
 
-inline void real::divide(const real& real)
-{
-	_numerator *= real._numerator;
-	_denominator *= real._denominator;
+	inline void real::divide(const real& num)
+	{
+		_numerator *= num._denominator;
+		_denominator *= num._numerator;
+		if (!num.known) {
+			known = false;
+		}
+		simplify_fraction(_denominator, _numerator);
+	}
 }
