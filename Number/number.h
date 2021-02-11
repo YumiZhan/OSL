@@ -12,7 +12,7 @@ namespace osl {
 	extern NUMBER_API double PI; // 3.1415926535897932
 	extern NUMBER_API double ZERO; // 1E-10
 
-	NUMBER_API void simplify_fraction(double& denominator, double& numerator);
+	NUMBER_API inline void simplify_fraction(double& denominator, double& numerator);
 
 	class NUMBER_API real {
 		double _denominator, _numerator;
