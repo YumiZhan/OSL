@@ -16,6 +16,8 @@ namespace osl {
 
 	class NUMBER_API real {
 		double _denominator, _numerator;
+		// object_operation.cpp
+		inline void simplify();
 
 	public:
 		bool known;
@@ -35,8 +37,8 @@ namespace osl {
 
 		inline double denominator()const;
 		inline double numerator()const;
-		inline void print()const;
-		inline void show()const;
+		inline void console_print()const;
+		inline void console_show()const;
 		inline real to_radian()const;
 		inline real to_degree()const;
 
