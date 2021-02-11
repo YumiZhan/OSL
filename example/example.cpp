@@ -6,7 +6,7 @@ using namespace osl;
 
 int main()
 {
-	double denominator(1000.0), numerator(0.0);
+	double denominator(1000.0), numerator(1.0);
 	simplify_fraction(denominator, numerator);
 	cout << denominator << '\t' << numerator << endl;
 	return 0;

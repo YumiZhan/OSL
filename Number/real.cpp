@@ -81,12 +81,12 @@ namespace osl {
 		return _numerator;
 	}
 
-	inline void real::print() const
+	inline void real::console_print() const
 	{
 		cout << this->operator double() << endl;
 	}
 
-	inline void real::show() const
+	inline void real::console_show() const
 	{
 		cout << _numerator << '/' << _denominator << endl;
 	}

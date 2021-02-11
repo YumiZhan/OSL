@@ -30,8 +30,9 @@
 
 ##### (一) 私有
 
-- `double _denominator`分母
-- `double _numerator`分子
+- `double _denominator`: 分母
+- `double _numerator`: 分子
+- `simplify()`: 调用 `simplify_fraction()` 函数化简对象分数
 
 ##### (二) 公有
 
