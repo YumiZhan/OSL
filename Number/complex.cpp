@@ -1,31 +1,35 @@
 #include "pch.h"
 #include "number.h"
+#include <gsl/gsl_complex_math.h>
 
-namespace osl {
-	template <class num>
-	inline complex<num>::complex() :
-		known(false), _real(0), _imag(0)
-	{}
+inline osl::complex::complex() :
+	_real(0), _imag(0), known(false)
+{}
 
-	template<class num>
-	inline complex<num>::complex(const num& real) :
-		known(true), _real(real), imag(0)
-	{}
+inline osl::complex::complex(const complex& cpl) :
+	_real(cpl._real), _imag(cpl._imag), known(cpl.known)
+{}
 
-	template<class num>
-	inline complex<num>::complex(const num& real, const num& imag) :
-		known(true), _real(real), _imag(imag)
-	{}
-	
-	template<class num>
-	inline num complex<num>::real()
-	{
-		return _real;
-	}
-	
-	template<class num>
-	inline num complex<num>::imag()
-	{
-		return _imag;
-	}
+inline osl::complex::complex(double real) :
+	_real(real), _imag(0), known(true)
+{}
+
+inline osl::complex::complex(double real, double imag) :
+	_real(real), _imag(imag), known(true)
+{}
+
+inline osl::complex osl::complex_pola(double r, double theta)
+{
+	gsl_complex gsl_cpl(gsl_complex_polar(r, theta));
+	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+}
+
+inline double osl::complex::real()
+{
+	return _real;
+}
+
+inline double osl::complex::imag()
+{
+	return _imag;
 }

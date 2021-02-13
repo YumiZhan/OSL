@@ -60,16 +60,16 @@
 - `to_radian()`: 将角度转换成弧度
 - `to_degree()`: 将弧度转换成角度
 
-##### (三) 操作运算对象本身的函数 (object_operation.cpp)
+##### (三) 操作自身的函数 (real_self_operation.cpp)
 
-- `reciprocal()`: 倒数
-- `rabs()`: 变为绝对值
-- `add()`: 增大一个数
-- `subtract()`: 减小一个数
-- `multiply()`: 倍乘一个数
-- `divide()`: 除去一个数
+- `reciprocal()`: 倒置
+- `rabs()`: 绝对值化
+- `add()`: 自增一个数
+- `subtract()`: 自减一个数
+- `multiply()`: 自乘一个数
+- `divide()`: 自除一个数
 
-##### (四) 比较 (comparation.cpp)
+##### (四) 比较 (real_comparation.cpp)
 
 - `larger_than()`: 判断大于
 - `not_less_than()`: 判断不小于
@@ -77,7 +77,7 @@
 - `not_larger_than()`: 判断不大于
 - `equal_to()`: 判断一定精度下的绝对相等
 
-##### (五) 运算符重载 (operator.cpp)
+##### (五) 运算符重载 (real_overload_operator.cpp)
 
 以下内容省略`operator`符号
 
@@ -126,7 +126,7 @@
 - `>=()`: 大于等于
 - `!()`: 是否未知
 
-##### (六) `<cmath>`函数重载 (overload_cmath.cpp)
+##### (六) `<cmath>`函数重载 (real_overload_cmath.cpp)
 
 参考：http://www.cppfans.com/cbknowledge/reference/cmath/
 
@@ -193,12 +193,21 @@
 
 - 默认构造函数
 - 复制构造函数
-- 双 num 对象构造函数
+- 单 `double` 参数的构造函数
+- 双 `double` 参数的构造函数
 
 ##### (二) 功能函数 (complex.cpp)
 
+- `complex_polar()`: 用极坐标的形式构造出一个 `complex` 对象作为返回值
 - `real()`: 返回实部
 - `imag()`: 返回虚部
+
+##### (三) 操作自身的函数 (real_self_operation.cpp)
+
+- `add()`: 自增一个复数
+- `subtract()`: 自减一个复数
+- `multiply()`: 自乘一个复数
+- `divide()`: 自除一个复数
 
 
 

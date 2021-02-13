@@ -1,9 +1,9 @@
 ﻿#pragma once
 #ifdef NUMBER_EXPORTS
-#define NUMBER_API __declspec(dllexport)
+#	define NUMBER_API __declspec(dllexport)
 #else
-#define NUMBER_API __declspec(dllimport)
-#pragma	comment(lib, "number")
+#	define NUMBER_API __declspec(dllimport)
+#	pragma	comment(lib, "number")
 #endif // _NUMBER_EXPORTS
 
 #include <iostream>
@@ -42,7 +42,7 @@ namespace osl {
 		inline real to_radian()const;
 		inline real to_degree()const;
 
-		// object_operation.cpp
+		// real_self_operation.cpp
 		inline void reciprocal();
 		inline void rabs();
 		inline void add(double num);
@@ -54,7 +54,7 @@ namespace osl {
 		inline void divide(double num);
 		inline void divide(const real& real);
 
-		// comparation.cpp
+		// real_comparation.cpp
 		inline bool larger_than(double num)const;
 		inline bool larger_than(const real& num)const;
 		inline bool not_less_than(double num)const;
@@ -66,78 +66,78 @@ namespace osl {
 		inline bool equal_to(double num, double precision = ZERO)const;
 		inline bool equal_to(const real& num, const real& precision = ZERO)const;
 
-		// operator.cpp
+		// real_overload_operator.cpp
 		inline operator double()const;
 
-		friend NUMBER_API inline std::ostream& operator<<(std::ostream& os, const real& output_real);
-		friend NUMBER_API inline std::istream& operator>>(std::istream& is, real& input_real);
+		friend NUMBER_API inline std::ostream& operator <<(std::ostream& os, const real& output_real);
+		friend NUMBER_API inline std::istream& operator >>(std::istream& is, real& input_real);
 
-		friend NUMBER_API inline real operator~(const real& origin);
-		friend NUMBER_API inline real operator&(const real& real_1, const real& real_2);
-		friend NUMBER_API inline real operator|(const real& real_1, const real& real_2);
+		friend NUMBER_API inline real operator ~(const real& origin);
+		friend NUMBER_API inline real operator &(const real& real_1, const real& real_2);
+		friend NUMBER_API inline real operator |(const real& real_1, const real& real_2);
 
-		inline real& operator+=(double num);
-		inline real& operator+=(const real& num);
+		inline real& operator +=(double num);
+		inline real& operator +=(const real& num);
 
-		inline real& operator-=(double num);
-		inline real& operator-=(const real& num);
+		inline real& operator -=(double num);
+		inline real& operator -=(const real& num);
 
-		inline real& operator*=(double num);
-		inline real& operator*=(const real& num);
+		inline real& operator *=(double num);
+		inline real& operator *=(const real& num);
 
-		inline real& operator/=(double num);
-		inline real& operator/=(const real& num);
+		inline real& operator /=(double num);
+		inline real& operator /=(const real& num);
 
-		inline real& operator++();
-		inline real operator++(int);
-		inline real& operator--();
-		inline real operator--(int);
+		inline real& operator ++();
+		inline real operator ++(int);
+		inline real& operator --();
+		inline real operator --(int);
 
-		friend NUMBER_API inline real operator+(const real& num_1, double num_2);
-		friend NUMBER_API inline real operator+(double num_1, const real& num_2);
-		friend NUMBER_API inline real operator+(const real& num_1, const real& num_2);
+		friend NUMBER_API inline real operator +(const real& num_1, double num_2);
+		friend NUMBER_API inline real operator +(double num_1, const real& num_2);
+		friend NUMBER_API inline real operator +(const real& num_1, const real& num_2);
 
-		friend NUMBER_API inline real operator-(const real& num_1, double num_2);
-		friend NUMBER_API inline real operator-(double num_1, const real& num_2);
-		friend NUMBER_API inline real operator-(const real& num_1, const real& num_2);
+		friend NUMBER_API inline real operator -(const real& num_1, double num_2);
+		friend NUMBER_API inline real operator -(double num_1, const real& num_2);
+		friend NUMBER_API inline real operator -(const real& num_1, const real& num_2);
 
-		friend NUMBER_API inline real operator-(const real& num);
+		friend NUMBER_API inline real operator -(const real& num);
 
-		friend NUMBER_API inline real operator*(const real& num_1, double num_2);
-		friend NUMBER_API inline real operator*(double num_1, const real& num_2);
-		friend NUMBER_API inline real operator*(const real& num_1, const real& num_2);
+		friend NUMBER_API inline real operator *(const real& num_1, double num_2);
+		friend NUMBER_API inline real operator *(double num_1, const real& num_2);
+		friend NUMBER_API inline real operator *(const real& num_1, const real& num_2);
 
-		friend NUMBER_API inline real operator/(const real& num_1, double num_2);
-		friend NUMBER_API inline real operator/(double num_1, const real& num_2);
-		friend NUMBER_API inline real operator/(const real& num_1, const real& num_2);
+		friend NUMBER_API inline real operator /(const real& num_1, double num_2);
+		friend NUMBER_API inline real operator /(double num_1, const real& num_2);
+		friend NUMBER_API inline real operator /(const real& num_1, const real& num_2);
 
-		friend NUMBER_API inline bool operator==(const real& num_1, double num_2);
-		friend NUMBER_API inline bool operator==(double num_1, const real& num_2);
-		friend NUMBER_API inline bool operator==(const real& num_1, const real& num_2);
+		friend NUMBER_API inline bool operator ==(const real& num_1, double num_2);
+		friend NUMBER_API inline bool operator ==(double num_1, const real& num_2);
+		friend NUMBER_API inline bool operator ==(const real& num_1, const real& num_2);
 
-		friend NUMBER_API inline bool operator!=(const real& num_1, double num_2);
-		friend NUMBER_API inline bool operator!=(double num_1, const real& num_2);
-		friend NUMBER_API inline bool operator!=(const real& num_1, const real& num_2);
+		friend NUMBER_API inline bool operator !=(const real& num_1, double num_2);
+		friend NUMBER_API inline bool operator !=(double num_1, const real& num_2);
+		friend NUMBER_API inline bool operator !=(const real& num_1, const real& num_2);
 
-		friend NUMBER_API inline bool operator<(const real& num_1, double num_2);
-		friend NUMBER_API inline bool operator<(double num_1, const real& num_2);
-		friend NUMBER_API inline bool operator<(const real& num_1, const real& num_2);
+		friend NUMBER_API inline bool operator <(const real& num_1, double num_2);
+		friend NUMBER_API inline bool operator <(double num_1, const real& num_2);
+		friend NUMBER_API inline bool operator <(const real& num_1, const real& num_2);
 
-		friend NUMBER_API inline bool operator<=(const real& num_1, double num_2);
-		friend NUMBER_API inline bool operator<=(double num_1, const real& num_2);
-		friend NUMBER_API inline bool operator<=(const real& num_1, const real& num_2);
+		friend NUMBER_API inline bool operator <=(const real& num_1, double num_2);
+		friend NUMBER_API inline bool operator <=(double num_1, const real& num_2);
+		friend NUMBER_API inline bool operator <=(const real& num_1, const real& num_2);
 
-		friend NUMBER_API inline bool operator>(const real& num_1, double num_2);
-		friend NUMBER_API inline bool operator>(double num_1, const real& num_2);
-		friend NUMBER_API inline bool operator>(const real& num_1, const real& num_2);
+		friend NUMBER_API inline bool operator >(const real& num_1, double num_2);
+		friend NUMBER_API inline bool operator >(double num_1, const real& num_2);
+		friend NUMBER_API inline bool operator >(const real& num_1, const real& num_2);
 
-		friend NUMBER_API inline bool operator>=(const real& num_1, double num_2);
-		friend NUMBER_API inline bool operator>=(double num_1, const real& num_2);
-		friend NUMBER_API inline bool operator>=(const real& num_1, const real& num_2);
+		friend NUMBER_API inline bool operator >=(const real& num_1, double num_2);
+		friend NUMBER_API inline bool operator >=(double num_1, const real& num_2);
+		friend NUMBER_API inline bool operator >=(const real& num_1, const real& num_2);
 
-		friend NUMBER_API inline bool operator!(const real& num);
+		friend NUMBER_API inline bool operator !(const real& num);
 
-		// rcmath.cpp
+		// real_overload_cmath.cpp
 		friend NUMBER_API inline double cos(const real& num);
 		friend NUMBER_API inline double cosh(const real& num);
 		friend NUMBER_API inline double sin(const real& num);
@@ -196,17 +196,25 @@ namespace osl {
 		friend NUMBER_API inline double fmod(const real& num_1, const real& num_2);
 	};
 
-	template <class num = real>
 	class NUMBER_API complex {
-		num _real, _imag;
+		double _real, _imag;
 
 	public:
 		bool known;
-		inline complex();
-		inline complex(const num& real);
-		inline complex(const num& real, const num& imag);
 
-		inline num real();
-		inline num imag();
+		// complex.cpp
+		inline complex();
+		inline complex(const complex& cpl);
+		inline complex(double real);
+		inline complex(double real, double imag);
+		friend NUMBER_API inline complex complex_pola(double r, double theta);
+		inline double real();
+		inline double imag();
+
+		// complex_self_operation.cpp
+		inline void add(const complex& cpl);
+		inline void subtract(const complex& cpl);
+		inline void multiply(const complex& cpl);
+		inline void divide(const complex& cpl);
 	};
 }

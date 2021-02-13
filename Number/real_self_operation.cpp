@@ -1,5 +1,4 @@
 #include "pch.h"
-#include "framework.h"
 #include "number.h"
 
 namespace osl {
