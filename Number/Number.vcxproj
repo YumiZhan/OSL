@@ -163,13 +163,14 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="comparation.cpp" />
+    <ClCompile Include="real_comparation.cpp" />
     <ClCompile Include="complex.cpp" />
+    <ClCompile Include="complex_self_operation.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="number.cpp" />
-    <ClCompile Include="object_operation.cpp" />
-    <ClCompile Include="operator.cpp" />
-    <ClCompile Include="overload_cmath.cpp" />
+    <ClCompile Include="real_self_operation.cpp" />
+    <ClCompile Include="real_overload_operator.cpp" />
+    <ClCompile Include="real_overload_cmath.cpp" />
     <ClCompile Include="real.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

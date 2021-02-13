@@ -38,12 +38,6 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="object_operation.cpp">
-      <Filter>源文件\real</Filter>
-    </ClCompile>
-    <ClCompile Include="operator.cpp">
-      <Filter>源文件\real</Filter>
-    </ClCompile>
     <ClCompile Include="real.cpp">
       <Filter>源文件\real</Filter>
     </ClCompile>
@@ -53,11 +47,20 @@
     <ClCompile Include="complex.cpp">
       <Filter>源文件\complex</Filter>
     </ClCompile>
-    <ClCompile Include="comparation.cpp">
+    <ClCompile Include="real_comparation.cpp">
       <Filter>源文件\real</Filter>
     </ClCompile>
-    <ClCompile Include="overload_cmath.cpp">
+    <ClCompile Include="real_overload_cmath.cpp">
       <Filter>源文件\real</Filter>
+    </ClCompile>
+    <ClCompile Include="real_overload_operator.cpp">
+      <Filter>源文件\real</Filter>
+    </ClCompile>
+    <ClCompile Include="real_self_operation.cpp">
+      <Filter>源文件\real</Filter>
+    </ClCompile>
+    <ClCompile Include="complex_self_operation.cpp">
+      <Filter>源文件\complex</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
