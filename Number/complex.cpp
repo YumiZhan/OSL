@@ -14,14 +14,20 @@ inline osl::complex::complex(double real) :
 	_real(real), _imag(0), known(true)
 {}
 
-inline osl::complex::complex(double real, double imag) :
-	_real(real), _imag(imag), known(true)
-{}
-
-inline osl::complex osl::complex_pola(double r, double theta)
+inline osl::complex::complex(double a, double b, int mod) :
+	known(true)
 {
-	gsl_complex gsl_cpl(gsl_complex_polar(r, theta));
-	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	switch (mod) {
+	case cpl_RECT:
+		_real = a; _imag = b;
+		break;
+	case cpl_POLA:
+		gsl_complex gsl_cpl(gsl_complex_polar(a, b));
+		_real = GSL_REAL(gsl_cpl); _imag = GSL_IMAG(gsl_cpl);
+		break;
+	default:
+		_real = a; _imag = b;
+	}
 }
 
 inline double osl::complex::real()

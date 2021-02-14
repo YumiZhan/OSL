@@ -7,6 +7,8 @@
 #endif // _NUMBER_EXPORTS
 
 #include <iostream>
+#define cpl_RECT 0
+#define cpl_POLA 1
 
 namespace osl {
 	extern NUMBER_API double PI; // 3.1415926535897932
@@ -206,8 +208,7 @@ namespace osl {
 		inline complex();
 		inline complex(const complex& cpl);
 		inline complex(double real);
-		inline complex(double real, double imag);
-		friend NUMBER_API inline complex complex_pola(double r, double theta);
+		inline complex(double a, double b, int mod = cpl_RECT);
 		inline double real();
 		inline double imag();
 
