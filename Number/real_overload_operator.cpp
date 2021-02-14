@@ -32,18 +32,8 @@ namespace osl {
 	inline real operator ~(const real& num)
 	{
 		real temp(num);
-		temp.reciprocal();
+		temp.rec();
 		return temp;
-	}
-
-	inline real operator &(const real& num_1, const real& num_2)
-	{
-		return real(num_1._numerator + num_2._numerator, num_1._denominator + num_2._denominator);
-	}
-
-	inline real operator |(const real& num_1, const real& num_2)
-	{
-		return real(num_1._numerator - num_2._numerator, num_1._denominator - num_2._denominator);
 	}
 
 	inline real& real::operator +=(double num)
@@ -60,37 +50,37 @@ namespace osl {
 
 	inline real& real::operator -=(double num)
 	{
-		this->subtract(num);
+		this->sub(num);
 		return *this;
 	}
 
 	inline real& real::operator -=(const real& num)
 	{
-		this->subtract(num);
+		this->sub(num);
 		return *this;
 	}
 
 	inline real& real::operator *=(double num)
 	{
-		this->multiply(num);
+		this->mul(num);
 		return *this;
 	}
 
 	inline real& real::operator *=(const real& num)
 	{
-		this->multiply(num);
+		this->mul(num);
 		return *this;
 	}
 
 	inline real& real::operator /=(double num)
 	{
-		this->subtract(num);
+		this->sub(num);
 		return *this;
 	}
 
 	inline real& real::operator /=(const real& num)
 	{
-		this->subtract(num);
+		this->sub(num);
 		return *this;
 	}
 
@@ -109,14 +99,14 @@ namespace osl {
 
 	inline real& real::operator --()
 	{
-		this->subtract(1);
+		this->sub(1);
 		return *this;
 	}
 
 	inline real real::operator --(int)
 	{
 		real temp(*this);
-		this->subtract(1);
+		this->sub(1);
 		return temp;
 	}
 
@@ -144,21 +134,21 @@ namespace osl {
 	inline real operator -(const real& num_1, double num_2)
 	{
 		real temp(num_1);
-		temp.subtract(num_2);
+		temp.sub(num_2);
 		return temp;
 	}
 
 	inline real operator -(double num_1, const real& num_2)
 	{
 		real temp(num_1);
-		temp.subtract(num_2);
+		temp.sub(num_2);
 		return temp;
 	}
 
 	inline real operator -(const real& num_1, const real& num_2)
 	{
 		real temp(num_1);
-		temp.subtract(num_2);
+		temp.sub(num_2);
 		return temp;
 	}
 
@@ -172,42 +162,42 @@ namespace osl {
 	inline real operator *(const real& num_1, double num_2)
 	{
 		real temp(num_1);
-		temp.multiply(num_2);
+		temp.mul(num_2);
 		return temp;
 	}
 
 	inline real operator *(double num_1, const real& num_2)
 	{
 		real temp(num_1);
-		temp.multiply(num_2);
+		temp.mul(num_2);
 		return temp;
 	}
 
 	inline real operator *(const real& num_1, const real& num_2)
 	{
 		real temp(num_1);
-		temp.multiply(num_2);
+		temp.mul(num_2);
 		return temp;
 	}
 
 	inline real operator /(const real& num_1, double num_2)
 	{
 		real temp(num_1);
-		temp.divide(num_2);
+		temp.div(num_2);
 		return temp;
 	}
 
 	inline real operator /(double num_1, const real& num_2)
 	{
 		real temp(num_1);
-		temp.divide(num_2);
+		temp.div(num_2);
 		return temp;
 	}
 
 	inline real operator /(const real& num_1, const real& num_2)
 	{
 		real temp(num_1);
-		temp.divide(num_2);
+		temp.div(num_2);
 		return temp;
 	}
 

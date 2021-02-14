@@ -45,16 +45,16 @@ namespace osl {
 		inline real to_degree()const;
 
 		// real_self_operation.cpp
-		inline void reciprocal();
-		inline void rabs();
+		inline void rec();
+		inline void absr();
 		inline void add(double num);
 		inline void add(const real& real);
-		inline void subtract(double num);
-		inline void subtract(const real& real);
-		inline void multiply(double num);
-		inline void multiply(const real& real);
-		inline void divide(double num);
-		inline void divide(const real& real);
+		inline void sub(double num);
+		inline void sub(const real& real);
+		inline void mul(double num);
+		inline void mul(const real& real);
+		inline void div(double num);
+		inline void div(const real& real);
 
 		// real_comparation.cpp
 		inline bool larger_than(double num)const;
@@ -75,8 +75,6 @@ namespace osl {
 		friend NUMBER_API inline std::istream& operator >>(std::istream& is, real& input_real);
 
 		friend NUMBER_API inline real operator ~(const real& origin);
-		friend NUMBER_API inline real operator &(const real& real_1, const real& real_2);
-		friend NUMBER_API inline real operator |(const real& real_1, const real& real_2);
 
 		inline real& operator +=(double num);
 		inline real& operator +=(const real& num);
@@ -214,8 +212,10 @@ namespace osl {
 
 		// complex_self_operation.cpp
 		inline void add(const complex& cpl);
-		inline void subtract(const complex& cpl);
-		inline void multiply(const complex& cpl);
-		inline void divide(const complex& cpl);
+		inline void sub(const complex& cpl);
+		inline void mul(const complex& cpl);
+		inline void div(const complex& cpl);
+		inline void exc();
+		inline void absc();
 	};
 }

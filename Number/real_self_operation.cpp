@@ -2,14 +2,14 @@
 #include "number.h"
 
 namespace osl {
-	inline void real::reciprocal()
+	inline void real::rec()
 	{
 		double temp = _denominator;
 		_denominator = _numerator;
 		_numerator = temp;
 	}
 
-	inline void real::rabs()
+	inline void real::absr()
 	{
 		_numerator = ::fabs(_numerator);
 		_denominator = ::fabs(_denominator);
@@ -31,13 +31,13 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::subtract(double num)
+	inline void real::sub(double num)
 	{
 		_numerator -= num * _denominator;
 		simplify();
 	}
 
-	inline void real::subtract(const real& num)
+	inline void real::sub(const real& num)
 	{
 		_numerator = _numerator * num._denominator - _denominator * num._numerator;
 		_denominator *= num._denominator;
@@ -47,12 +47,12 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::multiply(double num)
+	inline void real::mul(double num)
 	{
 		_numerator *= num;
 	}
 
-	inline void real::multiply(const real& num)
+	inline void real::mul(const real& num)
 	{
 		_numerator *= num._numerator;
 		_denominator *= num._denominator;
@@ -62,13 +62,13 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::divide(double num)
+	inline void real::div(double num)
 	{
 		_denominator *= num;
 		simplify();
 	}
 
-	inline void real::divide(const real& num)
+	inline void real::div(const real& num)
 	{
 		_numerator *= num._denominator;
 		_denominator *= num._numerator;
