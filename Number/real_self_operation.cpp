@@ -15,7 +15,7 @@ namespace osl {
 		_denominator = ::fabs(_denominator);
 	}
 
-	inline void real::add(double num)
+	inline void real::add(number num)
 	{
 		_numerator += num * _denominator;
 		simplify();
@@ -31,7 +31,7 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::sub(double num)
+	inline void real::sub(number num)
 	{
 		_numerator -= num * _denominator;
 		simplify();
@@ -47,7 +47,7 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::mul(double num)
+	inline void real::mul(number num)
 	{
 		_numerator *= num;
 	}
@@ -62,7 +62,7 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::div(double num)
+	inline void real::div(number num)
 	{
 		_denominator *= num;
 		simplify();

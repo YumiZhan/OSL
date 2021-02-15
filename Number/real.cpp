@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "number.h"
 using std::cout;
-using std::endl;
 
 namespace osl {
 	inline real::real() :
@@ -12,13 +11,13 @@ namespace osl {
 		_denominator(origin._denominator), _numerator(origin._numerator), known(origin.known)
 	{}
 
-	inline real::real(double num) :
+	inline real::real(number num) :
 		_denominator(1), _numerator(num), known(true)
 	{
 		simplify_fraction(_denominator, _numerator);
 	}
 
-	inline real::real(double numerator, double denominator) :
+	inline real::real(number numerator, number denominator) :
 		_denominator(denominator), _numerator(numerator), known(true)
 	{
 		simplify_fraction(_denominator, _numerator);
@@ -36,7 +35,7 @@ namespace osl {
 		simplify_fraction(_denominator, _numerator);
 	}
 
-	inline bool real::zero(double reference) const
+	inline bool real::zero(number reference) const
 	{
 		if (::fabs(_numerator) < ::fabs(_denominator * reference * ZERO)) {
 			return true;
@@ -53,7 +52,7 @@ namespace osl {
 		return false;
 	}
 
-	inline bool real::infinite(double reference) const
+	inline bool real::infinite(number reference) const
 	{
 		if (::fabs(_numerator * ZERO) > ::fabs(_denominator * reference)) {
 			return true;
@@ -80,14 +79,14 @@ namespace osl {
 		return _numerator;
 	}
 
-	inline void real::console_print() const
+	inline void real::console_print(c_str end) const
 	{
-		cout << this->operator double() << endl;
+		cout << this->operator double() << end;
 	}
 
-	inline void real::console_show() const
+	inline void real::console_show(c_str end) const
 	{
-		cout << _numerator << '/' << _denominator << endl;
+		cout << _numerator << '/' << _denominator << end;
 	}
 
 	inline real real::to_radian() const

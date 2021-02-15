@@ -2,12 +2,13 @@
 #include "..\Number\number.h"
 using namespace std;
 using namespace osl;
-// double PI = 3.14;
 
 int main()
 {
-	double denominator(1000.0), numerator(1.0);
-	simplify_fraction(denominator, numerator);
-	cout << denominator << '\t' << numerator << endl;
+	real hello(1);
+	hello.console_print();
+	complex cpl(1, -1);
+	cpl.mul(1, 1);
+	cpl.console_print_rect();
 	return 0;
 }

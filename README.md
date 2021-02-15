@@ -191,13 +191,18 @@
 
 - 默认构造函数
 - 复制构造函数
-- 单 `double` 参数的构造函数
-- 双 `double` 参数和一个模式标识的构造函数
+- 单`double`参数的构造函数
+- 双`double`参数和一个模式标识的构造函数
 
 ##### (二) 功能函数 (complex.cpp)
 
 - `real()`: 返回实部
 - `imag()`: 返回虚部
+- `abs()`: 返回绝对值
+- `abs2()`: 返回绝对值的平方
+- `agl()`: 返回角度
+- `console_print_rect()`: 以 $x+iy$ 的形式输出到控制台
+- `console_print_polar()`: 以 $r\cdot e^\theta$ 的形式输出到控制台
 
 ##### (三) 操作自身的函数 (real_self_operation.cpp)
 
