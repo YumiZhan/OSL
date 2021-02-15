@@ -58,12 +58,12 @@ namespace osl {
 		return std::atan(double(num));
 	}
 
-	inline double atan2(const real& num_1, number num_2)
+	inline double atan2(const real& num_1, argument num_2)
 	{
 		return std::atan2(num_1._numerator, num_2 * num_1._denominator);
 	}
 
-	inline double atan2(number num_1, const real& num_2)
+	inline double atan2(argument num_1, const real& num_2)
 	{
 		return std::atan2(num_1 * num_2._denominator, num_2._numerator);
 	}
@@ -103,12 +103,12 @@ namespace osl {
 		return std::ldexp(num._denominator, exponent);
 	}
 
-	inline double log(const real& num, number base)
+	inline double log(const real& num, argument base)
 	{
 		return (std::log(num._numerator) - std::log(num._denominator)) / std::log(base);
 	}
 
-	inline double log(number num, const real& base)
+	inline double log(argument num, const real& base)
 	{
 		return std::log(num) / (std::log(base._numerator) - std::log(base._denominator));
 	}
@@ -159,7 +159,7 @@ namespace osl {
 		return std::modf(double(num), integer);
 	}
 
-	double modf(number num, real& integer)
+	double modf(argument num, real& integer)
 	{
 		integer._denominator = 1;
 		return std::modf(num, &integer._numerator);
@@ -171,12 +171,12 @@ namespace osl {
 		return std::modf(double(num), &integer._numerator);
 	}
 
-	inline double pow(const real& num, number exponent)
+	inline double pow(const real& num, argument exponent)
 	{
 		return std::pow(double(num), exponent);
 	}
 
-	inline double pow(number num, const real& exponent)
+	inline double pow(argument num, const real& exponent)
 	{
 		return std::pow(num, double(exponent));
 	}
@@ -231,12 +231,12 @@ namespace osl {
 		return std::fabs(double(num));
 	}
 
-	inline double fmod(const real& num_1, number num_2)
+	inline double fmod(const real& num_1, argument num_2)
 	{
 		return std::fmod(num_1._numerator * num_2, num_1._denominator);
 	}
 
-	inline double fmod(number num_1, const real& num_2)
+	inline double fmod(argument num_1, const real& num_2)
 	{
 		return std::fmod(num_1 * num_2._denominator, num_2._numerator);
 	}

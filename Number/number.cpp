@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
 #include "framework.h"
-#include "number.h"
+#include "argument.h"
 
 #define LIFTING 0x3FFU // 1023U
 #define ALLOW_DEVIATION 0x40U // 64U

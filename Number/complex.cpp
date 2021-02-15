@@ -11,11 +11,11 @@ inline osl::complex::complex(const complex& cpl) :
 	_real(cpl._real), _imag(cpl._imag), known(cpl.known)
 {}
 
-inline osl::complex::complex(number real) :
+inline osl::complex::complex(argument real) :
 	_real(real), _imag(0), known(true)
 {}
 
-inline osl::complex::complex(number a, number b, int mod) :
+inline osl::complex::complex(argument a, argument b, int mod) :
 	known(true)
 {
 	switch (mod) {
@@ -54,6 +54,11 @@ inline double osl::complex::abs2() const
 inline double osl::complex::agl() const
 {
 	return gsl_complex_arg(gsl_complex_rect(_real, _imag));
+}
+
+inline double osl::complex::logabs() const
+{
+	return gsl_complex_logabs(gsl_complex_rect(_real, _imag));
 }
 
 inline void osl::complex::console_print_rect(c_str end) const

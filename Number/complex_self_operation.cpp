@@ -1,5 +1,5 @@
-#include "number.h"
 #include "pch.h"
+#include "number.h"
 #include <gsl/gsl_complex_math.h>
 
 inline void osl::complex::add(const complex& cpl)
@@ -10,7 +10,7 @@ inline void osl::complex::add(const complex& cpl)
 	}
 }
 
-inline void osl::complex::add(number real, number imag)
+inline void osl::complex::add(argument real, argument imag)
 {
 	_real += real; _imag += imag;
 }
@@ -23,7 +23,7 @@ inline void osl::complex::sub(const complex& cpl)
 	}
 }
 
-inline void osl::complex::sub(number real, number imag)
+inline void osl::complex::sub(argument real, argument imag)
 {
 	_real -= real; _imag -= imag;
 }
@@ -37,7 +37,7 @@ inline void osl::complex::mul(const complex& cpl)
 	}
 }
 
-inline void osl::complex::mul(number real, number imag)
+inline void osl::complex::mul(argument real, argument imag)
 {
 	_real = _real * real - _imag * imag;
 	_imag = _real * imag + _imag * real;
@@ -52,7 +52,7 @@ inline void osl::complex::div(const complex& cpl)
 	}
 }
 
-inline void osl::complex::div(number real, number imag)
+inline void osl::complex::div(argument real, argument imag)
 {
 	gsl_complex gsl_cpl(gsl_complex_div(gsl_complex_rect(_real, _imag), gsl_complex_rect(real, imag)));
 	_real = GSL_REAL(gsl_cpl); _imag = GSL_IMAG(gsl_cpl);
