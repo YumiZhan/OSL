@@ -11,13 +11,13 @@ namespace osl {
 		_denominator(origin._denominator), _numerator(origin._numerator), known(origin.known)
 	{}
 
-	inline real::real(number num) :
+	inline real::real(argument num) :
 		_denominator(1), _numerator(num), known(true)
 	{
 		simplify_fraction(_denominator, _numerator);
 	}
 
-	inline real::real(number numerator, number denominator) :
+	inline real::real(argument numerator, argument denominator) :
 		_denominator(denominator), _numerator(numerator), known(true)
 	{
 		simplify_fraction(_denominator, _numerator);
@@ -35,7 +35,7 @@ namespace osl {
 		simplify_fraction(_denominator, _numerator);
 	}
 
-	inline bool real::zero(number reference) const
+	inline bool real::zero(argument reference) const
 	{
 		if (::fabs(_numerator) < ::fabs(_denominator * reference * ZERO)) {
 			return true;
@@ -52,7 +52,7 @@ namespace osl {
 		return false;
 	}
 
-	inline bool real::infinite(number reference) const
+	inline bool real::infinite(argument reference) const
 	{
 		if (::fabs(_numerator * ZERO) > ::fabs(_denominator * reference)) {
 			return true;

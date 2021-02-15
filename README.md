@@ -16,6 +16,10 @@
 
 ## Number 库
 
+### 类型别名说明
+
+- `argument`: 一般用作函数参数的数字类型`const double&`的别名
+
 ### real 类
 
 #### 一、简介
@@ -201,10 +205,11 @@
 - `abs()`: 返回绝对值
 - `abs2()`: 返回绝对值的平方
 - `agl()`: 返回角度
+- `logabs()`: 取绝对值的自然对数
 - `console_print_rect()`: 以 $x+iy$ 的形式输出到控制台
 - `console_print_polar()`: 以 $r\cdot e^\theta$ 的形式输出到控制台
 
-##### (三) 操作自身的函数 (real_self_operation.cpp)
+##### (三) 操作自身的函数 (complex_self_operation.cpp)
 
 - `add()`: 自增一个复数
 - `sub()`: 自减一个复数
@@ -212,6 +217,10 @@
 - `div()`: 自除一个复数
 - `exc()`: 交换实部和虚部
 - `absc()`: 将实部和虚部分别取为各自的绝对值
+
+##### (四) 运算符重载 (complex_overload_operator.cpp)
+
+- 
 
 
 

@@ -36,7 +36,7 @@ namespace osl {
 		return temp;
 	}
 
-	inline real& real::operator +=(number num)
+	inline real& real::operator +=(argument num)
 	{
 		this->add(num);
 		return *this;
@@ -48,7 +48,7 @@ namespace osl {
 		return *this;
 	}
 
-	inline real& real::operator -=(number num)
+	inline real& real::operator -=(argument num)
 	{
 		this->sub(num);
 		return *this;
@@ -60,7 +60,7 @@ namespace osl {
 		return *this;
 	}
 
-	inline real& real::operator *=(number num)
+	inline real& real::operator *=(argument num)
 	{
 		this->mul(num);
 		return *this;
@@ -72,7 +72,7 @@ namespace osl {
 		return *this;
 	}
 
-	inline real& real::operator /=(number num)
+	inline real& real::operator /=(argument num)
 	{
 		this->sub(num);
 		return *this;
@@ -110,14 +110,14 @@ namespace osl {
 		return temp;
 	}
 
-	inline real operator +(const real& num_1, number num_2)
+	inline real operator +(const real& num_1, argument num_2)
 	{
 		real temp(num_1);
 		temp.add(num_2);
 		return temp;
 	}
 
-	inline real operator +(number num_1, const real& num_2)
+	inline real operator +(argument num_1, const real& num_2)
 	{
 		real temp(num_1);
 		temp.add(num_2);
@@ -131,14 +131,14 @@ namespace osl {
 		return temp;
 	}
 
-	inline real operator -(const real& num_1, number num_2)
+	inline real operator -(const real& num_1, argument num_2)
 	{
 		real temp(num_1);
 		temp.sub(num_2);
 		return temp;
 	}
 
-	inline real operator -(number num_1, const real& num_2)
+	inline real operator -(argument num_1, const real& num_2)
 	{
 		real temp(num_1);
 		temp.sub(num_2);
@@ -159,14 +159,14 @@ namespace osl {
 		return temp;
 	}
 
-	inline real operator *(const real& num_1, number num_2)
+	inline real operator *(const real& num_1, argument num_2)
 	{
 		real temp(num_1);
 		temp.mul(num_2);
 		return temp;
 	}
 
-	inline real operator *(number num_1, const real& num_2)
+	inline real operator *(argument num_1, const real& num_2)
 	{
 		real temp(num_1);
 		temp.mul(num_2);
@@ -180,14 +180,14 @@ namespace osl {
 		return temp;
 	}
 
-	inline real operator /(const real& num_1, number num_2)
+	inline real operator /(const real& num_1, argument num_2)
 	{
 		real temp(num_1);
 		temp.div(num_2);
 		return temp;
 	}
 
-	inline real operator /(number num_1, const real& num_2)
+	inline real operator /(argument num_1, const real& num_2)
 	{
 		real temp(num_1);
 		temp.div(num_2);
@@ -201,12 +201,12 @@ namespace osl {
 		return temp;
 	}
 
-	inline bool operator ==(const real& num_1, number num_2)
+	inline bool operator ==(const real& num_1, argument num_2)
 	{
 		return num_1.equal_to(num_2);
 	}
 
-	inline bool operator ==(number num_1, const real& num_2)
+	inline bool operator ==(argument num_1, const real& num_2)
 	{
 		return num_2.equal_to(num_1);
 	}
@@ -216,12 +216,12 @@ namespace osl {
 		return num_1.equal_to(num_2);
 	}
 
-	inline bool operator !=(const real& num_1, number num_2)
+	inline bool operator !=(const real& num_1, argument num_2)
 	{
 		return !num_1.equal_to(num_2);
 	}
 
-	inline bool operator !=(number num_1, const real& num_2)
+	inline bool operator !=(argument num_1, const real& num_2)
 	{
 		return !num_2.equal_to(num_1);
 	}
@@ -231,12 +231,12 @@ namespace osl {
 		return !num_1.equal_to(num_2);
 	}
 
-	inline bool operator <(const real& num_1, number num_2)
+	inline bool operator <(const real& num_1, argument num_2)
 	{
 		return num_1.less_than(num_2);
 	}
 
-	inline bool operator <(number num_1, const real& num_2)
+	inline bool operator <(argument num_1, const real& num_2)
 	{
 		return num_2.larger_than(num_1);
 	}
@@ -246,12 +246,12 @@ namespace osl {
 		return num_1.less_than(num_2);
 	}
 
-	inline bool operator <=(const real& num_1, number num_2)
+	inline bool operator <=(const real& num_1, argument num_2)
 	{
 		return num_1.not_larger_than(num_2);
 	}
 
-	inline bool operator <=(number num_1, const real& num_2)
+	inline bool operator <=(argument num_1, const real& num_2)
 	{
 		return num_2.not_less_than(num_1);
 	}
@@ -261,12 +261,12 @@ namespace osl {
 		return num_1.not_larger_than(num_2);
 	}
 
-	inline bool operator >(const real& num_1, number num_2)
+	inline bool operator >(const real& num_1, argument num_2)
 	{
 		return num_1.larger_than(num_2);
 	}
 
-	inline bool operator >(number num_1, const real& num_2)
+	inline bool operator >(argument num_1, const real& num_2)
 	{
 		return num_2.less_than(num_1);
 	}
@@ -276,12 +276,12 @@ namespace osl {
 		return num_1.larger_than(num_2);
 	}
 
-	inline bool operator >=(const real& num_1, number num_2)
+	inline bool operator >=(const real& num_1, argument num_2)
 	{
 		return num_1.not_less_than(num_2);
 	}
 
-	inline bool operator >=(number num_1, const real& num_2)
+	inline bool operator >=(argument num_1, const real& num_2)
 	{
 		return num_2.not_larger_than(num_1);
 	}

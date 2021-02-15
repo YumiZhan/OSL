@@ -2,7 +2,7 @@
 #include "number.h"
 
 namespace osl {
-	inline bool real::larger_than(number num) const
+	inline bool real::larger_than(argument num) const
 	{
 		return _numerator > _denominator * num;
 	}
@@ -12,7 +12,7 @@ namespace osl {
 		return _numerator * num._denominator > _denominator * num._denominator;
 	}
 
-	inline bool real::not_less_than(number num) const
+	inline bool real::not_less_than(argument num) const
 	{
 		return _numerator >= _denominator * num;
 	}
@@ -22,7 +22,7 @@ namespace osl {
 		return _numerator * num._denominator > _denominator * num._denominator;
 	}
 
-	inline bool real::less_than(number num) const
+	inline bool real::less_than(argument num) const
 	{
 		return _numerator < _denominator* num;
 	}
@@ -32,7 +32,7 @@ namespace osl {
 		return _numerator * num._denominator < _denominator* num._numerator;
 	}
 
-	inline bool real::not_larger_than(number num) const
+	inline bool real::not_larger_than(argument num) const
 	{
 		return _numerator <= _denominator * num;
 	}
@@ -42,7 +42,7 @@ namespace osl {
 		return _numerator * num._denominator < _denominator* num._numerator;
 	}
 
-	inline bool real::equal_to(number num, number precision) const
+	inline bool real::equal_to(argument num, argument precision) const
 	{
 		if (::fabs(this->_numerator - num * this->_denominator) < ::fabs(this->_denominator * precision)) {
 			return true;
