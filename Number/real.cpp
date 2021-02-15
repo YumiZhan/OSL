@@ -7,17 +7,17 @@ namespace osl {
 		_denominator(1), _numerator(0), known(false)
 	{}
 
-	inline real::real(const real& origin) :
+	inline real::real(agm_real origin) :
 		_denominator(origin._denominator), _numerator(origin._numerator), known(origin.known)
 	{}
 
-	inline real::real(argument num) :
+	inline real::real(agm num) :
 		_denominator(1), _numerator(num), known(true)
 	{
 		simplify_fraction(_denominator, _numerator);
 	}
 
-	inline real::real(argument numerator, argument denominator) :
+	inline real::real(agm numerator, agm denominator) :
 		_denominator(denominator), _numerator(numerator), known(true)
 	{
 		simplify_fraction(_denominator, _numerator);
@@ -35,7 +35,7 @@ namespace osl {
 		simplify_fraction(_denominator, _numerator);
 	}
 
-	inline bool real::zero(argument reference) const
+	inline bool real::zero(agm reference) const
 	{
 		if (::fabs(_numerator) < ::fabs(_denominator * reference * ZERO)) {
 			return true;
@@ -43,7 +43,7 @@ namespace osl {
 		return false;
 	}
 
-	inline bool real::zero(const real& reference) const
+	inline bool real::zero(agm_real reference) const
 	{
 		if (::fabs(_numerator * reference._denominator)
 			< ::fabs(_denominator * reference._numerator * ZERO)) {
@@ -52,7 +52,7 @@ namespace osl {
 		return false;
 	}
 
-	inline bool real::infinite(argument reference) const
+	inline bool real::infinite(agm reference) const
 	{
 		if (::fabs(_numerator * ZERO) > ::fabs(_denominator * reference)) {
 			return true;
@@ -60,7 +60,7 @@ namespace osl {
 		return false;
 	}
 
-	inline bool real::infinite(const real& reference) const
+	inline bool real::infinite(agm_real reference) const
 	{
 		if (::fabs(_numerator * reference._denominator * ZERO)
 		> ::fabs(_denominator * reference._numerator)) {

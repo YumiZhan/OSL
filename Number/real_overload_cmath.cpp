@@ -3,245 +3,245 @@
 #include <cmath>
 
 namespace osl {
-	inline double cos(const real& num)
+	inline double cos(agm_real num)
 	{
 		return std::cos(double(num));
 	}
 
-	inline double cosh(const real& num)
+	inline double cosh(agm_real num)
 	{
 		return std::cosh(double(num));
 	}
 
-	inline double sin(const real& num)
+	inline double sin(agm_real num)
 	{
 		return std::sin(double(num));
 	}
 
-	inline double sinh(const real& num)
+	inline double sinh(agm_real num)
 	{
 		return std::sinh(double(num));
 	}
 
-	inline double tan(const real& num)
+	inline double tan(agm_real num)
 	{
 		return std::tan(double(num));
 	}
 
-	inline double tanh(const real& num)
+	inline double tanh(agm_real num)
 	{
 		return std::tanh(double(num));
 	}
 
-	inline double acos(const real& num)
+	inline double acos(agm_real num)
 	{
 		return std::acos(double(num));
 	}
 
-	double acosh(const real& num)
+	double acosh(agm_real num)
 	{
 		return std::acosh(double(num));
 	}
 
-	inline double asin(const real& num)
+	inline double asin(agm_real num)
 	{
 		return std::asin(double(num));
 	}
 
-	double asinh(const real& num)
+	double asinh(agm_real num)
 	{
 		return std::asinh(double(num));
 	}
 
-	inline double atan(const real& num)
+	inline double atan(agm_real num)
 	{
 		return std::atan(double(num));
 	}
 
-	inline double atan2(const real& num_1, argument num_2)
+	inline double atan2(agm_real num_1, agm num_2)
 	{
 		return std::atan2(num_1._numerator, num_2 * num_1._denominator);
 	}
 
-	inline double atan2(argument num_1, const real& num_2)
+	inline double atan2(agm num_1, agm_real num_2)
 	{
 		return std::atan2(num_1 * num_2._denominator, num_2._numerator);
 	}
 
-	inline double atan2(const real& num_1, const real& num_2)
+	inline double atan2(agm_real num_1, agm_real num_2)
 	{
 		return std::atan2(num_1._numerator * num_2._denominator, num_1._denominator * num_2._numerator);
 	}
 
-	inline double atanh(const real& num)
+	inline double atanh(agm_real num)
 	{
 		return std::atanh(double(num));
 	}
 
-	inline double exp(const real& num)
+	inline double exp(agm_real num)
 	{
 		return std::exp(double(num));
 	}
 
-	inline double exp2(const real& num)
+	inline double exp2(agm_real num)
 	{
 		return std::exp2(double(num));
 	}
 
-	inline double expm1(const real& num)
+	inline double expm1(agm_real num)
 	{
 		return std::expm1(double(num));
 	}
 
-	inline double frexp(const real& num, int* exponent)
+	inline double frexp(agm_real num, int* exponent)
 	{
 		return std::frexp(double(num), exponent);
 	}
 
-	inline double ldexp(const real& num, int exponent)
+	inline double ldexp(agm_real num, int exponent)
 	{
 		return std::ldexp(num._denominator, exponent);
 	}
 
-	inline double log(const real& num, argument base)
+	inline double log(agm_real num, agm base)
 	{
 		return (std::log(num._numerator) - std::log(num._denominator)) / std::log(base);
 	}
 
-	inline double log(argument num, const real& base)
+	inline double log(agm num, agm_real base)
 	{
 		return std::log(num) / (std::log(base._numerator) - std::log(base._denominator));
 	}
 
-	inline double log(const real& num, const real& base)
+	inline double log(agm_real num, agm_real base)
 	{
 		return (std::log(num._numerator) - std::log(num._denominator))
 			/ (std::log(base._numerator) - std::log(base._denominator));
 	}
 
-	inline double log(const real& num)
+	inline double log(agm_real num)
 	{
 		return std::log(num._numerator) - std::log(num._denominator);
 	}
 
-	inline double ln(const real& num)
+	inline double ln(agm_real num)
 	{
 		return log(num);
 	}
 
-	inline double log2(const real& num)
+	inline double log2(agm_real num)
 	{
 		return std::log2(num._numerator) - std::log2(num._denominator);
 	}
 
-	inline double log10(const real& num)
+	inline double log10(agm_real num)
 	{
 		return std::log10(num._numerator) - std::log10(num._denominator);
 	}
 
-	inline double lg(const real& num)
+	inline double lg(agm_real num)
 	{
 		return log10(num);
 	}
 
-	inline double log1p(const real& num)
+	inline double log1p(agm_real num)
 	{
 		return std::log1p(double(num));
 	}
 
-	inline double copysign(const real& num_1, const real& num_2)
+	inline double copysign(agm_real num_1, agm_real num_2)
 	{
 		return std::copysign(double(num_1), double(num_2));
 	}
 
-	inline double modf(const real& num, double* integer)
+	inline double modf(agm_real num, double* integer)
 	{
 		return std::modf(double(num), integer);
 	}
 
-	double modf(argument num, real& integer)
+	double modf(agm num, real& integer)
 	{
 		integer._denominator = 1;
 		return std::modf(num, &integer._numerator);
 	}
 
-	double modf(const real& num, real& integer)
+	double modf(agm_real num, real& integer)
 	{
 		integer._denominator = 1;
 		return std::modf(double(num), &integer._numerator);
 	}
 
-	inline double pow(const real& num, argument exponent)
+	inline double pow(agm_real num, agm exponent)
 	{
 		return std::pow(double(num), exponent);
 	}
 
-	inline double pow(argument num, const real& exponent)
+	inline double pow(agm num, agm_real exponent)
 	{
 		return std::pow(num, double(exponent));
 	}
 
-	inline double pow(const real& num, const real& exponent)
+	inline double pow(agm_real num, agm_real exponent)
 	{
 		return std::pow(double(num), double(exponent));
 	}
 
-	inline double pow2(const real& num)
+	inline double pow2(agm_real num)
 	{
 		return std::pow(double(num), 2.0);
 	}
 
-	inline double pow10(const real& num)
+	inline double pow10(agm_real num)
 	{
 		return std::pow(double(num), 10.0);
 	}
 
-	inline double sqrt(const real& num)
+	inline double sqrt(agm_real num)
 	{
 		return std::sqrt(double(num));
 	}
 
-	inline double hypot(const real& x, const real& y)
+	inline double hypot(agm_real x, agm_real y)
 	{
 		return std::hypot(double(x), double(y));
 	}
 
-	inline double ceil(const real& num)
+	inline double ceil(agm_real num)
 	{
 		return std::ceil(double(num));
 	}
 
-	inline double round(const real& num)
+	inline double round(agm_real num)
 	{
 		return std::round(double(num));
 	}
 
-	inline double floor(const real& num)
+	inline double floor(agm_real num)
 	{
 		return std::floor(double(num));
 	}
 
-	inline double trunc(const real& num)
+	inline double trunc(agm_real num)
 	{
 		return std::trunc(double(num));
 	}
 
-	inline double fabs(const real& num)
+	inline double fabs(agm_real num)
 	{
 		return std::fabs(double(num));
 	}
 
-	inline double fmod(const real& num_1, argument num_2)
+	inline double fmod(agm_real num_1, agm num_2)
 	{
 		return std::fmod(num_1._numerator * num_2, num_1._denominator);
 	}
 
-	inline double fmod(argument num_1, const real& num_2)
+	inline double fmod(agm num_1, agm_real num_2)
 	{
 		return std::fmod(num_1 * num_2._denominator, num_2._numerator);
 	}
 
-	inline double fmod(const real& num_1, const real& num_2)
+	inline double fmod(agm_real num_1, agm_real num_2)
 	{
 		return std::fmod(num_1._numerator * num_2._denominator, num_1._denominator * num_2._numerator);
 	}
