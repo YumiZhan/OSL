@@ -163,6 +163,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="complex_overload_operator.cpp" />
     <ClCompile Include="real_comparation.cpp" />
     <ClCompile Include="complex.cpp" />
     <ClCompile Include="complex_self_operation.cpp" />

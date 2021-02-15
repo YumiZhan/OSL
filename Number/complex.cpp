@@ -1,21 +1,22 @@
 #include "pch.h"
 #include "number.h"
 #include <gsl/gsl_complex_math.h>
+#include <string>
 using std::cout;
 
 inline osl::complex::complex() :
 	_real(0), _imag(0), known(false)
 {}
 
-inline osl::complex::complex(const complex& cpl) :
+inline osl::complex::complex(agm_cpl cpl) :
 	_real(cpl._real), _imag(cpl._imag), known(cpl.known)
 {}
 
-inline osl::complex::complex(argument real) :
+inline osl::complex::complex(agm real) :
 	_real(real), _imag(0), known(true)
 {}
 
-inline osl::complex::complex(argument a, argument b, int mod) :
+inline osl::complex::complex(agm a, agm b, int mod) :
 	known(true)
 {
 	switch (mod) {
@@ -63,12 +64,7 @@ inline double osl::complex::logabs() const
 
 inline void osl::complex::console_print_rect(c_str end) const
 {
-	if (_imag >= 0) {
-		cout << _real << '+' << _imag << 'i' << end;
-	}
-	else {
-		cout << _real << '-' << -_imag << 'i' << end;
-	}
+	cout << *this << end;
 }
 
 inline void osl::complex::console_print_polar(c_str end) const

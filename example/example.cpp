@@ -5,7 +5,8 @@ using namespace osl;
 
 int main()
 {
-	real num(100, 100);
-	num.console_show();
+	complex cpl;
+	cin >> cpl;
+	cpl.console_print_rect();
 	return 0;
 }

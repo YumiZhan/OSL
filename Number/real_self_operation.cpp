@@ -15,13 +15,13 @@ namespace osl {
 		_denominator = ::fabs(_denominator);
 	}
 
-	inline void real::add(argument num)
+	inline void real::add(agm num)
 	{
 		_numerator += num * _denominator;
 		simplify();
 	}
 
-	inline void real::add(const real& num)
+	inline void real::add(agm_real num)
 	{
 		_numerator = _numerator * num._denominator + _denominator * num._denominator;
 		_denominator *= num._denominator;
@@ -31,13 +31,13 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::sub(argument num)
+	inline void real::sub(agm num)
 	{
 		_numerator -= num * _denominator;
 		simplify();
 	}
 
-	inline void real::sub(const real& num)
+	inline void real::sub(agm_real num)
 	{
 		_numerator = _numerator * num._denominator - _denominator * num._numerator;
 		_denominator *= num._denominator;
@@ -47,12 +47,12 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::mul(argument num)
+	inline void real::mul(agm num)
 	{
 		_numerator *= num;
 	}
 
-	inline void real::mul(const real& num)
+	inline void real::mul(agm_real num)
 	{
 		_numerator *= num._numerator;
 		_denominator *= num._denominator;
@@ -62,13 +62,13 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::div(argument num)
+	inline void real::div(agm num)
 	{
 		_denominator *= num;
 		simplify();
 	}
 
-	inline void real::div(const real& num)
+	inline void real::div(agm_real num)
 	{
 		_numerator *= num._denominator;
 		_denominator *= num._numerator;
