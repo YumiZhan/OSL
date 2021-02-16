@@ -32,6 +32,23 @@ inline osl::complex::complex(agm a, agm b, int mod) :
 	}
 }
 
+inline void osl::complex::console_print_rect(c_str end) const
+{
+	cout << *this << end;
+}
+
+inline void osl::complex::console_print_polar(c_str end) const
+{
+	gsl_complex gsl_cpl(gsl_complex_rect(_real, _imag));
+	double r(gsl_complex_abs(gsl_cpl)), theta(gsl_complex_arg(gsl_cpl));
+	if (theta >= 0) {
+		cout << r << "e^(i" << theta << ')' << end;
+	}
+	else {
+		cout << r << "e^(-i" << -theta << ')' << end;
+	}
+}
+
 inline double osl::complex::real() const
 {
 	return _real;
@@ -62,19 +79,33 @@ inline double osl::complex::logabs() const
 	return gsl_complex_logabs(gsl_complex_rect(_real, _imag));
 }
 
-inline void osl::complex::console_print_rect(c_str end) const
+inline osl::complex osl::complex::conjugated() const
 {
-	cout << *this << end;
+	return complex(_real, -_imag);
 }
 
-inline void osl::complex::console_print_polar(c_str end) const
+inline osl::complex osl::complex::inversed() const
 {
-	gsl_complex gsl_cpl(gsl_complex_rect(_real, _imag));
-	double r(gsl_complex_abs(gsl_cpl)), theta(gsl_complex_arg(gsl_cpl));
-	if (theta >= 0) {
-		cout << r << "e^(i" << theta << ')' << end;
+	gsl_complex gsl_cpl(gsl_complex_inverse(gsl_complex_rect(_real, _imag)));
+	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+}
+
+inline osl::complex osl::complex::negative() const
+{
+	gsl_complex gsl_cpl(gsl_complex_negative(gsl_complex_rect(_real, _imag)));
+	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+}
+
+namespace osl {
+	inline complex sqrt(agm real)
+	{
+		gsl_complex gsl_cpl(gsl_complex_sqrt_real(real));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 	}
-	else {
-		cout << r << "e^(-i" << -theta << ')' << end;
+
+	inline complex sqrt(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_sqrt(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 	}
 }

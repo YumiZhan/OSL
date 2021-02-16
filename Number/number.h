@@ -101,6 +101,9 @@ namespace osl {
 		inline real& operator --();
 		inline real operator --(int);
 
+		friend NUMBER_API inline real operator +(agm_real num);
+		friend NUMBER_API inline real operator -(agm_real num);
+
 		friend NUMBER_API inline real operator +(agm_real num_1, agm num_2);
 		friend NUMBER_API inline real operator +(agm num_1, agm_real num_2);
 		friend NUMBER_API inline real operator +(agm_real num_1, agm_real num_2);
@@ -108,8 +111,6 @@ namespace osl {
 		friend NUMBER_API inline real operator -(agm_real num_1, agm num_2);
 		friend NUMBER_API inline real operator -(agm num_1, agm_real num_2);
 		friend NUMBER_API inline real operator -(agm_real num_1, agm_real num_2);
-
-		friend NUMBER_API inline real operator -(agm_real num);
 
 		friend NUMBER_API inline real operator *(agm_real num_1, agm num_2);
 		friend NUMBER_API inline real operator *(agm num_1, agm_real num_2);
@@ -218,14 +219,19 @@ namespace osl {
 		inline complex(agm real);
 		inline complex(agm a, agm b, int mod = CPL_RECT);
 
+		inline void console_print_rect(c_str end = "\n")const;
+		inline void console_print_polar(c_str end = "\n")const;
 		inline double real()const;
 		inline double imag()const;
 		inline double abs()const;
 		inline double abs2()const;
 		inline double agl()const;
 		inline double logabs()const;
-		inline void console_print_rect(c_str end = "\n")const;
-		inline void console_print_polar(c_str end = "\n")const;
+		inline complex conjugated()const;
+		inline complex inversed()const;
+		inline complex negative()const;
+		friend NUMBER_API inline complex sqrt(agm real);
+		friend NUMBER_API inline complex sqrt(agm_cpl cpl);
 
 		// complex_self_operation.cpp
 		inline void add(agm_cpl cpl);
@@ -242,6 +248,10 @@ namespace osl {
 		// complex_overload_operator.cpp
 		friend NUMBER_API inline std::ostream& operator <<(std::ostream& os, agm_cpl cpl);
 		friend NUMBER_API std::istream& operator >>(std::istream& is, complex& cpl); // throw(error)
+		friend NUMBER_API inline complex operator ~(agm_cpl cpl);
+		friend NUMBER_API inline complex operator +(agm_cpl cpl);
+		friend NUMBER_API inline complex operator -(agm_cpl cpl);
+
 	};
 	typedef const complex& agm_cpl;
 }

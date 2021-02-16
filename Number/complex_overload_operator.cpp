@@ -117,4 +117,20 @@ namespace osl {
 		}
 		return is;
 	}
+
+	complex operator ~(agm_cpl cpl)
+	{
+		return complex(cpl._real, -cpl._imag);
+	}
+
+	complex operator +(agm_cpl cpl)
+	{
+		return cpl;
+	}
+
+	complex operator -(agm_cpl cpl)
+	{
+		return complex(-cpl._real, -cpl._imag);
+	}
+
 }
