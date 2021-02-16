@@ -52,7 +52,7 @@ namespace osl {
 		inline real to_radian()const;
 		inline real to_degree()const;
 
-		// real_self_operation.cpp
+		// real_modifier.cpp.cpp
 		inline void rec();
 		inline void absr();
 		inline void add(agm num);
@@ -233,7 +233,7 @@ namespace osl {
 		friend NUMBER_API inline complex sqrt(agm real);
 		friend NUMBER_API inline complex sqrt(agm_cpl cpl);
 
-		// complex_self_operation.cpp
+		// complex_modifier.cpp
 		inline void add(agm_cpl cpl);
 		inline void add(agm real, agm imag);
 		inline void sub(agm_cpl cpl);
