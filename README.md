@@ -68,7 +68,7 @@
 - `to_radian()`: 将角度转换成弧度
 - `to_degree()`: 将弧度转换成角度
 
-##### (三) 操作自身的函数 (real_self_operation.cpp)
+##### (三) 操作自身的函数 (real_modifier.cpp.cpp)
 
 - `rec()`: 倒置
 - `rabs()`: 绝对值化
@@ -216,7 +216,7 @@
 - `conjugate()`: 返回共轭复数
 - `inverse()`: 返回倒数
 
-##### (三) 操作自身的函数 (complex_self_operation.cpp)
+##### (三) 操作自身的函数 (complex_modifier.cpp)
 
 - `add()`: 自增一个复数
 - `sub()`: 自减一个复数
