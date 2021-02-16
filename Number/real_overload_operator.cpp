@@ -108,6 +108,18 @@ namespace osl {
 		return temp;
 	}
 
+	inline real operator +(agm_real num)
+	{
+		return num;
+	}
+
+	inline real operator -(agm_real num)
+	{
+		real temp(num);
+		temp._numerator = -temp._numerator;
+		return temp;
+	}
+
 	inline real operator +(agm_real num_1, agm num_2)
 	{
 		real temp(num_1);
@@ -147,13 +159,6 @@ namespace osl {
 	{
 		real temp(num_1);
 		temp.sub(num_2);
-		return temp;
-	}
-
-	inline real operator -(agm_real num)
-	{
-		real temp(num);
-		temp._numerator = -temp._numerator;
 		return temp;
 	}
 

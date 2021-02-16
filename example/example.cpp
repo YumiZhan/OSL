@@ -5,8 +5,7 @@ using namespace osl;
 
 int main()
 {
-	complex cpl;
-	cin >> cpl;
-	cpl.console_print_rect();
+	complex cpl(-1, -1);
+	cout << -cpl << endl;
 	return 0;
 }
