@@ -133,4 +133,19 @@ namespace osl {
 		return complex(-cpl._real, -cpl._imag);
 	}
 
+	complex operator +(agm_cpl cpl1, agm_cpl cpl2)
+	{
+		return complex(cpl1._real + cpl2._real, cpl1._imag + cpl2._imag);
+	}
+
+	complex operator +(agm_cpl cpl, agm real)
+	{
+		return complex(cpl._real + real, cpl._imag);
+	}
+
+	complex operator +(agm real, agm_cpl cpl)
+	{
+		return complex(real + cpl._real, cpl._imag);
+	}
+
 }
