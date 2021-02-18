@@ -6,4 +6,5 @@ Based on GNU Scientific Library (GSL), OSL is built aiming to help solve the num
 
 ## Handbooks in other languages
 
-[简体中文]()
+[简体中文](https://github.com/YumiZhan/OSL/blob/develop/README_zh_cn.md)
+
