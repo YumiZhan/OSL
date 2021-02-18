@@ -248,9 +248,14 @@ namespace osl {
 		// complex_overload_operator.cpp
 		friend NUMBER_API inline std::ostream& operator <<(std::ostream& os, agm_cpl cpl);
 		friend NUMBER_API std::istream& operator >>(std::istream& is, complex& cpl); // throw(error)
+
 		friend NUMBER_API inline complex operator ~(agm_cpl cpl);
 		friend NUMBER_API inline complex operator +(agm_cpl cpl);
 		friend NUMBER_API inline complex operator -(agm_cpl cpl);
+
+		friend NUMBER_API inline complex operator +(agm_cpl cpl1, agm_cpl cpl2);
+		friend NUMBER_API inline complex operator +(agm_cpl cpl, agm real);
+		friend NUMBER_API inline complex operator +(agm real, agm_cpl cpl);
 
 	};
 	typedef const complex& agm_cpl;
