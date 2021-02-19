@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "number.h"
-#include <cmath>
 #include <string>
 using std::string;
 
