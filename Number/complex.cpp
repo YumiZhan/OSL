@@ -3,9 +3,13 @@
 #include <gsl/gsl_complex_math.h>
 #include <string>
 using std::cout;
+using std::string;
+
+#define POSITIVE 1.0
+#define NEGATIVE -1.0
 
 inline osl::complex::complex() :
-	_real(0), _imag(0), known(false)
+	_real(0.0), _imag(0.0), known(false)
 {}
 
 inline osl::complex::complex(agm_cpl cpl) :
@@ -13,7 +17,7 @@ inline osl::complex::complex(agm_cpl cpl) :
 {}
 
 inline osl::complex::complex(agm real) :
-	_real(real), _imag(0), known(true)
+	_real(real), _imag(0.0), known(true)
 {}
 
 inline osl::complex::complex(agm a, agm b, int mod) :
@@ -30,6 +34,77 @@ inline osl::complex::complex(agm a, agm b, int mod) :
 	default:
 		_real = a; _imag = b;
 	}
+}
+
+osl::complex::complex(c_str str) :
+	_real(0.0), _imag(0.0), known(true)
+{
+	string cpl_str(str), partial;
+	size_t length(cpl_str.length()), i(0U);
+	double sign(POSITIVE);
+	if (cpl_str.at(i) == '+' || cpl_str.at(i) == '-') {
+		if (cpl_str.at(i) == '-')
+			sign = NEGATIVE;
+		i++;
+	}
+	for (; true; i++) {
+		if (i == length) {
+			if (!partial.empty())
+				_real += sign * atof(partial.c_str());
+			return;
+		}
+		if (cpl_str.at(i) == 'i') {
+			if (!partial.empty())
+				_imag += sign * atof(partial.c_str());
+			else
+				_imag += sign * 1.0;
+			i++;
+			break;
+		}
+		if ('0' <= cpl_str.at(i) && cpl_str.at(i) <= '9' || cpl_str.at(i) == '.') {
+			partial.append(1, cpl_str.at(i));
+		}
+		else {
+			if (!partial.empty())
+				_real += sign * atof(partial.c_str());
+			break;
+		}
+	}
+	partial.clear();
+	if (i >= length) {
+		return;
+	}
+	if (cpl_str.at(i) == '+') {
+		sign = POSITIVE;
+		i++;
+	}
+	else if (cpl_str.at(i) == '-') {
+		sign = NEGATIVE;
+		i++;
+	}
+	for (; true; i++) {
+		if (i == length) {
+			if (!partial.empty())
+				_real += sign * atof(partial.c_str());
+			break;
+		}
+		if (cpl_str.at(i) == 'i') {
+			if (!partial.empty())
+				_imag += sign * atof(partial.c_str());
+			else
+				_imag += sign * 1.0;
+			break;
+		}
+		if ('0' <= cpl_str.at(i) && cpl_str.at(i) <= '9' || cpl_str.at(i) == '.') {
+			partial.append(1, cpl_str.at(i));
+		}
+		else {
+			if (!partial.empty())
+				_real += sign * atof(partial.c_str());
+			break;
+		}
+	}
+	return;
 }
 
 inline void osl::complex::console_print_rect(c_str end) const
