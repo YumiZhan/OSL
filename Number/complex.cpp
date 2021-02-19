@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "number.h"
 #include <gsl/gsl_complex_math.h>
+#include <cstdlib>
 #include <string>
 using std::cout;
 using std::string;
