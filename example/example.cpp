@@ -5,7 +5,6 @@ using namespace osl;
 
 int main()
 {
-	complex cpl(-1, -1);
-	cout << -cpl << endl;
+	cout << (2 * i) / 2 << endl;
 	return 0;
 }

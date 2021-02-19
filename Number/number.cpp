@@ -49,4 +49,6 @@ namespace osl {
 		numerator_copy.ull |= exp_of_numerator.ull; denominator_copy.ull |= exp_of_denominator.ull;
 		numerator = numerator_copy.db; denominator = denominator_copy.db;
 	}
+
+	NUMBER_API const complex i(0.0, 1.0);
 }
