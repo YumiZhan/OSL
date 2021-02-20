@@ -112,6 +112,9 @@ namespace osl {
 		inline real& operator /=(agm num);
 		inline real& operator /=(agm_real num);
 
+		inline real& operator ^=(agm num);
+		inline real& operator ^=(agm_real num);
+
 		inline real& operator ++();
 		inline real operator ++(int);
 		inline real& operator --();
@@ -135,6 +138,10 @@ namespace osl {
 		friend NUMBER_API inline real operator /(agm_real num_1, agm num_2);
 		friend NUMBER_API inline real operator /(agm num_1, agm_real num_2);
 		friend NUMBER_API inline real operator /(agm_real num_1, agm_real num_2);
+
+		friend NUMBER_API inline real operator ^(agm_real num_1, agm_real num_2);
+		friend NUMBER_API inline real operator ^(agm num_1, agm_real num_2);
+		friend NUMBER_API inline real operator ^(agm_real num_1, agm num_2);
 
 		friend NUMBER_API inline bool operator ==(agm_real num_1, agm num_2);
 		friend NUMBER_API inline bool operator ==(agm num_1, agm_real num_2);
@@ -247,6 +254,8 @@ namespace osl {
 		inline complex conjugated()const;
 		inline complex inversed()const;
 		inline complex negative()const;
+		inline complex pow(agm real)const;
+		inline complex pow(agm_cpl cpl)const;
 		friend NUMBER_API inline complex sqrt(agm real);
 		friend NUMBER_API inline complex sqrt(agm_cpl cpl);
 
@@ -285,6 +294,21 @@ namespace osl {
 		friend NUMBER_API inline complex operator /(agm_cpl cpl1, agm_cpl cpl2);
 		friend NUMBER_API inline complex operator /(agm_cpl cpl, agm real);
 		friend NUMBER_API inline complex operator /(agm real, agm_cpl cpl);
+
+		friend NUMBER_API inline complex operator ^(agm_cpl cpl1, agm_cpl cpl2);
+		friend NUMBER_API inline complex operator ^(agm_cpl cpl, agm real);
+		friend NUMBER_API inline complex operator ^(agm real, agm_cpl cpl);
+
+		inline complex& operator +=(agm_cpl cpl);
+		inline complex& operator +=(agm real);
+		inline complex& operator -=(agm_cpl cpl);
+		inline complex& operator -=(agm real);
+		inline complex& operator *=(agm_cpl cpl);
+		inline complex& operator *=(agm real);
+		inline complex& operator /=(agm_cpl cpl);
+		inline complex& operator /=(agm real);
+		inline complex& operator ^=(agm_cpl cpl);
+		inline complex& operator ^=(agm real);
 	};
 	typedef const complex& agm_cpl;
 	extern NUMBER_API const complex i; // i = complex(0.0, 1.0)

@@ -44,7 +44,7 @@ namespace osl {
 		return os;
 	}
 
-	std::istream& operator >>(std::istream& is, complex& cpl)
+	inline std::istream& operator >>(std::istream& is, complex& cpl)
 	{
 		string str;
 		is >> str;
@@ -52,85 +52,159 @@ namespace osl {
 		return is;
 	}
 
-	complex operator ~(agm_cpl cpl)
+	inline complex operator ~(agm_cpl cpl)
 	{
 		return complex(cpl._real, -cpl._imag);
 	}
 
-	complex operator +(agm_cpl cpl)
+	inline complex operator +(agm_cpl cpl)
 	{
 		return cpl;
 	}
 
-	complex operator -(agm_cpl cpl)
+	inline complex operator -(agm_cpl cpl)
 	{
 		return complex(-cpl._real, -cpl._imag);
 	}
 
-	complex operator +(agm_cpl cpl1, agm_cpl cpl2)
+	inline complex operator +(agm_cpl cpl1, agm_cpl cpl2)
 	{
 		return complex(cpl1._real + cpl2._real, cpl1._imag + cpl2._imag);
 	}
 
-	complex operator +(agm_cpl cpl, agm real)
+	inline complex operator +(agm_cpl cpl, agm real)
 	{
 		return complex(cpl._real + real, cpl._imag);
 	}
 
-	complex operator +(agm real, agm_cpl cpl)
+	inline complex operator +(agm real, agm_cpl cpl)
 	{
 		return complex(real + cpl._real, cpl._imag);
 	}
 
-	complex operator -(agm_cpl cpl1, agm_cpl cpl2)
+	inline complex operator -(agm_cpl cpl1, agm_cpl cpl2)
 	{
 		return complex(cpl1._real - cpl2._real, cpl1._imag - cpl2._imag);
 	}
 
-	complex operator -(agm_cpl cpl, agm real)
+	inline complex operator -(agm_cpl cpl, agm real)
 	{
 		return complex(cpl._real - real, cpl._imag);
 	}
 
-	complex operator -(agm real, agm_cpl cpl)
+	inline complex operator -(agm real, agm_cpl cpl)
 	{
 		return complex(real - cpl._real, -cpl._imag);
 	}
 
-	complex operator *(agm_cpl cpl1, agm_cpl cpl2)
+	inline complex operator *(agm_cpl cpl1, agm_cpl cpl2)
 	{
 		return complex(cpl1._real * cpl2._real - cpl1._imag * cpl2._imag, cpl1._real * cpl2._imag + cpl1._imag * cpl2._real);
 	}
 
-	complex operator *(agm_cpl cpl, agm real)
+	inline complex operator *(agm_cpl cpl, agm real)
 	{
 		return complex(cpl._real * real, cpl._imag * real);
 	}
 
-	complex operator *(agm real, agm_cpl cpl)
+	inline complex operator *(agm real, agm_cpl cpl)
 	{
 		return complex(real * cpl._real, real * cpl._imag);
 	}
 
-	complex operator /(agm_cpl cpl1, agm_cpl cpl2)
+	inline complex operator /(agm_cpl cpl1, agm_cpl cpl2)
 	{
 		complex temp(cpl1);
 		temp.div(cpl2);
 		return temp;
 	}
 
-	complex operator /(agm_cpl cpl, agm real)
+	inline complex operator /(agm_cpl cpl, agm real)
 	{
 		complex temp(cpl);
 		temp.div(real);
 		return temp;
 	}
 
-	complex operator /(agm real, agm_cpl cpl)
+	inline complex operator /(agm real, agm_cpl cpl)
 	{
 		complex temp(real);
 		temp.div(cpl);
 		return temp;
 	}
 
+	inline complex operator ^(agm_cpl cpl1, agm_cpl cpl2)
+	{
+		return cpl1.pow(cpl2);
+	}
+
+	inline complex operator ^(agm_cpl cpl, agm real)
+	{
+		return cpl.pow(real);
+	}
+
+	inline complex operator ^(agm real, agm_cpl cpl)
+	{
+		complex temp(real);
+		return temp.pow(cpl);
+	}
+
+}
+
+inline osl::complex& osl::complex::operator +=(agm_cpl cpl)
+{
+	add(cpl);
+	return *this;
+}
+
+inline osl::complex& osl::complex::operator +=(agm real)
+{
+	add(real);
+	return *this;
+}
+
+inline osl::complex& osl::complex::operator -=(agm_cpl cpl)
+{
+	sub(cpl);
+	return *this;
+}
+
+inline osl::complex& osl::complex::operator -=(agm real)
+{
+	sub(real);
+	return *this;
+}
+
+inline osl::complex& osl::complex::operator *=(agm_cpl cpl)
+{
+	mul(cpl);
+	return *this;
+}
+
+inline osl::complex& osl::complex::operator *=(agm real)
+{
+	mul(real);
+	return *this;
+}
+
+inline osl::complex& osl::complex::operator /=(agm_cpl cpl)
+{
+	div(cpl);
+	return *this;
+}
+
+inline osl::complex& osl::complex::operator /=(agm real)
+{
+	div(real);
+	return *this;
+}
+
+inline osl::complex& osl::complex::operator ^=(agm_cpl cpl)
+{
+	return *this = this->pow(cpl);
+}
+
+inline osl::complex& osl::complex::operator^=(agm real)
+{
+	return *this = this->pow(real);
 }

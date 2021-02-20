@@ -98,6 +98,16 @@ namespace osl {
 		return *this;
 	}
 
+	inline real& real::operator ^=(agm num)
+	{
+		return *this = pow(*this, num);
+	}
+
+	inline real& real::operator ^=(agm_real num)
+	{
+		return *this = pow(*this, num);
+	}
+
 	inline real& real::operator ++()
 	{
 		this->add(1);
@@ -218,6 +228,21 @@ namespace osl {
 		real temp(num_1);
 		temp.div(num_2);
 		return temp;
+	}
+
+	inline real operator ^(agm_real num_1, agm_real num_2)
+	{
+		return pow(num_1, num_2);
+	}
+
+	inline real operator ^(agm num_1, agm_real num_2)
+	{
+		return pow(num_1, num_2);
+	}
+
+	inline real operator ^(agm_real num_1, agm num_2)
+	{
+		return pow(num_1, num_2);
 	}
 
 	inline bool operator ==(agm_real num_1, agm num_2)

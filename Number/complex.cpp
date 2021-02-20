@@ -188,6 +188,18 @@ inline osl::complex osl::complex::negative() const
 	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 }
 
+inline osl::complex osl::complex::pow(agm real) const
+{
+	gsl_complex gsl_cpl(gsl_complex_pow_real(gsl_complex_rect(_real, _imag), real));
+	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+}
+
+inline osl::complex osl::complex::pow(agm_cpl cpl) const
+{
+	gsl_complex gsl_cpl(gsl_complex_pow(gsl_complex_rect(_real, _imag), gsl_complex_rect(cpl._real, cpl._imag)));
+	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+}
+
 namespace osl {
 	inline complex sqrt(agm real)
 	{
