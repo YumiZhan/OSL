@@ -1,4 +1,20 @@
-﻿#pragma once
+﻿/* OSL/Number/number.h
+ *
+ * Copyright (C) 2021 YuminZhan
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with this
+ * program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+#pragma once
 #ifdef NUMBER_EXPORTS
 #	define NUMBER_API __declspec(dllexport)
 #else
@@ -76,7 +92,7 @@ namespace osl {
 		inline bool equal_to(agm num, agm precision = ZERO)const;
 		inline bool equal_to(agm_real num, agm_real precision = ZERO)const;
 
-		// real_overload_operator.cpp
+		// real_overload_operators.cpp
 		inline operator double()const;
 
 		friend NUMBER_API inline std::ostream& operator <<(std::ostream& os, agm_real output_real);
@@ -246,7 +262,7 @@ namespace osl {
 		inline void exc();
 		inline void absc();
 
-		// complex_overload_operator.cpp
+		// complex_overload_operators.cpp
 		friend NUMBER_API inline std::ostream& operator <<(std::ostream& os, agm_cpl cpl);
 		friend NUMBER_API std::istream& operator >>(std::istream& is, complex& cpl);
 

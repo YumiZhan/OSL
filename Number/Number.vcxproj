@@ -163,14 +163,14 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="complex_overload_operator.cpp" />
+    <ClCompile Include="complex_overload_operators.cpp" />
     <ClCompile Include="real_comparation.cpp" />
     <ClCompile Include="complex.cpp" />
     <ClCompile Include="complex_modifier.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="number.cpp" />
     <ClCompile Include="real_modifier.cpp" />
-    <ClCompile Include="real_overload_operator.cpp" />
+    <ClCompile Include="real_overload_operators.cpp" />
     <ClCompile Include="real_overload_cmath.cpp" />
     <ClCompile Include="real.cpp" />
   </ItemGroup>

@@ -1,5 +1,9 @@
 # 面向对象的科学计算库（OSL）
 
+Copyright (C) 2021 詹煜民，<https://github.com/YumiZhan>
+
+
+
 ## 简介
 
 OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问题的科学计算库。它使用面向对象的设计方式从而可以极大地简化数值方法求解的程序设计，使工程师更专注于解决工程问题本身而不用太费心于敲代码。
@@ -8,7 +12,17 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 
 ## 使用方式
 
-在项目的 [Github 主页](https://github.com/YumiZhan/OSL) 中选择合适的分支（推荐 master 或 develop 分支）点击 “code” 按钮即可下载对应最新的源码用于查看，推荐使用 Visual Studio 作为 IDE。如果希望直接将该库用于编译 C/C++ 程序而不需要查看各功能的具体实现，请到 [Release 页面](https://github.com/YumiZhan/OSL/releases) 的 “Asset” 标签下载所需的包。如果遇到相关的问题，欢迎到 [Issues 栏目](https://github.com/YumiZhan/OSL/issues) 中讨论！OSL 各库的使用方式详见其 “使用方式” 标题下的内容。本项目依赖的额外资源被放在 “Dependent package backup” 目录中以便临时使用。
+### 查看源码
+
+#### Github
+
+在项目的 [Github 主页](https://github.com/YumiZhan/OSL) 中选择合适的分支（推荐 master 或 develop 分支）点击 “code” 按钮即可下载对应的源码。如果希望直接将该库用于编译 C/C++ 程序而不需要查看各功能的具体实现，请到 [Release 页面](https://github.com/YumiZhan/OSL/releases) 的 “Asset” 标签下载所需的包。如果遇到相关的问题，欢迎到 [Issues 栏目](https://github.com/YumiZhan/OSL/issues) 中讨论！OSL 各子库的使用方式详见其 “使用方式” 标题下的内容。本项目依赖的额外资源被放在 “Dependent package backup” 目录中以便临时使用。
+
+#### Gitee
+
+敬请期待~
+
+### 链接库和运行时
 
 
 
@@ -83,7 +97,7 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 - `not_larger_than()`：判断不大于
 - `equal_to()`：判断一定精度下的绝对相等
 
-##### (五) 运算符重载 (real_overload_operator.cpp)
+##### (五) 运算符重载 (real_overload_operators.cpp)
 
 以下内容省略`operator`符号
 
@@ -223,7 +237,7 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 - `exc()`：交换实部和虚部
 - `absc()`：将实部和虚部分别变为原来的绝对值
 
-##### (四) 运算符重载 (complex_overload_operator.cpp)
+##### (四) 运算符重载 (complex_overload_operators.cpp)
 
 - `<<()`：流输出
 - `>>()`：流读取
