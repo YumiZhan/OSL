@@ -5,6 +5,8 @@ using namespace osl;
 
 int main()
 {
-	cout << (2 * i) / 2 << endl;
+	real num(3);
+	num ^= 2;
+	cout << num << endl;
 	return 0;
 }
