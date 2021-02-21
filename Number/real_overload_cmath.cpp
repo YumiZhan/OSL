@@ -139,12 +139,7 @@ namespace osl {
 	{
 		return std::log(num._numerator) - std::log(num._denominator);
 	}
-
-	inline double ln(agm_real num)
-	{
-		return log(num);
-	}
-
+		
 	inline double log2(agm_real num)
 	{
 		return std::log2(num._numerator) - std::log2(num._denominator);
@@ -154,12 +149,7 @@ namespace osl {
 	{
 		return std::log10(num._numerator) - std::log10(num._denominator);
 	}
-
-	inline double lg(agm_real num)
-	{
-		return log10(num);
-	}
-
+		
 	inline double log1p(agm_real num)
 	{
 		return std::log1p(double(num));
