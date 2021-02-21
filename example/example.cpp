@@ -5,8 +5,7 @@ using namespace osl;
 
 int main()
 {
-	real num(3);
-	num ^= 2;
-	cout << num << endl;
+	complex num(10);
+	cout << num.ln() << endl;
 	return 0;
 }

@@ -171,6 +171,18 @@ inline double osl::complex::logabs() const
 	return gsl_complex_logabs(gsl_complex_rect(_real, _imag));
 }
 
+inline bool osl::complex::equal_to(agm_cpl cpl, double reference) const
+{
+	if (reference == 0.0) {
+		reference = (fabs(cpl._real) + fabs(_real)) * 0.5;
+	}
+	if (fabs(cpl._real - _real) < ZERO * reference
+		&& fabs(cpl._imag - _imag) < ZERO * reference) {
+		return true;
+	}
+	return false;
+}
+
 inline osl::complex osl::complex::conjugated() const
 {
 	return complex(_real, -_imag);
@@ -188,16 +200,10 @@ inline osl::complex osl::complex::negative() const
 	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 }
 
-inline bool osl::complex::equal_to(agm_cpl cpl, double reference) const
+inline osl::complex osl::complex::pow(agm_cpl cpl) const
 {
-	if (reference == 0.0) {
-		reference = (fabs(cpl._real) + fabs(_real)) * 0.5;
-	}
-	if (fabs(cpl._real - _real) < ZERO * reference
-		&& fabs(cpl._imag - _imag) < ZERO * reference) {
-		return true;
-	}
-	return false;
+	gsl_complex gsl_cpl(gsl_complex_pow(gsl_complex_rect(_real, _imag), gsl_complex_rect(cpl._real, cpl._imag)));
+	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 }
 
 inline osl::complex osl::complex::pow(agm real) const
@@ -206,22 +212,47 @@ inline osl::complex osl::complex::pow(agm real) const
 	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 }
 
-inline osl::complex osl::complex::pow(agm_cpl cpl) const
-{
-	gsl_complex gsl_cpl(gsl_complex_pow(gsl_complex_rect(_real, _imag), gsl_complex_rect(cpl._real, cpl._imag)));
-	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
-}
-
 namespace osl {
+	inline complex sqrt(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_sqrt(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
 	inline complex sqrt(agm real)
 	{
 		gsl_complex gsl_cpl(gsl_complex_sqrt_real(real));
 		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 	}
 
-	inline complex sqrt(agm_cpl cpl)
+	inline complex exp(agm_cpl index)
 	{
-		gsl_complex gsl_cpl(gsl_complex_sqrt(gsl_complex_rect(cpl._real, cpl._imag)));
+		gsl_complex gsl_cpl(gsl_complex_exp(gsl_complex_rect(index._real, index._imag)));
 		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 	}
+
+	inline complex exp(agm index)
+	{
+		gsl_complex gsl_cpl(gsl_complex_exp(gsl_complex_rect(index, 0.0)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+}
+
+inline osl::complex osl::complex::log(agm_cpl base) const
+{
+	gsl_complex gsl_cpl(gsl_complex_log_b(gsl_complex_rect(_real, _imag), gsl_complex_rect(base._real, base._imag)));
+	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+}
+
+inline osl::complex osl::complex::log(agm base) const
+{
+	gsl_complex gsl_cpl(gsl_complex_log_b(gsl_complex_rect(_real, _imag), gsl_complex_rect(base, 0.0)));
+	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+}
+
+inline osl::complex osl::complex::log10() const
+{
+	gsl_complex gsl_cpl(gsl_complex_log10(gsl_complex_rect(_real, _imag)));
+	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 }

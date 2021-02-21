@@ -198,10 +198,10 @@ namespace osl {
 		friend NUMBER_API inline double log(agm num, agm_real base);
 		friend NUMBER_API inline double log(agm_real num, agm_real base);
 		friend NUMBER_API inline double log(agm_real num);
-		friend NUMBER_API inline double ln(agm_real num);
+		friend NUMBER_API inline double ln(agm_real num) { return log(num); }
 		friend NUMBER_API inline double log2(agm_real num);
 		friend NUMBER_API inline double log10(agm_real num);
-		friend NUMBER_API inline double lg(agm_real num);
+		friend NUMBER_API inline double lg(agm_real num) { return log10(num); }
 		friend NUMBER_API inline double log1p(agm_real num);
 
 		friend NUMBER_API inline double copysign(agm_real num_1, agm_real num_2);
@@ -237,28 +237,41 @@ namespace osl {
 		bool known;
 
 		// complex.cpp
+		/* Constructor */
 		inline complex();
 		inline complex(agm_cpl cpl);
 		inline complex(agm real);
 		inline complex(agm a, agm b, int mod = CPL_RECT);
 		complex(c_str str);
-
+		/* Console print */
 		inline void console_print_rect(c_str end = "\n")const;
 		inline void console_print_polar(c_str end = "\n")const;
+		/* Properties of complex numbers */
 		inline double real()const;
 		inline double imag()const;
 		inline double abs()const;
 		inline double abs2()const;
 		inline double agl()const;
 		inline double logabs()const;
+		/* Complex Comparation */
+		inline bool equal_to(agm_cpl cpl, double reference = 0.0)const;
+		/* Elementary Complex Functions */
 		inline complex conjugated()const;
 		inline complex inversed()const;
 		inline complex negative()const;
-		inline bool equal_to(agm_cpl cpl, double reference = 0.0)const;
-		inline complex pow(agm real)const;
 		inline complex pow(agm_cpl cpl)const;
-		friend NUMBER_API inline complex sqrt(agm real);
+		inline complex pow(agm real)const;
 		friend NUMBER_API inline complex sqrt(agm_cpl cpl);
+		friend NUMBER_API inline complex sqrt(agm real);
+		friend NUMBER_API inline complex exp(agm_cpl index);
+		friend NUMBER_API inline complex exp(agm index);
+		inline complex log(agm_cpl base)const;
+		inline complex log(agm base = ::exp(1.0))const;
+		inline complex ln()const { return this->log(); }
+		inline complex log10()const;
+		inline complex lg()const { return this->log10(); }
+		/* Complex Trigonometric Functions */
+
 
 		// complex_modifier.cpp
 		inline void add(agm_cpl cpl);
@@ -273,33 +286,30 @@ namespace osl {
 		inline void absc();
 
 		// complex_overload_operators.cpp
+		/* Stream operations */
 		friend NUMBER_API inline std::ostream& operator <<(std::ostream& os, agm_cpl cpl);
 		friend NUMBER_API std::istream& operator >>(std::istream& is, complex& cpl);
-
+		/* Change properties */
 		friend NUMBER_API inline complex operator ~(agm_cpl cpl);
 		friend NUMBER_API inline complex operator +(agm_cpl cpl);
 		friend NUMBER_API inline complex operator -(agm_cpl cpl);
-
+		/* Fundamental operations */
 		friend NUMBER_API inline complex operator +(agm_cpl cpl1, agm_cpl cpl2);
 		friend NUMBER_API inline complex operator +(agm_cpl cpl, agm real);
 		friend NUMBER_API inline complex operator +(agm real, agm_cpl cpl);
-
 		friend NUMBER_API inline complex operator -(agm_cpl cpl1, agm_cpl cpl2);
 		friend NUMBER_API inline complex operator -(agm_cpl cpl, agm real);
 		friend NUMBER_API inline complex operator -(agm real, agm_cpl cpl);
-
 		friend NUMBER_API inline complex operator *(agm_cpl cpl1, agm_cpl cpl2);
 		friend NUMBER_API inline complex operator *(agm_cpl cpl, agm real);
 		friend NUMBER_API inline complex operator *(agm real, agm_cpl cpl);
-
 		friend NUMBER_API inline complex operator /(agm_cpl cpl1, agm_cpl cpl2);
 		friend NUMBER_API inline complex operator /(agm_cpl cpl, agm real);
 		friend NUMBER_API inline complex operator /(agm real, agm_cpl cpl);
-
 		friend NUMBER_API inline complex operator ^(agm_cpl cpl1, agm_cpl cpl2);
 		friend NUMBER_API inline complex operator ^(agm_cpl cpl, agm real);
 		friend NUMBER_API inline complex operator ^(agm real, agm_cpl cpl);
-
+		/* Compound assignments */
 		inline complex& operator +=(agm_cpl cpl);
 		inline complex& operator +=(agm real);
 		inline complex& operator -=(agm_cpl cpl);
@@ -310,7 +320,7 @@ namespace osl {
 		inline complex& operator /=(agm real);
 		inline complex& operator ^=(agm_cpl cpl);
 		inline complex& operator ^=(agm real);
-
+		/* Complex comparations */
 		friend NUMBER_API inline bool operator ==(agm_cpl cpl1, agm_cpl cpl2);
 		friend NUMBER_API inline bool operator !=(agm_cpl cpl1, agm_cpl cpl2);
 
