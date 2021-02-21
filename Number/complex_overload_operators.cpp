@@ -148,7 +148,6 @@ namespace osl {
 		complex temp(real);
 		return temp.pow(cpl);
 	}
-
 }
 
 inline osl::complex& osl::complex::operator +=(agm_cpl cpl)
@@ -207,4 +206,17 @@ inline osl::complex& osl::complex::operator ^=(agm_cpl cpl)
 inline osl::complex& osl::complex::operator^=(agm real)
 {
 	return *this = this->pow(real);
+}
+
+namespace osl {
+	inline bool operator ==(agm_cpl cpl1, agm_cpl cpl2)
+	{
+		return cpl1.equal_to(cpl2);
+	}
+
+	bool operator!=(agm_cpl cpl1, agm_cpl cpl2)
+	{
+		return !cpl1.equal_to(cpl1);
+	}
+
 }

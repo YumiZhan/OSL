@@ -188,6 +188,18 @@ inline osl::complex osl::complex::negative() const
 	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 }
 
+inline bool osl::complex::equal_to(agm_cpl cpl, double reference) const
+{
+	if (reference == 0.0) {
+		reference = (fabs(cpl._real) + fabs(_real)) * 0.5;
+	}
+	if (fabs(cpl._real - _real) < ZERO * reference
+		&& fabs(cpl._imag - _imag) < ZERO * reference) {
+		return true;
+	}
+	return false;
+}
+
 inline osl::complex osl::complex::pow(agm real) const
 {
 	gsl_complex gsl_cpl(gsl_complex_pow_real(gsl_complex_rect(_real, _imag), real));

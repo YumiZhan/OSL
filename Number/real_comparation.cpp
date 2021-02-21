@@ -58,18 +58,24 @@ namespace osl {
 		return _numerator * num._denominator < _denominator* num._numerator;
 	}
 
-	inline bool real::equal_to(agm num, agm precision) const
+	inline bool real::equal_to(agm num, double reference) const
 	{
-		if (::fabs(this->_numerator - num * this->_denominator) < ::fabs(this->_denominator * precision)) {
+		if (reference == 0.0) {
+			reference = (fabs(*this) + fabs(num)) * 0.5;
+		}
+		if (fabs(_numerator - num * _denominator) < fabs(_denominator) * ZERO * reference) {
 			return true;
 		}
 		return false;
 	}
 
-	inline bool real::equal_to(agm_real num, agm_real precision) const
+	inline bool real::equal_to(agm_real num, real reference) const
 	{
-		if (::fabs(this->_numerator * num._denominator - this->_denominator - num._numerator)
-			< ::fabs(ZERO * this->_denominator * num._denominator)) {
+		if (reference._numerator == 0.0) {
+			reference = (fabs(*this) + fabs(num));
+		}
+		if (fabs(_numerator * num._denominator - _denominator - num._numerator)
+			< fabs(_denominator * num._denominator) * ZERO * reference) {
 			return true;
 		}
 		return false;
