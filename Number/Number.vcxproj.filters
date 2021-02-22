@@ -65,5 +65,8 @@
     <ClCompile Include="complex_overload_operators.cpp">
       <Filter>源文件\complex</Filter>
     </ClCompile>
+    <ClCompile Include="complex_utility_functions.cpp">
+      <Filter>源文件\complex</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@ using namespace osl;
 
 int main()
 {
-	complex num(10);
-	cout << num.ln() << endl;
+	complex num("0.0");
+	cout << cos(num) << endl;
 	return 0;
 }

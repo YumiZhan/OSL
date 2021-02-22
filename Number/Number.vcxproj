@@ -164,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="complex_overload_operators.cpp" />
+    <ClCompile Include="complex_utility_functions.cpp" />
     <ClCompile Include="real_comparation.cpp" />
     <ClCompile Include="complex.cpp" />
     <ClCompile Include="complex_modifier.cpp" />
