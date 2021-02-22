@@ -39,7 +39,7 @@ namespace osl {
 		simplify_fraction(_denominator, _numerator);
 	}
 
-	inline real::real(const char* c_str) :
+	inline real::real(c_str c_str) :
 		_denominator(1), _numerator(atof(c_str)), known(true)
 	{
 		simplify_fraction(_denominator, _numerator);

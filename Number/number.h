@@ -53,7 +53,7 @@ namespace osl {
 		inline real(agm_real origin);
 		inline real(agm num);
 		inline real(agm numerator, agm denominator);
-		inline real(const char* c_str);
+		inline real(c_str c_str);
 		inline real(const wchar_t* w_str);
 
 		inline bool zero(agm reference = 1)const;
@@ -243,10 +243,10 @@ namespace osl {
 		inline complex(agm real);
 		inline complex(agm a, agm b, int mod = CPL_RECT);
 		complex(c_str str);
-		/* Console print */
+		/* Console Print */
 		inline void console_print_rect(c_str end = "\n")const;
 		inline void console_print_polar(c_str end = "\n")const;
-		/* Properties of complex numbers */
+		/* Properties of Complex Numbers */
 		inline double real()const;
 		inline double imag()const;
 		inline double abs()const;
@@ -270,7 +270,20 @@ namespace osl {
 		inline complex ln()const { return this->log(); }
 		inline complex log10()const;
 		inline complex lg()const { return this->log10(); }
-		/* Complex Trigonometric Functions */
+		/* Complex Trigonometric Functions and Inverse Complex Trigonometric Functions */
+		friend NUMBER_API inline complex cos(agm_cpl cpl);
+		friend NUMBER_API inline complex sin(agm_cpl cpl);
+		friend NUMBER_API inline complex tan(agm_cpl cpl);
+		friend NUMBER_API inline complex csc(agm_cpl cpl);
+		friend NUMBER_API inline complex sec(agm_cpl cpl);
+		friend NUMBER_API inline complex cot(agm_cpl cpl);
+		friend NUMBER_API inline complex acos(agm_cpl cpl);
+		friend NUMBER_API inline complex asin(agm_cpl cpl);
+		friend NUMBER_API inline complex atan(agm_cpl cpl);
+		friend NUMBER_API inline complex acsc(agm_cpl cpl);
+		friend NUMBER_API inline complex asec(agm_cpl cpl);
+		friend NUMBER_API inline complex acot(agm_cpl cpl);
+		/* Complex Hyperbolic Functions and Inverse Complex Hyperbolic Functions */
 
 
 		// complex_modifier.cpp
