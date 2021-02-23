@@ -1,31 +1,45 @@
+/* OSL/Number/real.cpp
+ *
+ * Copyright (C) 2021 YuminZhan
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with this
+ * program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include "pch.h"
-#include "framework.h"
 #include "number.h"
 using std::cout;
-using std::endl;
 
 namespace osl {
 	inline real::real() :
 		_denominator(1), _numerator(0), known(false)
 	{}
 
-	inline real::real(const real& origin) :
+	inline real::real(agm_real origin) :
 		_denominator(origin._denominator), _numerator(origin._numerator), known(origin.known)
 	{}
 
-	inline real::real(double num) :
+	inline real::real(agm num) :
 		_denominator(1), _numerator(num), known(true)
 	{
 		simplify_fraction(_denominator, _numerator);
 	}
 
-	inline real::real(double numerator, double denominator) :
+	inline real::real(agm numerator, agm denominator) :
 		_denominator(denominator), _numerator(numerator), known(true)
 	{
 		simplify_fraction(_denominator, _numerator);
 	}
 
-	inline real::real(const char* c_str) :
+	inline real::real(c_str c_str) :
 		_denominator(1), _numerator(atof(c_str)), known(true)
 	{
 		simplify_fraction(_denominator, _numerator);
@@ -37,7 +51,7 @@ namespace osl {
 		simplify_fraction(_denominator, _numerator);
 	}
 
-	inline bool real::zero(double reference) const
+	inline bool real::zero(agm reference) const
 	{
 		if (::fabs(_numerator) < ::fabs(_denominator * reference * ZERO)) {
 			return true;
@@ -45,7 +59,7 @@ namespace osl {
 		return false;
 	}
 
-	inline bool real::zero(const real& reference) const
+	inline bool real::zero(agm_real reference) const
 	{
 		if (::fabs(_numerator * reference._denominator)
 			< ::fabs(_denominator * reference._numerator * ZERO)) {
@@ -54,7 +68,7 @@ namespace osl {
 		return false;
 	}
 
-	inline bool real::infinite(double reference) const
+	inline bool real::infinite(agm reference) const
 	{
 		if (::fabs(_numerator * ZERO) > ::fabs(_denominator * reference)) {
 			return true;
@@ -62,7 +76,7 @@ namespace osl {
 		return false;
 	}
 
-	inline bool real::infinite(const real& reference) const
+	inline bool real::infinite(agm_real reference) const
 	{
 		if (::fabs(_numerator * reference._denominator * ZERO)
 		> ::fabs(_denominator * reference._numerator)) {
@@ -81,14 +95,14 @@ namespace osl {
 		return _numerator;
 	}
 
-	inline void real::print() const
+	inline void real::console_print(c_str end) const
 	{
-		cout << this->operator double() << endl;
+		cout << this->operator double() << end;
 	}
 
-	inline void real::show() const
+	inline void real::console_show(c_str end) const
 	{
-		cout << _numerator << '/' << _denominator << endl;
+		cout << _numerator << '/' << _denominator << end;
 	}
 
 	inline real real::to_radian() const

@@ -10,7 +10,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Matrix", "Matrix\Matrix.vcx
 		{7B51D311-A370-4528-8BC9-2B7017E5BAF7} = {7B51D311-A370-4528-8BC9-2B7017E5BAF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example", "example\example.vcxproj", "{B4527AA8-2A4F-42BA-9828-C7F2DAEE7340}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Example", "Example\example.vcxproj", "{B4527AA8-2A4F-42BA-9828-C7F2DAEE7340}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7B51D311-A370-4528-8BC9-2B7017E5BAF7} = {7B51D311-A370-4528-8BC9-2B7017E5BAF7}
 		{A967B7DA-70F6-4C93-946B-E4037E1FEC95} = {A967B7DA-70F6-4C93-946B-E4037E1FEC95}
@@ -19,6 +19,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{88A33D50-E2F2-4062-ABE9-7CF6A73DDD23}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		README_zh_CN.md = README_zh_CN.md
+		TODO.md = TODO.md
 	EndProjectSection
 EndProject
 Global
