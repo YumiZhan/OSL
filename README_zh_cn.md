@@ -231,7 +231,16 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 - `agl()`：返回角度
 - `logabs()`：返回绝对值的自然对数
 
-##### (三) 实用函数 (complex_unility_functions.cpp)
+##### (三) 操作自身的函数 (complex_modifier.cpp)
+
+- `add()`：自增一个复数
+- `sub()`：自减一个复数
+- `mul()`：自乘一个复数
+- `div()`：自除一个复数
+- `exc()`：交换实部和虚部
+- `absc()`：将实部和虚部分别变为原来的绝对值
+
+##### (四) 实用函数 (complex_unility_functions.cpp)
 
 ###### 1. 比较
 
@@ -266,18 +275,20 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 
 ###### 4. 双曲函数和反双曲函数
 
+- `cosh()`：双曲余弦
+- `sinh()`：双曲正弦
+- `tanh()`：双曲正切
+- `csch()`：双曲余割
+- `sech()`：双曲正割
+- `coth()`：双曲余切
+- `acosh()`：反双曲余弦
+- `asinh()`：反双曲正弦
+- `atanh()`：反双曲正切
+- `acsch()`：反双曲余割
+- `asech()`：反双曲正割
+- `acoth()`：反双曲余切
 
-
-##### (三) 操作自身的函数 (complex_modifier.cpp)
-
-- `add()`：自增一个复数
-- `sub()`：自减一个复数
-- `mul()`：自乘一个复数
-- `div()`：自除一个复数
-- `exc()`：交换实部和虚部
-- `absc()`：将实部和虚部分别变为原来的绝对值
-
-##### (四) 运算符重载 (complex_overload_operators.cpp)
+##### (五) 运算符重载 (complex_overload_operators.cpp)
 
 - `<<()`：流输出
 - `>>()`：流读取
@@ -299,9 +310,10 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 
 
 
-### 其它实用函数 (number.cpp)
+### 其它 (number.cpp)
 
 - `simplify_fraction()`：将过大或过小的指数同时减小或增大一个相同的值，从而限制分子和分母的取值范围，使其不至于过大或过小
+- `i`：`complex`类对象，表示单位纯虚数
 
 
 

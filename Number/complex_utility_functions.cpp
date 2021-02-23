@@ -161,4 +161,75 @@ namespace osl {
 		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 	}
 
+	inline complex cosh(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_cosh(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+	inline complex sinh(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_sinh(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+	inline complex tanh(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_tanh(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+	inline complex csch(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_csch(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+	inline complex sech(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_sech(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+	inline complex coth(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_coth(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+	inline complex acosh(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_arccosh(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+	inline complex asinh(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_arcsinh(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+	inline complex atanh(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_arctanh(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+	inline complex acsch(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_arccsch(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+	inline complex asech(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_arcsech(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
+
+	inline complex acoth(agm_cpl cpl)
+	{
+		gsl_complex gsl_cpl(gsl_complex_arccoth(gsl_complex_rect(cpl._real, cpl._imag)));
+		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
+	}
 }
