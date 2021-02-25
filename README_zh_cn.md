@@ -1,6 +1,6 @@
 # 面向对象的科学计算库（OSL）
 
-Copyright (C) 2021 詹煜民，<https://github.com/YumiZhan>
+Copyright©2021 詹煜民，<https://github.com/YumiZhan>
 
 ## 简介
 
