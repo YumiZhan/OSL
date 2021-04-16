@@ -29,12 +29,12 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 ### 类型别名说明
 
 - `argument`和`arg`：一般用作函数参数的数字类型`const double&`的别名
-- `agm_real`：用作`real`类相关函数的参数的数字类型`const real&`的别名
+- `agm_rational`：用作`rational`类相关函数的参数的数字类型`const rational&`的别名
 - `agm_cpl`：用作`complex`类相关函数的参数的数字类型`const complex&`的别名
 
 
 
-### real 类
+### rational 类
 
 #### 一、简介
 
@@ -42,7 +42,7 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 
 #### 二、使用方式
 
-将 number.h 和 number.lib 放置到项目的同一个文件夹中，调用 real 或 complex 类前包含头文件（如`#include "number.h"`）。运行程序前，把 number.dll 放置在可执行文件（如 example.exe）所在的文件夹里。
+将 number.h 和 number.lib 放置到项目的同一个文件夹中，调用 rational 或 complex 类前包含头文件（如`#include "number.h"`）。运行程序前，把 number.dll 放置在可执行文件（如 example.exe）所在的文件夹里。
 
 #### 三、数据成员
 
@@ -58,7 +58,7 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 
 #### 四、函数
 
-##### (一) 构造函数 (real.cpp)
+##### (一) 构造函数 (rational.cpp)
 
 - 默认构造函数
 - 复制构造函数
@@ -67,7 +67,7 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 - 使用 C 风格字符串来初始化
 - 使用指向 `wchar_t` 类型的指针来初始化
 
-##### (二) 功能函数 (real.cpp)
+##### (二) 功能函数 (rational.cpp)
 
 - `zero()`：判断是否为零
 - `infinite()`：判断是否无穷大
@@ -78,7 +78,7 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 - `to_radian()`：将角度转换成弧度
 - `to_degree()`：将弧度转换成角度
 
-##### (三) 操作自身的函数 (real_modifier.cpp.cpp)
+##### (三) 操作自身的函数 (rational_modifier.cpp.cpp)
 
 - `rec()`：倒置
 - `rabs()`：绝对值化
@@ -87,7 +87,7 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 - `mul()`：自乘一个数
 - `div()`：自除一个数
 
-##### (四) 比较 (real_comparation.cpp)
+##### (四) 比较 (rational_comparation.cpp)
 
 - `larger_than()`：判断大于
 - `not_less_than()`：判断不小于
@@ -95,13 +95,13 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 - `not_larger_than()`：判断不大于
 - `equal_to()`：判断一定精度下的绝对相等
 
-##### (五) 运算符重载 (real_overload_operators.cpp)
+##### (五) 运算符重载 (rational_overload_operators.cpp)
 
 以下内容省略`operator`符号
 
 ###### 1. 类型转换
 
-- `double()`：返回 real 对象的 double 值
+- `double()`：返回 rational 对象的 double 值
 
 ###### 2. 流输出和读入
 
@@ -145,7 +145,7 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 - `>=()`：大于等于
 - `!()`：是否未知
 
-##### (六) `<cmath>`函数重载 (real_overload_cmath.cpp)
+##### (六) `<cmath>`函数重载 (rational_overload_cmath.cpp)
 
 参考：http://www.cppfans.com/cbknowledge/reference/cmath/
 
@@ -323,4 +323,4 @@ OSL 是基于 GNU 科学函数库（GSL）构建的用于解决数值计算问�
 
 #### 一、简介
 
-采用类模板方法，用二维指针指向动态分配的数组空间，基本类型（元素类型）默认为`class real`，可以自定义为其它类型。拥有专业的矩阵运算函数，同时利用运算符重载，极大地简化了矩阵运算的编写方式。
+采用类模板方法，用二维指针指向动态分配的数组空间，基本类型（元素类型）默认为`double`，可以自定义为其它类型。拥有专业的矩阵运算函数，同时利用运算符重载，极大地简化了矩阵运算的编写方式。

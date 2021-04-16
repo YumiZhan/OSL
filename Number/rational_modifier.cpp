@@ -1,4 +1,4 @@
-/* OSL/Number/real_modifier.cpp
+/* OSL/Number/rational_modifier.cpp
  *
  * Copyright (C) 2021 YuminZhan
  *
@@ -18,26 +18,26 @@
 #include "number.h"
 
 namespace osl {
-	inline void real::rec()
+	inline void rational::rec()
 	{
 		double temp = _denominator;
 		_denominator = _numerator;
 		_numerator = temp;
 	}
 
-	inline void real::absr()
+	inline void rational::absr()
 	{
 		_numerator = ::fabs(_numerator);
 		_denominator = ::fabs(_denominator);
 	}
 
-	inline void real::add(agm num)
+	inline void rational::add(agm num)
 	{
 		_numerator += num * _denominator;
 		simplify();
 	}
 
-	inline void real::add(agm_real num)
+	inline void rational::add(agm_rational num)
 	{
 		_numerator = _numerator * num._denominator + _denominator * num._denominator;
 		_denominator *= num._denominator;
@@ -47,13 +47,13 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::sub(agm num)
+	inline void rational::sub(agm num)
 	{
 		_numerator -= num * _denominator;
 		simplify();
 	}
 
-	inline void real::sub(agm_real num)
+	inline void rational::sub(agm_rational num)
 	{
 		_numerator = _numerator * num._denominator - _denominator * num._numerator;
 		_denominator *= num._denominator;
@@ -63,12 +63,12 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::mul(agm num)
+	inline void rational::mul(agm num)
 	{
 		_numerator *= num;
 	}
 
-	inline void real::mul(agm_real num)
+	inline void rational::mul(agm_rational num)
 	{
 		_numerator *= num._numerator;
 		_denominator *= num._denominator;
@@ -78,13 +78,13 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::div(agm num)
+	inline void rational::div(agm num)
 	{
 		_denominator *= num;
 		simplify();
 	}
 
-	inline void real::div(agm_real num)
+	inline void rational::div(agm_rational num)
 	{
 		_numerator *= num._denominator;
 		_denominator *= num._numerator;
@@ -94,7 +94,7 @@ namespace osl {
 		simplify();
 	}
 
-	inline void real::simplify()
+	inline void rational::simplify()
 	{
 		simplify_fraction(_denominator, _numerator);
 	}

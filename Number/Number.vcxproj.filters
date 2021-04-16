@@ -13,11 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="源文件\real">
-      <UniqueIdentifier>{47091893-00f7-4689-8d6e-ee4e6436fd5c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\complex">
       <UniqueIdentifier>{64c1b496-5bc0-438d-a4bf-0a891fcafa54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\rational">
+      <UniqueIdentifier>{47091893-00f7-4689-8d6e-ee4e6436fd5c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -38,29 +38,29 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="real.cpp">
-      <Filter>源文件\real</Filter>
+    <ClCompile Include="rational.cpp">
+      <Filter>源文件\rational</Filter>
     </ClCompile>
     <ClCompile Include="complex.cpp">
       <Filter>源文件\complex</Filter>
     </ClCompile>
-    <ClCompile Include="real_comparation.cpp">
-      <Filter>源文件\real</Filter>
+    <ClCompile Include="rational_comparation.cpp">
+      <Filter>源文件\rational</Filter>
     </ClCompile>
-    <ClCompile Include="real_overload_cmath.cpp">
-      <Filter>源文件\real</Filter>
+    <ClCompile Include="rational_overload_cmath.cpp">
+      <Filter>源文件\rational</Filter>
     </ClCompile>
     <ClCompile Include="number.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="real_modifier.cpp">
-      <Filter>源文件\real</Filter>
+    <ClCompile Include="rational_modifier.cpp">
+      <Filter>源文件\rational</Filter>
     </ClCompile>
     <ClCompile Include="complex_modifier.cpp">
       <Filter>源文件\complex</Filter>
     </ClCompile>
-    <ClCompile Include="real_overload_operators.cpp">
-      <Filter>源文件\real</Filter>
+    <ClCompile Include="rational_overload_operators.cpp">
+      <Filter>源文件\rational</Filter>
     </ClCompile>
     <ClCompile Include="complex_overload_operators.cpp">
       <Filter>源文件\complex</Filter>

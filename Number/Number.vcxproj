@@ -165,15 +165,15 @@
   <ItemGroup>
     <ClCompile Include="complex_overload_operators.cpp" />
     <ClCompile Include="complex_utility_functions.cpp" />
-    <ClCompile Include="real_comparation.cpp" />
+    <ClCompile Include="rational_comparation.cpp" />
     <ClCompile Include="complex.cpp" />
     <ClCompile Include="complex_modifier.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="number.cpp" />
-    <ClCompile Include="real_modifier.cpp" />
-    <ClCompile Include="real_overload_operators.cpp" />
-    <ClCompile Include="real_overload_cmath.cpp" />
-    <ClCompile Include="real.cpp" />
+    <ClCompile Include="rational_modifier.cpp" />
+    <ClCompile Include="rational_overload_operators.cpp" />
+    <ClCompile Include="rational_overload_cmath.cpp" />
+    <ClCompile Include="rational.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

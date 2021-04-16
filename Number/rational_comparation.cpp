@@ -1,4 +1,4 @@
-/* OSL/Number/real_comparation.cpp
+/* OSL/Number/rational_comparation.cpp
  *
  * Copyright (C) 2021 YuminZhan
  *
@@ -18,47 +18,47 @@
 #include "number.h"
 
 namespace osl {
-	inline bool real::larger_than(agm num) const
+	inline bool rational::larger_than(agm num) const
 	{
 		return _numerator > _denominator * num;
 	}
 
-	inline bool real::larger_than(agm_real num) const
+	inline bool rational::larger_than(agm_rational num) const
 	{
 		return _numerator * num._denominator > _denominator * num._denominator;
 	}
 
-	inline bool real::not_less_than(agm num) const
+	inline bool rational::not_less_than(agm num) const
 	{
 		return _numerator >= _denominator * num;
 	}
 
-	inline bool real::not_less_than(agm_real num) const
+	inline bool rational::not_less_than(agm_rational num) const
 	{
 		return _numerator * num._denominator > _denominator * num._denominator;
 	}
 
-	inline bool real::less_than(agm num) const
+	inline bool rational::less_than(agm num) const
 	{
 		return _numerator < _denominator* num;
 	}
 
-	inline bool real::less_than(agm_real num) const
+	inline bool rational::less_than(agm_rational num) const
 	{
 		return _numerator * num._denominator < _denominator* num._numerator;
 	}
 
-	inline bool real::not_larger_than(agm num) const
+	inline bool rational::not_larger_than(agm num) const
 	{
 		return _numerator <= _denominator * num;
 	}
 
-	inline bool real::not_larger_than(agm_real num) const
+	inline bool rational::not_larger_than(agm_rational num) const
 	{
 		return _numerator * num._denominator < _denominator* num._numerator;
 	}
 
-	inline bool real::equal_to(agm num, double reference) const
+	inline bool rational::equal_to(agm num, double reference) const
 	{
 		if (reference == 0.0) {
 			reference = (fabs(*this) + fabs(num)) * 0.5;
@@ -69,7 +69,7 @@ namespace osl {
 		return false;
 	}
 
-	inline bool real::equal_to(agm_real num, real reference) const
+	inline bool rational::equal_to(agm_rational num, rational reference) const
 	{
 		if (reference._numerator == 0.0) {
 			reference = (fabs(*this) + fabs(num));
