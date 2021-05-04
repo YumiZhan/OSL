@@ -16,68 +16,67 @@
 
 #include "pch.h"
 #include "number.h"
+using osl::rational;
 
-namespace osl {
-	inline bool rational::larger_than(agm num) const
-	{
-		return _numerator > _denominator * num;
-	}
+inline bool rational::larger_than(agm num) const
+{
+	return _numerator > _denominator * num;
+}
 
-	inline bool rational::larger_than(agm_rational num) const
-	{
-		return _numerator * num._denominator > _denominator * num._denominator;
-	}
+inline bool rational::larger_than(agm_rtn num) const
+{
+	return _numerator * num._denominator > _denominator * num._denominator;
+}
 
-	inline bool rational::not_less_than(agm num) const
-	{
-		return _numerator >= _denominator * num;
-	}
+inline bool rational::not_less_than(agm num) const
+{
+	return _numerator >= _denominator * num;
+}
 
-	inline bool rational::not_less_than(agm_rational num) const
-	{
-		return _numerator * num._denominator > _denominator * num._denominator;
-	}
+inline bool rational::not_less_than(agm_rtn num) const
+{
+	return _numerator * num._denominator > _denominator * num._denominator;
+}
 
-	inline bool rational::less_than(agm num) const
-	{
-		return _numerator < _denominator* num;
-	}
+inline bool rational::less_than(agm num) const
+{
+	return _numerator < _denominator* num;
+}
 
-	inline bool rational::less_than(agm_rational num) const
-	{
-		return _numerator * num._denominator < _denominator* num._numerator;
-	}
+inline bool rational::less_than(agm_rtn num) const
+{
+	return _numerator * num._denominator < _denominator* num._numerator;
+}
 
-	inline bool rational::not_larger_than(agm num) const
-	{
-		return _numerator <= _denominator * num;
-	}
+inline bool rational::not_larger_than(agm num) const
+{
+	return _numerator <= _denominator * num;
+}
 
-	inline bool rational::not_larger_than(agm_rational num) const
-	{
-		return _numerator * num._denominator < _denominator* num._numerator;
-	}
+inline bool rational::not_larger_than(agm_rtn num) const
+{
+	return _numerator * num._denominator < _denominator* num._numerator;
+}
 
-	inline bool rational::equal_to(agm num, double reference) const
-	{
-		if (reference == 0.0) {
-			reference = (fabs(*this) + fabs(num)) * 0.5;
-		}
-		if (fabs(_numerator - num * _denominator) < fabs(_denominator) * ZERO * reference) {
-			return true;
-		}
-		return false;
+inline bool rational::equal_to(agm num, double reference) const
+{
+	if (reference == 0.0) {
+		reference = (fabs(*this) + fabs(num)) * 0.5;
 	}
+	if (fabs(_numerator - num * _denominator) < fabs(_denominator) * ZERO * reference) {
+		return true;
+	}
+	return false;
+}
 
-	inline bool rational::equal_to(agm_rational num, rational reference) const
-	{
-		if (reference._numerator == 0.0) {
-			reference = (fabs(*this) + fabs(num));
-		}
-		if (fabs(_numerator * num._denominator - _denominator - num._numerator)
-			< fabs(_denominator * num._denominator) * ZERO * reference) {
-			return true;
-		}
-		return false;
+inline bool rational::equal_to(agm_rtn num, rational reference) const
+{
+	if (reference._numerator == 0.0) {
+		reference = (fabs(*this) + fabs(num));
 	}
+	if (fabs(_numerator * num._denominator - _denominator - num._numerator)
+		< fabs(_denominator * num._denominator) * ZERO * reference) {
+		return true;
+	}
+	return false;
 }

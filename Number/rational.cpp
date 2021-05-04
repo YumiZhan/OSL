@@ -16,102 +16,107 @@
 
 #include "pch.h"
 #include "number.h"
+#include <cstdlib>
 using std::cout;
+using osl::rational;
 
-namespace osl {
-	inline rational::rational() :
-		_denominator(1), _numerator(0), known(false)
-	{}
+inline rational::rational() :
+	_denominator(1), _numerator(0), known(false)
+{}
 
-	inline rational::rational(agm_rational origin) :
-		_denominator(origin._denominator), _numerator(origin._numerator), known(origin.known)
-	{}
+inline rational::rational(agm_rtn origin) :
+	_denominator(origin._denominator), _numerator(origin._numerator), known(origin.known)
+{}
 
-	inline rational::rational(agm num) :
-		_denominator(1), _numerator(num), known(true)
-	{
-		simplify_fraction(_denominator, _numerator);
+inline rational::rational(agm num) :
+	_denominator(1), _numerator(num), known(true)
+{
+	simplify_fraction(_denominator, _numerator);
+}
+
+inline rational::rational(agm numerator, agm denominator) :
+	_denominator(denominator), _numerator(numerator), known(true)
+{
+	simplify_fraction(_denominator, _numerator);
+}
+
+inline rational::rational(c_str c_str) :
+	_denominator(1), _numerator(atof(c_str)), known(true)
+{
+	simplify_fraction(_denominator, _numerator);
+}
+
+inline rational::rational(const wchar_t* w_str) :
+	_denominator(1), _numerator(_wtof(w_str)), known(true)
+{
+	simplify_fraction(_denominator, _numerator);
+}
+
+inline bool rational::zero(agm reference) const
+{
+	if (::fabs(_numerator) < ::fabs(_denominator * reference * ZERO)) {
+		return true;
 	}
+	return false;
+}
 
-	inline rational::rational(agm numerator, agm denominator) :
-		_denominator(denominator), _numerator(numerator), known(true)
-	{
-		simplify_fraction(_denominator, _numerator);
+inline bool rational::zero(agm_rtn reference) const
+{
+	if (::fabs(_numerator * reference._denominator)
+		< ::fabs(_denominator * reference._numerator * ZERO)) {
+		return true;
 	}
+	return false;
+}
 
-	inline rational::rational(c_str c_str) :
-		_denominator(1), _numerator(atof(c_str)), known(true)
-	{
-		simplify_fraction(_denominator, _numerator);
+inline bool rational::infinite(agm reference) const
+{
+	if (::fabs(_numerator * ZERO) > ::fabs(_denominator * reference)) {
+		return true;
 	}
+	return false;
+}
 
-	inline rational::rational(const wchar_t* w_str) :
-		_denominator(1), _numerator(_wtof(w_str)), known(true)
-	{
-		simplify_fraction(_denominator, _numerator);
+inline bool rational::infinite(agm_rtn reference) const
+{
+	if (::fabs(_numerator * reference._denominator * ZERO)
+	> ::fabs(_denominator * reference._numerator)) {
+		return true;
 	}
+	return false;
+}
 
-	inline bool rational::zero(agm reference) const
-	{
-		if (::fabs(_numerator) < ::fabs(_denominator * reference * ZERO)) {
-			return true;
-		}
-		return false;
-	}
+inline double rational::denominator() const
+{
+	return _denominator;
+}
 
-	inline bool rational::zero(agm_rational reference) const
-	{
-		if (::fabs(_numerator * reference._denominator)
-			< ::fabs(_denominator * reference._numerator * ZERO)) {
-			return true;
-		}
-		return false;
-	}
+inline double rational::numerator() const
+{
+	return _numerator;
+}
 
-	inline bool rational::infinite(agm reference) const
-	{
-		if (::fabs(_numerator * ZERO) > ::fabs(_denominator * reference)) {
-			return true;
-		}
-		return false;
-	}
+inline void rational::console_print(c_str end) const
+{
+	cout << this->operator double() << end;
+}
 
-	inline bool rational::infinite(agm_rational reference) const
-	{
-		if (::fabs(_numerator * reference._denominator * ZERO)
-		> ::fabs(_denominator * reference._numerator)) {
-			return true;
-		}
-		return false;
-	}
+inline void rational::console_show(c_str end) const
+{
+	cout << _numerator << '/' << _denominator << end;
+}
 
-	inline double rational::denominator() const
-	{
-		return _denominator;
-	}
+inline rational rational::to_radian() const
+{
+	return rational(this->_numerator * PI, this->_denominator * 180);
+}
 
-	inline double rational::numerator() const
-	{
-		return _numerator;
-	}
+inline rational rational::to_degree() const
+{
+	return rational(this->_numerator * 180, this->_denominator * PI);
+}
 
-	inline void rational::console_print(c_str end) const
-	{
-		cout << this->operator double() << end;
-	}
-
-	inline void rational::console_show(c_str end) const
-	{
-		cout << _numerator << '/' << _denominator << end;
-	}
-
-	inline rational rational::to_radian() const
-	{
-		return rational(this->_numerator * PI, this->_denominator * 180);
-	}
-
-	inline rational rational::to_degree() const
-	{
-		return rational(this->_numerator * 180, this->_denominator * PI);
-	}
+inline rational rational::abs() const
+{
+	return rational(::abs(this->_numerator), ::abs(this->_denominator));
 }

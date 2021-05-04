@@ -16,86 +16,85 @@
 
 #include "pch.h"
 #include "number.h"
+using osl::rational;
 
-namespace osl {
-	inline void rational::rec()
-	{
-		double temp = _denominator;
-		_denominator = _numerator;
-		_numerator = temp;
-	}
+inline void rational::rec()
+{
+	double temp = _denominator;
+	_denominator = _numerator;
+	_numerator = temp;
+}
 
-	inline void rational::absr()
-	{
-		_numerator = ::fabs(_numerator);
-		_denominator = ::fabs(_denominator);
-	}
+inline void rational::absr()
+{
+	_numerator = ::fabs(_numerator);
+	_denominator = ::fabs(_denominator);
+}
 
-	inline void rational::add(agm num)
-	{
-		_numerator += num * _denominator;
-		simplify();
-	}
+inline void rational::add(agm num)
+{
+	_numerator += num * _denominator;
+	simplify();
+}
 
-	inline void rational::add(agm_rational num)
-	{
-		_numerator = _numerator * num._denominator + _denominator * num._denominator;
-		_denominator *= num._denominator;
-		if (!num.known) {
-			known = false;
-		}
-		simplify();
+inline void rational::add(agm_rtn num)
+{
+	_numerator = _numerator * num._denominator + _denominator * num._denominator;
+	_denominator *= num._denominator;
+	if (!num.known) {
+		known = false;
 	}
+	simplify();
+}
 
-	inline void rational::sub(agm num)
-	{
-		_numerator -= num * _denominator;
-		simplify();
-	}
+inline void rational::sub(agm num)
+{
+	_numerator -= num * _denominator;
+	simplify();
+}
 
-	inline void rational::sub(agm_rational num)
-	{
-		_numerator = _numerator * num._denominator - _denominator * num._numerator;
-		_denominator *= num._denominator;
-		if (!num.known) {
-			known = false;
-		}
-		simplify();
+inline void rational::sub(agm_rtn num)
+{
+	_numerator = _numerator * num._denominator - _denominator * num._numerator;
+	_denominator *= num._denominator;
+	if (!num.known) {
+		known = false;
 	}
+	simplify();
+}
 
-	inline void rational::mul(agm num)
-	{
-		_numerator *= num;
-	}
+inline void rational::mul(agm num)
+{
+	_numerator *= num;
+}
 
-	inline void rational::mul(agm_rational num)
-	{
-		_numerator *= num._numerator;
-		_denominator *= num._denominator;
-		if (!num.known) {
-			known = false;
-		}
-		simplify();
+inline void rational::mul(agm_rtn num)
+{
+	_numerator *= num._numerator;
+	_denominator *= num._denominator;
+	if (!num.known) {
+		known = false;
 	}
+	simplify();
+}
 
-	inline void rational::div(agm num)
-	{
-		_denominator *= num;
-		simplify();
-	}
+inline void rational::div(agm num)
+{
+	_denominator *= num;
+	simplify();
+}
 
-	inline void rational::div(agm_rational num)
-	{
-		_numerator *= num._denominator;
-		_denominator *= num._numerator;
-		if (!num.known) {
-			known = false;
-		}
-		simplify();
+inline void rational::div(agm_rtn num)
+{
+	_numerator *= num._denominator;
+	_denominator *= num._numerator;
+	if (!num.known) {
+		known = false;
 	}
+	simplify();
+}
 
-	inline void rational::simplify()
-	{
-		simplify_fraction(_denominator, _numerator);
-	}
+inline void rational::simplify()
+{
+	simplify_fraction(_denominator, _numerator);
 }

@@ -1,52 +1,56 @@
-﻿// Matrix.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-#include "matrix.h"
-#include <typeinfo>
+﻿// matrix.cpp : 定义 DLL 的导出函数。
+//
 
-int main()
+#include "pch.h"
+#include "matrix.h"
+
+template<class elm>
+inline osl::matrix<elm>::matrix() :
+	nrow(0), ncol(0), point(NULL)
+{}
+
+template<class elm>
+osl::matrix<elm>::matrix(agm_mtr origin) :
+	nrow(origin.nrow), ncol(origin.ncol)
 {
-	matrix m(1, 3, 4);
-	m.insert(4, 5, 2, 1);
-	m.print(0, 0, 6, 6);
-	return 0;
+	point = new vector<elm>[nrow];
+	if (point == NULL) {
+		throw exc_matrix(0U, "matrix::matrix(agm_mtr origin)");
+	}
+	//!! try
+	for (int i(0); i < nrow; i++) {
+		point[i] = new vector<elm>(origin.point[i]);
+	}
 }
 
-/*
-void Add(const matrix& matrix1, const matrix& matrix2, matrix& result)
+template<class elm>
+osl::matrix<elm>::matrix(agm_mtr origin, int start_row, int start_col, int end_row, int end_col)
 {
-	unsigned max_nrows = matrix1.nrows > matrix2.nrows ? matrix1.nrows : matrix2.nrows;
-	unsigned max_ncols = matrix1.ncols > matrix2.ncols ? matrix1.ncols : matrix2.ncols;
-	for (unsigned i = 0; i < N_ROW; i++) {
-		for (unsigned j = 0; j < N_COL; j++) {
-			(result.point)[i][j] = (matrix1.point)[i][j] + (matrix2.point)[i][j];
+	if (start_row > end_row || start_col > end_col) {
+		throw exc_matrix(5U, "matrix::matrix(agm_mtr origin, int start_row, int start_col, int end_row, int end_col)");
+	}
+	if (start_row < 0 || start_col < 0 || end_row > origin.nrow || end_col > origin.ncol) {
+		throw exc_matrix(2U, "matrix::matrix(agm_mtr origin, int start_row, int start_col, int end_row, int end_col)");
+	}
+	nrow = end_row + 1 - start_row; ncol = end_col + 1 - start_col;
+	point = new vector<elm>[nrow];
+	for (int i(0); i < nrow; i++) {
+		point[i] = new vector<elm>(ncol);
+		for (int j(0); j < ncol; j++) {
+			point[i][j] = origin.point[i + start_row][j + start_col];
 		}
 	}
 }
 
-inline matrix operator+(const matrix& matrix1, const matrix& matrix2)
+template<class elm>
+osl::matrix<elm>::~matrix()
 {
-	matrix result;
-	Add(matrix1, matrix2, result);
-	return result;
+	if (point != NULL) {
+		for (int i(0); i < ncol; i++) {
+			if (point[i] != NULL) {
+				delete[] point[i];
+			}
+		}
+		delete[] point;
+	}
 }
-
-void Subtract(const matrix& matrix1, const matrix& matrix2, matrix& result)
-{
-}
-
-inline matrix operator-(const matrix& matrix1, const matrix& matrix2)
-{}
-
-void Multiply(const matrix& matrix1, const matrix& matrix2, matrix& result)
-{
-}
-
-inline matrix operator*(const matrix& matrix1, const matrix& matrix2)
-{}
-
-void Inverse(const matrix& origin, matrix& result)
-{
-}
-
-inline matrix operator/(const matrix& matrix1, const matrix& matrix2)
-{}
-*/

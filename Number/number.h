@@ -16,16 +16,23 @@
 
 #pragma once
 #ifdef NUMBER_EXPORTS
-#	define NUMBER_API __declspec(dllexport)
+	#define NUMBER_API __declspec(dllexport)
 #else
-#	define NUMBER_API __declspec(dllimport)
-#	pragma	comment(lib, "number")
-#endif // _NUMBER_EXPORTS
+	#define NUMBER_API __declspec(dllimport)
+	#pragma	comment(lib, "number")
+#endif
 
 #include <iostream>
 
-#define BEGIN_OSL namespace osl {
-#define END_OSL }
+#ifndef BEGIN_OSL
+	#define BEGIN_OSL namespace osl {
+	#define END_OSL }
+	BEGIN_OSL
+	typedef const double& argument, agm;
+	typedef const char* c_str;
+	typedef int error;
+	END_OSL
+#endif // !BEGIN_OSL
 
 #define CPL_RECT 0
 #define CPL_POLA 1
@@ -34,17 +41,13 @@
 #define IMPOSSIBLE 0
 
 BEGIN_OSL // namespace osl {
-typedef const double& argument, agm;
-typedef const char* c_str;
-typedef int error;
-
 extern NUMBER_API double PI; // 3.1415926535897932
 extern NUMBER_API double ZERO; // 1E-10
 
 NUMBER_API inline void simplify_fraction(double& denominator, double& numerator);
 
 class NUMBER_API rational {
-	typedef const rational& agm_rational;
+	typedef const rational& agm_rtn;
 	double _denominator, _numerator;
 	// object_operation.cpp
 	inline void simplify();
@@ -54,16 +57,16 @@ public:
 
 	// rational.cpp
 	inline rational();
-	inline rational(agm_rational origin);
+	inline rational(agm_rtn origin);
 	inline rational(agm num);
 	inline rational(agm numerator, agm denominator);
 	inline rational(c_str c_str);
 	inline rational(const wchar_t* w_str);
 
 	inline bool zero(agm reference = 1)const;
-	inline bool zero(agm_rational reference)const;
+	inline bool zero(agm_rtn reference)const;
 	inline bool infinite(agm reference = 1)const;
-	inline bool infinite(agm_rational reference)const;
+	inline bool infinite(agm_rtn reference)const;
 
 	inline double denominator()const;
 	inline double numerator()const;
@@ -71,167 +74,168 @@ public:
 	inline void console_show(c_str end = "\n")const;
 	inline rational to_radian()const;
 	inline rational to_degree()const;
+	inline rational abs()const;
 
 	// rational_modifier.cpp.cpp
 	inline void rec();
 	inline void absr();
 	inline void add(agm num);
-	inline void add(agm_rational rational);
+	inline void add(agm_rtn rational);
 	inline void sub(agm num);
-	inline void sub(agm_rational rational);
+	inline void sub(agm_rtn rational);
 	inline void mul(agm num);
-	inline void mul(agm_rational rational);
+	inline void mul(agm_rtn rational);
 	inline void div(agm num);
-	inline void div(agm_rational rational);
+	inline void div(agm_rtn rational);
 
 	// rational_comparation.cpp
 	inline bool larger_than(agm num)const;
-	inline bool larger_than(agm_rational num)const;
+	inline bool larger_than(agm_rtn num)const;
 	inline bool not_less_than(agm num)const;
-	inline bool not_less_than(agm_rational num)const;
+	inline bool not_less_than(agm_rtn num)const;
 	inline bool less_than(agm num)const;
-	inline bool less_than(agm_rational num)const;
+	inline bool less_than(agm_rtn num)const;
 	inline bool not_larger_than(agm num)const;
-	inline bool not_larger_than(agm_rational num)const;
+	inline bool not_larger_than(agm_rtn num)const;
 	inline bool equal_to(agm num, double reference = 0.0)const;
-	inline bool equal_to(agm_rational num, rational reference = 0.0)const;
+	inline bool equal_to(agm_rtn num, rational reference = 0.0)const;
 
 	// rational_overload_operators.cpp
 	inline operator double()const;
 
-	friend NUMBER_API inline std::ostream& operator <<(std::ostream& os, agm_rational output_rational);
+	friend NUMBER_API inline std::ostream& operator <<(std::ostream& os, agm_rtn output_rational);
 	friend NUMBER_API inline std::istream& operator >>(std::istream& is, rational& input_rational);
 
-	friend NUMBER_API inline rational operator ~(agm_rational origin);
+	friend NUMBER_API inline rational operator ~(agm_rtn origin);
 
 	inline rational& operator +=(agm num);
-	inline rational& operator +=(agm_rational num);
+	inline rational& operator +=(agm_rtn num);
 
 	inline rational& operator -=(agm num);
-	inline rational& operator -=(agm_rational num);
+	inline rational& operator -=(agm_rtn num);
 
 	inline rational& operator *=(agm num);
-	inline rational& operator *=(agm_rational num);
+	inline rational& operator *=(agm_rtn num);
 
 	inline rational& operator /=(agm num);
-	inline rational& operator /=(agm_rational num);
+	inline rational& operator /=(agm_rtn num);
 
 	inline rational& operator ^=(agm num);
-	inline rational& operator ^=(agm_rational num);
+	inline rational& operator ^=(agm_rtn num);
 
 	inline rational& operator ++();
 	inline rational operator ++(int);
 	inline rational& operator --();
 	inline rational operator --(int);
 
-	friend NUMBER_API inline rational operator +(agm_rational num);
-	friend NUMBER_API inline rational operator -(agm_rational num);
+	friend NUMBER_API inline rational operator +(agm_rtn num);
+	friend NUMBER_API inline rational operator -(agm_rtn num);
 
-	friend NUMBER_API inline rational operator +(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline rational operator +(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline rational operator +(agm_rational num_1, agm_rational num_2);
+	friend NUMBER_API inline rational operator +(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline rational operator +(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline rational operator +(agm_rtn num_1, agm_rtn num_2);
 
-	friend NUMBER_API inline rational operator -(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline rational operator -(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline rational operator -(agm_rational num_1, agm_rational num_2);
+	friend NUMBER_API inline rational operator -(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline rational operator -(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline rational operator -(agm_rtn num_1, agm_rtn num_2);
 
-	friend NUMBER_API inline rational operator *(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline rational operator *(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline rational operator *(agm_rational num_1, agm_rational num_2);
+	friend NUMBER_API inline rational operator *(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline rational operator *(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline rational operator *(agm_rtn num_1, agm_rtn num_2);
 
-	friend NUMBER_API inline rational operator /(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline rational operator /(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline rational operator /(agm_rational num_1, agm_rational num_2);
+	friend NUMBER_API inline rational operator /(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline rational operator /(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline rational operator /(agm_rtn num_1, agm_rtn num_2);
 
-	friend NUMBER_API inline rational operator ^(agm_rational num_1, agm_rational num_2);
-	friend NUMBER_API inline rational operator ^(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline rational operator ^(agm_rational num_1, agm num_2);
+	friend NUMBER_API inline rational operator ^(agm_rtn num_1, agm_rtn num_2);
+	friend NUMBER_API inline rational operator ^(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline rational operator ^(agm_rtn num_1, agm num_2);
 
-	friend NUMBER_API inline bool operator ==(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline bool operator ==(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline bool operator ==(agm_rational num_1, agm_rational num_2);
+	friend NUMBER_API inline bool operator ==(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline bool operator ==(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline bool operator ==(agm_rtn num_1, agm_rtn num_2);
 
-	friend NUMBER_API inline bool operator !=(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline bool operator !=(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline bool operator !=(agm_rational num_1, agm_rational num_2);
+	friend NUMBER_API inline bool operator !=(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline bool operator !=(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline bool operator !=(agm_rtn num_1, agm_rtn num_2);
 
-	friend NUMBER_API inline bool operator <(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline bool operator <(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline bool operator <(agm_rational num_1, agm_rational num_2);
+	friend NUMBER_API inline bool operator <(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline bool operator <(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline bool operator <(agm_rtn num_1, agm_rtn num_2);
 
-	friend NUMBER_API inline bool operator <=(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline bool operator <=(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline bool operator <=(agm_rational num_1, agm_rational num_2);
+	friend NUMBER_API inline bool operator <=(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline bool operator <=(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline bool operator <=(agm_rtn num_1, agm_rtn num_2);
 
-	friend NUMBER_API inline bool operator >(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline bool operator >(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline bool operator >(agm_rational num_1, agm_rational num_2);
+	friend NUMBER_API inline bool operator >(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline bool operator >(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline bool operator >(agm_rtn num_1, agm_rtn num_2);
 
-	friend NUMBER_API inline bool operator >=(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline bool operator >=(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline bool operator >=(agm_rational num_1, agm_rational num_2);
+	friend NUMBER_API inline bool operator >=(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline bool operator >=(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline bool operator >=(agm_rtn num_1, agm_rtn num_2);
 
-	friend NUMBER_API inline bool operator !(agm_rational num);
+	friend NUMBER_API inline bool operator !(agm_rtn num);
 
 	// rational_overload_cmath.cpp
-	friend NUMBER_API inline double cos(agm_rational num);
-	friend NUMBER_API inline double cosh(agm_rational num);
-	friend NUMBER_API inline double sin(agm_rational num);
-	friend NUMBER_API inline double sinh(agm_rational num);
-	friend NUMBER_API inline double tan(agm_rational num);
-	friend NUMBER_API inline double tanh(agm_rational num);
+	friend NUMBER_API inline double cos(agm_rtn num);
+	friend NUMBER_API inline double cosh(agm_rtn num);
+	friend NUMBER_API inline double sin(agm_rtn num);
+	friend NUMBER_API inline double sinh(agm_rtn num);
+	friend NUMBER_API inline double tan(agm_rtn num);
+	friend NUMBER_API inline double tanh(agm_rtn num);
 
-	friend NUMBER_API inline double acos(agm_rational num);
-	friend NUMBER_API inline double acosh(agm_rational num);
-	friend NUMBER_API inline double asin(agm_rational num);
-	friend NUMBER_API inline double asinh(agm_rational num);
-	friend NUMBER_API inline double atan(agm_rational num);
-	friend NUMBER_API inline double atan2(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline double atan2(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline double atan2(agm_rational num_1, agm_rational num_2);
-	friend NUMBER_API inline double atanh(agm_rational num);
+	friend NUMBER_API inline double acos(agm_rtn num);
+	friend NUMBER_API inline double acosh(agm_rtn num);
+	friend NUMBER_API inline double asin(agm_rtn num);
+	friend NUMBER_API inline double asinh(agm_rtn num);
+	friend NUMBER_API inline double atan(agm_rtn num);
+	friend NUMBER_API inline double atan2(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline double atan2(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline double atan2(agm_rtn num_1, agm_rtn num_2);
+	friend NUMBER_API inline double atanh(agm_rtn num);
 
-	friend NUMBER_API inline double exp(agm_rational num);
-	friend NUMBER_API inline double exp2(agm_rational num);
-	friend NUMBER_API inline double expm1(agm_rational num);
+	friend NUMBER_API inline double exp(agm_rtn num);
+	friend NUMBER_API inline double exp2(agm_rtn num);
+	friend NUMBER_API inline double expm1(agm_rtn num);
 
-	friend NUMBER_API inline double frexp(agm_rational num, int* exponent);
-	friend NUMBER_API inline double ldexp(agm_rational num, int exponent);
+	friend NUMBER_API inline double frexp(agm_rtn num, int* exponent);
+	friend NUMBER_API inline double ldexp(agm_rtn num, int exponent);
 
-	friend NUMBER_API inline double log(agm_rational num, agm base);
-	friend NUMBER_API inline double log(agm num, agm_rational base);
-	friend NUMBER_API inline double log(agm_rational num, agm_rational base);
-	friend NUMBER_API inline double log(agm_rational num);
-	friend NUMBER_API inline double ln(agm_rational num) { return log(num); }
-	friend NUMBER_API inline double log2(agm_rational num);
-	friend NUMBER_API inline double log10(agm_rational num);
-	friend NUMBER_API inline double lg(agm_rational num) { return log10(num); }
-	friend NUMBER_API inline double log1p(agm_rational num);
+	friend NUMBER_API inline double log(agm_rtn num, agm base);
+	friend NUMBER_API inline double log(agm num, agm_rtn base);
+	friend NUMBER_API inline double log(agm_rtn num, agm_rtn base);
+	friend NUMBER_API inline double log(agm_rtn num);
+	friend NUMBER_API inline double ln(agm_rtn num) { return log(num); }
+	friend NUMBER_API inline double log2(agm_rtn num);
+	friend NUMBER_API inline double log10(agm_rtn num);
+	friend NUMBER_API inline double lg(agm_rtn num) { return log10(num); }
+	friend NUMBER_API inline double log1p(agm_rtn num);
 
-	friend NUMBER_API inline double copysign(agm_rational num_1, agm_rational num_2);
-	friend NUMBER_API inline double modf(agm_rational num, double* integer);
+	friend NUMBER_API inline double copysign(agm_rtn num_1, agm_rtn num_2);
+	friend NUMBER_API inline double modf(agm_rtn num, double* integer);
 	friend NUMBER_API inline double modf(agm num, rational& integer);
-	friend NUMBER_API inline double modf(agm_rational num, rational& integer);
+	friend NUMBER_API inline double modf(agm_rtn num, rational& integer);
 
-	friend NUMBER_API inline double pow(agm_rational num, agm exponent);
-	friend NUMBER_API inline double pow(agm num, agm_rational exponent);
-	friend NUMBER_API inline double pow(agm_rational num, agm_rational exponent);
-	friend NUMBER_API inline double pow2(agm_rational num);
-	friend NUMBER_API inline double pow10(agm_rational num);
-	friend NUMBER_API inline double sqrt(agm_rational num);
-	friend NUMBER_API inline double hypot(agm_rational x, agm_rational y);
+	friend NUMBER_API inline double pow(agm_rtn num, agm exponent);
+	friend NUMBER_API inline double pow(agm num, agm_rtn exponent);
+	friend NUMBER_API inline double pow(agm_rtn num, agm_rtn exponent);
+	friend NUMBER_API inline double pow2(agm_rtn num);
+	friend NUMBER_API inline double pow10(agm_rtn num);
+	friend NUMBER_API inline double sqrt(agm_rtn num);
+	friend NUMBER_API inline double hypot(agm_rtn x, agm_rtn y);
 
-	friend NUMBER_API inline double ceil(agm_rational num);
-	friend NUMBER_API inline double round(agm_rational num);
-	friend NUMBER_API inline double floor(agm_rational num);
-	friend NUMBER_API inline double trunc(agm_rational num);
-	friend NUMBER_API inline double fabs(agm_rational num);
+	friend NUMBER_API inline double ceil(agm_rtn num);
+	friend NUMBER_API inline double round(agm_rtn num);
+	friend NUMBER_API inline double floor(agm_rtn num);
+	friend NUMBER_API inline double trunc(agm_rtn num);
+	friend NUMBER_API inline double fabs(agm_rtn num);
 
-	friend NUMBER_API inline double fmod(agm_rational num_1, agm num_2);
-	friend NUMBER_API inline double fmod(agm num_1, agm_rational num_2);
-	friend NUMBER_API inline double fmod(agm_rational num_1, agm_rational num_2);
+	friend NUMBER_API inline double fmod(agm_rtn num_1, agm num_2);
+	friend NUMBER_API inline double fmod(agm num_1, agm_rtn num_2);
+	friend NUMBER_API inline double fmod(agm_rtn num_1, agm_rtn num_2);
 };
-typedef const rational& agm_rational;
+typedef const rational& agm_rtn;
 
 class NUMBER_API complex {
 	typedef const complex& agm_cpl;
