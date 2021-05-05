@@ -33,11 +33,11 @@ inline osl::complex::complex(agm_cpl cpl) :
 	_real(cpl._real), _imag(cpl._imag), known(cpl.known)
 {}
 
-inline osl::complex::complex(agm real) :
+inline osl::complex::complex(double real) :
 	_real(real), _imag(0.0), known(true)
 {}
 
-inline osl::complex::complex(agm a, agm b, int mod) :
+inline osl::complex::complex(double a, double b, int mod) :
 	known(true)
 {
 	switch (mod) {

@@ -31,7 +31,7 @@ inline void rational::absr()
 	_denominator = ::fabs(_denominator);
 }
 
-inline void rational::add(agm num)
+inline void rational::add(double num)
 {
 	_numerator += num * _denominator;
 	simplify();
@@ -39,7 +39,7 @@ inline void rational::add(agm num)
 
 inline void rational::add(agm_rtn num)
 {
-	_numerator = _numerator * num._denominator + _denominator * num._denominator;
+	_numerator = _numerator * num._denominator + _denominator * num._numerator;
 	_denominator *= num._denominator;
 	if (!num.known) {
 		known = false;
@@ -47,7 +47,7 @@ inline void rational::add(agm_rtn num)
 	simplify();
 }
 
-inline void rational::sub(agm num)
+inline void rational::sub(double num)
 {
 	_numerator -= num * _denominator;
 	simplify();
@@ -63,7 +63,7 @@ inline void rational::sub(agm_rtn num)
 	simplify();
 }
 
-inline void rational::mul(agm num)
+inline void rational::mul(double num)
 {
 	_numerator *= num;
 }
@@ -78,7 +78,7 @@ inline void rational::mul(agm_rtn num)
 	simplify();
 }
 
-inline void rational::div(agm num)
+inline void rational::div(double num)
 {
 	_denominator *= num;
 	simplify();

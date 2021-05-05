@@ -24,13 +24,13 @@ element<elm>::element() :
 {}
 
 template<class elm>
-inline element<elm>::element(int row, int col, const elm& value) :
-	_row(row), _col(col), _value(value)
+element<elm>::element(const element & origin) :
+	_row(origin._row), _col(origin._col), _value(origin._value)
 {}
 
 template<class elm>
-element<elm>::element(const element & origin) :
-	_row(origin._row), _col(origin._col), _value(origin._value)
+inline element<elm>::element(int row, int col, const elm& value) :
+	_row(row), _col(col), _value(value)
 {}
 
 template<class elm>
@@ -57,10 +57,11 @@ namespace {
 	{
 		element<elm>* a = new element<elm>;
 		element<elm>* b = new element<elm>(*a);
-		b->row();
-		b->col();
-		b->value();
-		delete a, b;
+		element<elm>* c = new element<elm>(0, 0, 0.0);
+		c->row();
+		c->col();
+		c->value();
+		delete a, b, c;
 	}
 
 	void instantiate()

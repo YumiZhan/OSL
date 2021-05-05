@@ -28,13 +28,13 @@ inline rational::rational(agm_rtn origin) :
 	_denominator(origin._denominator), _numerator(origin._numerator), known(origin.known)
 {}
 
-inline rational::rational(agm num) :
+inline rational::rational(double num) :
 	_denominator(1), _numerator(num), known(true)
 {
 	simplify_fraction(_denominator, _numerator);
 }
 
-inline rational::rational(agm numerator, agm denominator) :
+inline rational::rational(double numerator, double denominator) :
 	_denominator(denominator), _numerator(numerator), known(true)
 {
 	simplify_fraction(_denominator, _numerator);
@@ -52,7 +52,7 @@ inline rational::rational(const wchar_t* w_str) :
 	simplify_fraction(_denominator, _numerator);
 }
 
-inline bool rational::zero(agm reference) const
+inline bool rational::zero(double reference) const
 {
 	if (::fabs(_numerator) < ::fabs(_denominator * reference * ZERO)) {
 		return true;
@@ -69,7 +69,7 @@ inline bool rational::zero(agm_rtn reference) const
 	return false;
 }
 
-inline bool rational::infinite(agm reference) const
+inline bool rational::infinite(double reference) const
 {
 	if (::fabs(_numerator * ZERO) > ::fabs(_denominator * reference)) {
 		return true;

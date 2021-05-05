@@ -53,7 +53,7 @@ inline osl::complex osl::complex::pow(agm_cpl cpl) const
 	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 }
 
-inline osl::complex osl::complex::pow(agm real) const
+inline osl::complex osl::complex::pow(double real) const
 {
 	gsl_complex gsl_cpl(gsl_complex_pow_real(gsl_complex_rect(_real, _imag), real));
 	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
@@ -66,7 +66,7 @@ namespace osl {
 		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 	}
 
-	inline complex sqrt(agm real)
+	inline complex sqrt(double real)
 	{
 		gsl_complex gsl_cpl(gsl_complex_sqrt_real(real));
 		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
@@ -78,7 +78,7 @@ namespace osl {
 		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 	}
 
-	inline complex exp(agm index)
+	inline complex exp(double index)
 	{
 		gsl_complex gsl_cpl(gsl_complex_exp(gsl_complex_rect(index, 0.0)));
 		return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
@@ -92,7 +92,7 @@ inline osl::complex osl::complex::log(agm_cpl base) const
 	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));
 }
 
-inline osl::complex osl::complex::log(agm base) const
+inline osl::complex osl::complex::log(double base) const
 {
 	gsl_complex gsl_cpl(gsl_complex_log_b(gsl_complex_rect(_real, _imag), gsl_complex_rect(base, 0.0)));
 	return complex(GSL_REAL(gsl_cpl), GSL_IMAG(gsl_cpl));

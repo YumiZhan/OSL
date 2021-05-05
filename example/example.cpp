@@ -6,11 +6,9 @@ using namespace osl;
 
 int main()
 {
-	vector<> b(2, 3);
-	try {
-		b.at(2);
-	} catch(const exc_matrix& exc){
-		cout << exc.overview() << endl << exc.discription << endl;
-	}
+	rational a[] = { 1, 2, 3 }, b[] = { 1, 2, 3 };
+	vector<rational> c(a, 3);
+	vector<rational> d(b, 3);
+	cout << c * d << endl;
 	return 0;
 }

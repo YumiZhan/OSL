@@ -18,7 +18,7 @@
 #include "number.h"
 using osl::rational;
 
-inline bool rational::larger_than(agm num) const
+inline bool rational::larger_than(double num) const
 {
 	return _numerator > _denominator * num;
 }
@@ -28,7 +28,7 @@ inline bool rational::larger_than(agm_rtn num) const
 	return _numerator * num._denominator > _denominator * num._denominator;
 }
 
-inline bool rational::not_less_than(agm num) const
+inline bool rational::not_less_than(double num) const
 {
 	return _numerator >= _denominator * num;
 }
@@ -38,7 +38,7 @@ inline bool rational::not_less_than(agm_rtn num) const
 	return _numerator * num._denominator > _denominator * num._denominator;
 }
 
-inline bool rational::less_than(agm num) const
+inline bool rational::less_than(double num) const
 {
 	return _numerator < _denominator* num;
 }
@@ -48,7 +48,7 @@ inline bool rational::less_than(agm_rtn num) const
 	return _numerator * num._denominator < _denominator* num._numerator;
 }
 
-inline bool rational::not_larger_than(agm num) const
+inline bool rational::not_larger_than(double num) const
 {
 	return _numerator <= _denominator * num;
 }
@@ -58,7 +58,7 @@ inline bool rational::not_larger_than(agm_rtn num) const
 	return _numerator * num._denominator < _denominator* num._numerator;
 }
 
-inline bool rational::equal_to(agm num, double reference) const
+inline bool rational::equal_to(double num, double reference) const
 {
 	if (reference == 0.0) {
 		reference = (fabs(*this) + fabs(num)) * 0.5;

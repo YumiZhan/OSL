@@ -26,7 +26,7 @@ inline void osl::complex::add(agm_cpl cpl)
 	}
 }
 
-inline void osl::complex::add(agm real, agm imag)
+inline void osl::complex::add(double real, double imag)
 {
 	_real += real; _imag += imag;
 }
@@ -39,7 +39,7 @@ inline void osl::complex::sub(agm_cpl cpl)
 	}
 }
 
-inline void osl::complex::sub(agm real, agm imag)
+inline void osl::complex::sub(double real, double imag)
 {
 	_real -= real; _imag -= imag;
 }
@@ -53,7 +53,7 @@ inline void osl::complex::mul(agm_cpl cpl)
 	}
 }
 
-inline void osl::complex::mul(agm real, agm imag)
+inline void osl::complex::mul(double real, double imag)
 {
 	_real = _real * real - _imag * imag;
 	_imag = _real * imag + _imag * real;
@@ -68,7 +68,7 @@ inline void osl::complex::div(agm_cpl cpl)
 	}
 }
 
-inline void osl::complex::div(agm real, agm imag)
+inline void osl::complex::div(double real, double imag)
 {
 	gsl_complex gsl_cpl(gsl_complex_div(gsl_complex_rect(_real, _imag), gsl_complex_rect(real, imag)));
 	_real = GSL_REAL(gsl_cpl); _imag = GSL_IMAG(gsl_cpl);

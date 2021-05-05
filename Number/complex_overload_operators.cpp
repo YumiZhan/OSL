@@ -72,12 +72,12 @@ namespace osl {
 		return complex(cpl1._real + cpl2._real, cpl1._imag + cpl2._imag);
 	}
 
-	inline complex operator +(agm_cpl cpl, agm real)
+	inline complex operator +(agm_cpl cpl, double real)
 	{
 		return complex(cpl._real + real, cpl._imag);
 	}
 
-	inline complex operator +(agm real, agm_cpl cpl)
+	inline complex operator +(double real, agm_cpl cpl)
 	{
 		return complex(real + cpl._real, cpl._imag);
 	}
@@ -87,12 +87,12 @@ namespace osl {
 		return complex(cpl1._real - cpl2._real, cpl1._imag - cpl2._imag);
 	}
 
-	inline complex operator -(agm_cpl cpl, agm real)
+	inline complex operator -(agm_cpl cpl, double real)
 	{
 		return complex(cpl._real - real, cpl._imag);
 	}
 
-	inline complex operator -(agm real, agm_cpl cpl)
+	inline complex operator -(double real, agm_cpl cpl)
 	{
 		return complex(real - cpl._real, -cpl._imag);
 	}
@@ -102,12 +102,12 @@ namespace osl {
 		return complex(cpl1._real * cpl2._real - cpl1._imag * cpl2._imag, cpl1._real * cpl2._imag + cpl1._imag * cpl2._real);
 	}
 
-	inline complex operator *(agm_cpl cpl, agm real)
+	inline complex operator *(agm_cpl cpl, double real)
 	{
 		return complex(cpl._real * real, cpl._imag * real);
 	}
 
-	inline complex operator *(agm real, agm_cpl cpl)
+	inline complex operator *(double real, agm_cpl cpl)
 	{
 		return complex(real * cpl._real, real * cpl._imag);
 	}
@@ -119,14 +119,14 @@ namespace osl {
 		return temp;
 	}
 
-	inline complex operator /(agm_cpl cpl, agm real)
+	inline complex operator /(agm_cpl cpl, double real)
 	{
 		complex temp(cpl);
 		temp.div(real);
 		return temp;
 	}
 
-	inline complex operator /(agm real, agm_cpl cpl)
+	inline complex operator /(double real, agm_cpl cpl)
 	{
 		complex temp(real);
 		temp.div(cpl);
@@ -138,12 +138,12 @@ namespace osl {
 		return cpl1.pow(cpl2);
 	}
 
-	inline complex operator ^(agm_cpl cpl, agm real)
+	inline complex operator ^(agm_cpl cpl, double real)
 	{
 		return cpl.pow(real);
 	}
 
-	inline complex operator ^(agm real, agm_cpl cpl)
+	inline complex operator ^(double real, agm_cpl cpl)
 	{
 		complex temp(real);
 		return temp.pow(cpl);
@@ -156,7 +156,7 @@ inline osl::complex& osl::complex::operator +=(agm_cpl cpl)
 	return *this;
 }
 
-inline osl::complex& osl::complex::operator +=(agm real)
+inline osl::complex& osl::complex::operator +=(double real)
 {
 	add(real);
 	return *this;
@@ -168,7 +168,7 @@ inline osl::complex& osl::complex::operator -=(agm_cpl cpl)
 	return *this;
 }
 
-inline osl::complex& osl::complex::operator -=(agm real)
+inline osl::complex& osl::complex::operator -=(double real)
 {
 	sub(real);
 	return *this;
@@ -180,7 +180,7 @@ inline osl::complex& osl::complex::operator *=(agm_cpl cpl)
 	return *this;
 }
 
-inline osl::complex& osl::complex::operator *=(agm real)
+inline osl::complex& osl::complex::operator *=(double real)
 {
 	mul(real);
 	return *this;
@@ -192,7 +192,7 @@ inline osl::complex& osl::complex::operator /=(agm_cpl cpl)
 	return *this;
 }
 
-inline osl::complex& osl::complex::operator /=(agm real)
+inline osl::complex& osl::complex::operator /=(double real)
 {
 	div(real);
 	return *this;
@@ -203,7 +203,7 @@ inline osl::complex& osl::complex::operator ^=(agm_cpl cpl)
 	return *this = this->pow(cpl);
 }
 
-inline osl::complex& osl::complex::operator^=(agm real)
+inline osl::complex& osl::complex::operator^=(double real)
 {
 	return *this = this->pow(real);
 }

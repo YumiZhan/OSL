@@ -51,7 +51,7 @@ inline rational operator ~(agm_rtn num)
 	return temp;
 }
 
-inline rational& rational::operator +=(agm num)
+inline rational& rational::operator +=(double num)
 {
 	this->add(num);
 	return *this;
@@ -63,7 +63,7 @@ inline rational& rational::operator +=(agm_rtn num)
 	return *this;
 }
 
-inline rational& rational::operator -=(agm num)
+inline rational& rational::operator -=(double num)
 {
 	this->sub(num);
 	return *this;
@@ -75,7 +75,7 @@ inline rational& rational::operator -=(agm_rtn num)
 	return *this;
 }
 
-inline rational& rational::operator *=(agm num)
+inline rational& rational::operator *=(double num)
 {
 	this->mul(num);
 	return *this;
@@ -87,7 +87,7 @@ inline rational& rational::operator *=(agm_rtn num)
 	return *this;
 }
 
-inline rational& rational::operator /=(agm num)
+inline rational& rational::operator /=(double num)
 {
 	this->sub(num);
 	return *this;
@@ -99,7 +99,7 @@ inline rational& rational::operator /=(agm_rtn num)
 	return *this;
 }
 
-inline rational& rational::operator ^=(agm num)
+inline rational& rational::operator ^=(double num)
 {
 	return *this = pow(*this, num);
 }
@@ -147,14 +147,14 @@ inline rational operator -(agm_rtn num)
 	return temp;
 }
 
-inline rational operator +(agm_rtn num_1, agm num_2)
+inline rational operator +(agm_rtn num_1, double num_2)
 {
 	rational temp(num_1);
 	temp.add(num_2);
 	return temp;
 }
 
-inline rational operator +(agm num_1, agm_rtn num_2)
+inline rational operator +(double num_1, agm_rtn num_2)
 {
 	rational temp(num_1);
 	temp.add(num_2);
@@ -168,14 +168,14 @@ inline rational operator +(agm_rtn num_1, agm_rtn num_2)
 	return temp;
 }
 
-inline rational operator -(agm_rtn num_1, agm num_2)
+inline rational operator -(agm_rtn num_1, double num_2)
 {
 	rational temp(num_1);
 	temp.sub(num_2);
 	return temp;
 }
 
-inline rational operator -(agm num_1, agm_rtn num_2)
+inline rational operator -(double num_1, agm_rtn num_2)
 {
 	rational temp(num_1);
 	temp.sub(num_2);
@@ -189,14 +189,14 @@ inline rational operator -(agm_rtn num_1, agm_rtn num_2)
 	return temp;
 }
 
-inline rational operator *(agm_rtn num_1, agm num_2)
+inline rational operator *(agm_rtn num_1, double num_2)
 {
 	rational temp(num_1);
 	temp.mul(num_2);
 	return temp;
 }
 
-inline rational operator *(agm num_1, agm_rtn num_2)
+inline rational operator *(double num_1, agm_rtn num_2)
 {
 	rational temp(num_1);
 	temp.mul(num_2);
@@ -210,14 +210,14 @@ inline rational operator *(agm_rtn num_1, agm_rtn num_2)
 	return temp;
 }
 
-inline rational operator /(agm_rtn num_1, agm num_2)
+inline rational operator /(agm_rtn num_1, double num_2)
 {
 	rational temp(num_1);
 	temp.div(num_2);
 	return temp;
 }
 
-inline rational operator /(agm num_1, agm_rtn num_2)
+inline rational operator /(double num_1, agm_rtn num_2)
 {
 	rational temp(num_1);
 	temp.div(num_2);
@@ -236,22 +236,22 @@ inline rational operator ^(agm_rtn num_1, agm_rtn num_2)
 	return pow(num_1, num_2);
 }
 
-inline rational operator ^(agm num_1, agm_rtn num_2)
+inline rational operator ^(double num_1, agm_rtn num_2)
 {
 	return pow(num_1, num_2);
 }
 
-inline rational operator ^(agm_rtn num_1, agm num_2)
+inline rational operator ^(agm_rtn num_1, double num_2)
 {
 	return pow(num_1, num_2);
 }
 
-inline bool operator ==(agm_rtn num_1, agm num_2)
+inline bool operator ==(agm_rtn num_1, double num_2)
 {
 	return num_1.equal_to(num_2);
 }
 
-inline bool operator ==(agm num_1, agm_rtn num_2)
+inline bool operator ==(double num_1, agm_rtn num_2)
 {
 	return num_2.equal_to(num_1);
 }
@@ -261,12 +261,12 @@ inline bool operator ==(agm_rtn num_1, agm_rtn num_2)
 	return num_1.equal_to(num_2);
 }
 
-inline bool operator !=(agm_rtn num_1, agm num_2)
+inline bool operator !=(agm_rtn num_1, double num_2)
 {
 	return !num_1.equal_to(num_2);
 }
 
-inline bool operator !=(agm num_1, agm_rtn num_2)
+inline bool operator !=(double num_1, agm_rtn num_2)
 {
 	return !num_2.equal_to(num_1);
 }
@@ -276,12 +276,12 @@ inline bool operator !=(agm_rtn num_1, agm_rtn num_2)
 	return !num_1.equal_to(num_2);
 }
 
-inline bool operator <(agm_rtn num_1, agm num_2)
+inline bool operator <(agm_rtn num_1, double num_2)
 {
 	return num_1.less_than(num_2);
 }
 
-inline bool operator <(agm num_1, agm_rtn num_2)
+inline bool operator <(double num_1, agm_rtn num_2)
 {
 	return num_2.larger_than(num_1);
 }
@@ -291,12 +291,12 @@ inline bool operator <(agm_rtn num_1, agm_rtn num_2)
 	return num_1.less_than(num_2);
 }
 
-inline bool operator <=(agm_rtn num_1, agm num_2)
+inline bool operator <=(agm_rtn num_1, double num_2)
 {
 	return num_1.not_larger_than(num_2);
 }
 
-inline bool operator <=(agm num_1, agm_rtn num_2)
+inline bool operator <=(double num_1, agm_rtn num_2)
 {
 	return num_2.not_less_than(num_1);
 }
@@ -306,12 +306,12 @@ inline bool operator <=(agm_rtn num_1, agm_rtn num_2)
 	return num_1.not_larger_than(num_2);
 }
 
-inline bool operator >(agm_rtn num_1, agm num_2)
+inline bool operator >(agm_rtn num_1, double num_2)
 {
 	return num_1.larger_than(num_2);
 }
 
-inline bool operator >(agm num_1, agm_rtn num_2)
+inline bool operator >(double num_1, agm_rtn num_2)
 {
 	return num_2.less_than(num_1);
 }
@@ -321,12 +321,12 @@ inline bool operator >(agm_rtn num_1, agm_rtn num_2)
 	return num_1.larger_than(num_2);
 }
 
-inline bool operator >=(agm_rtn num_1, agm num_2)
+inline bool operator >=(agm_rtn num_1, double num_2)
 {
 	return num_1.not_less_than(num_2);
 }
 
-inline bool operator >=(agm num_1, agm_rtn num_2)
+inline bool operator >=(double num_1, agm_rtn num_2)
 {
 	return num_2.not_larger_than(num_1);
 }

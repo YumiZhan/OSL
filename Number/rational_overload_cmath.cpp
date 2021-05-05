@@ -74,12 +74,12 @@ inline double atan(agm_rtn num)
 	return std::atan(double(num));
 }
 
-inline double atan2(agm_rtn num_1, agm num_2)
+inline double atan2(agm_rtn num_1, double num_2)
 {
 	return std::atan2(num_1._numerator, num_2 * num_1._denominator);
 }
 
-inline double atan2(agm num_1, agm_rtn num_2)
+inline double atan2(double num_1, agm_rtn num_2)
 {
 	return std::atan2(num_1 * num_2._denominator, num_2._numerator);
 }
@@ -119,12 +119,12 @@ inline double ldexp(agm_rtn num, int exponent)
 	return std::ldexp(num._denominator, exponent);
 }
 
-inline double log(agm_rtn num, agm base)
+inline double log(agm_rtn num, double base)
 {
 	return (std::log(num._numerator) - std::log(num._denominator)) / std::log(base);
 }
 
-inline double log(agm num, agm_rtn base)
+inline double log(double num, agm_rtn base)
 {
 	return std::log(num) / (std::log(base._numerator) - std::log(base._denominator));
 }
@@ -165,7 +165,7 @@ inline double modf(agm_rtn num, double* integer)
 	return std::modf(double(num), integer);
 }
 
-double modf(agm num, rational& integer)
+double modf(double num, rational& integer)
 {
 	integer._denominator = 1;
 	return std::modf(num, &integer._numerator);
@@ -177,12 +177,12 @@ double modf(agm_rtn num, rational& integer)
 	return std::modf(double(num), &integer._numerator);
 }
 
-inline double pow(agm_rtn num, agm exponent)
+inline double pow(agm_rtn num, double exponent)
 {
 	return std::pow(double(num), exponent);
 }
 
-inline double pow(agm num, agm_rtn exponent)
+inline double pow(double num, agm_rtn exponent)
 {
 	return std::pow(num, double(exponent));
 }
@@ -237,12 +237,12 @@ inline double fabs(agm_rtn num)
 	return std::fabs(double(num));
 }
 
-inline double fmod(agm_rtn num_1, agm num_2)
+inline double fmod(agm_rtn num_1, double num_2)
 {
 	return std::fmod(num_1._numerator * num_2, num_1._denominator);
 }
 
-inline double fmod(agm num_1, agm_rtn num_2)
+inline double fmod(double num_1, agm_rtn num_2)
 {
 	return std::fmod(num_1 * num_2._denominator, num_2._numerator);
 }

@@ -42,12 +42,32 @@ vector<elm>::vector(agm_vct origin) :
 }
 
 template<class elm>
-vector<elm>::vector(int _ncol, agm_elm value) :
-	_ncol(_ncol), point(NULL)
+vector<elm>::vector(agm_vct origin, int begin, int end) :
+	_ncol(end + 1 - begin), point(NULL)
 {
-	point = new elm[_ncol];
-	if (point == NULL) {
-		throw exc_matrix(0U, "vector::vector(int _ncol, elm value)");
+	if (_ncol > 0) {
+		point = new elm[_ncol];
+		if (point == NULL) {
+			throw exc_matrix(0U, "vector::vector(agm_vct origin)");
+		}
+		for (int i(0); i < _ncol; i++) {
+			point[i] = origin.point[i + begin];
+		}
+	}
+	else {
+		throw exc_matrix(5U, "vector(agm_vct origin, int begin, int end)");
+	}
+}
+
+template<class elm>
+vector<elm>::vector(int n, agm_elm value) :
+	_ncol(n), point(NULL)
+{
+	if (_ncol > 0) {
+		point = new elm[_ncol];
+		if (point == NULL) {
+			throw exc_matrix(0U, "vector::vector(int _ncol, elm value)");
+		}
 	}
 	for (int i(0); i < _ncol; i++) {
 		point[i] = value;
@@ -55,15 +75,17 @@ vector<elm>::vector(int _ncol, agm_elm value) :
 }
 
 template<class elm>
-vector<elm>::vector(const void* c_ary, int length) :
-	_ncol(length)
+vector<elm>::vector(c_ary ary, int len) :
+	_ncol(len), point(NULL)
 {
-	point = new elm[_ncol];
-	if (point == NULL) {
-		throw exc_matrix(0U, "vector::vector(const void* c_ary, int length)");
+	if (_ncol > 0) {
+		point = new elm[_ncol];
+		if (point == NULL) {
+			throw exc_matrix(0U, "vector::vector(c_ary c_ary, int length)");
+		}
 	}
 	for (int i(0); i < _ncol; i++) {
-		point[i] = ((elm*)c_ary)[i];
+		point[i] = ((elm*)ary)[i];
 	}
 }
 
@@ -77,13 +99,13 @@ vector<elm>::~vector()
 }
 
 template<class elm>
-bool vector<elm>::empty()
+bool vector<elm>::empty() const
 {
 	return _ncol == 0;
 }
 
 template<class elm>
-int vector<elm>::ncol()
+int vector<elm>::ncol() const
 {
 	if (empty()) {
 		return 0;
@@ -94,7 +116,7 @@ int vector<elm>::ncol()
 // Element -----------------------------------------------------------------
 
 template<class elm>
-inline elm vector<elm>::at(int lct)
+inline elm vector<elm>::at(int lct) const
 {
 	if (lct < 0 || lct >= _ncol) {
 		throw exc_matrix(2U, "vector::at(int lct)");
@@ -103,7 +125,7 @@ inline elm vector<elm>::at(int lct)
 }
 
 template<class elm>
-element<elm> vector<elm>::MAX()
+element<elm> vector<elm>::MAX() const
 {
 	int col(0);
 	elm value(at(0));
@@ -118,7 +140,7 @@ element<elm> vector<elm>::MAX()
 }
 
 template<class elm>
-element<elm> vector<elm>::MIN()
+element<elm> vector<elm>::MIN() const
 {
 	int col(0);
 	elm value(at(0));
@@ -133,7 +155,7 @@ element<elm> vector<elm>::MIN()
 }
 
 template<class elm>
-element<elm> vector<elm>::absmax()
+element<elm> vector<elm>::absmax() const
 {
 	int col(0);
 	elm value(abs(at(0)));
@@ -148,7 +170,7 @@ element<elm> vector<elm>::absmax()
 }
 
 template<class elm>
-element<elm> vector<elm>::absmin()
+element<elm> vector<elm>::absmin() const
 {
 	int col(0);
 	elm value(abs(at(0)));
@@ -173,59 +195,103 @@ void vector<elm>::cover(agm_elm value)
 }
 
 template<class elm>
-void vector<elm>::insert(int lct, agm_elm value, int length)
+void vector<elm>::cover(c_ary ary)
+{
+	for (int i(0); i < _ncol; i++) {
+		point[i] = ((elm*)ary)[i];
+	}
+}
+
+template<class elm>
+void vector<elm>::cover(agm_vct vct)
+{
+	for (int i(0); i < _ncol; i++) {
+		point[i] = vct.point[i];
+	}
+}
+
+template<class elm>
+void vector<elm>::insert(int lct, agm_elm value, int n)
 {
 	if (lct < 0 || lct > _ncol) {
-		throw exc_matrix(2, "vector::insert(int lct, elm value, int length), 'lct' is out of range.");
+		throw exc_matrix(2, "vector::insert(int lct, elm value, int n), 'lct' is out of range.");
 	}
-	_ncol += length;
+	_ncol += n;
 	elm* newpoint = new elm[_ncol];
 	int i(0);
 	for (; i < lct; i++) {
 		newpoint[i] = point[i];
 	}
-	for (; i < lct + length; i++) {
+	for (; i < lct + n; i++) {
 		newpoint[i] = value;
 	}
 	for (; i < _ncol; i++) {
-		newpoint[i] = point[i - length];
+		newpoint[i] = point[i - n];
 	}
 	delete[] point;
 	point = newpoint;
 }
 
 template<class elm>
-void vector<elm>::insert(int lct, agm_vct ary)
+void vector<elm>::insert(int lct, c_ary ary, int len)
 {
 	if (lct < 0 || lct > _ncol) {
-		throw exc_matrix(2, "vector::insert(int lct, agm_vct ary), 'lct' is out of range.");
+		throw exc_matrix(2, "vector::insert(int lct, elm value, int n), 'lct' is out of range.");
 	}
-	_ncol += ary._ncol;
+	_ncol += len;
 	elm* newpoint = new elm[_ncol];
 	int i(0);
 	for (; i < lct; i++) {
 		newpoint[i] = point[i];
 	}
-	for (; i < lct + ary._ncol; i++) {
-		newpoint[i] = ary[i - lct];
+	for (; i < lct + len; i++) {
+		newpoint[i] = ((elm*)ary)[i];
 	}
 	for (; i < _ncol; i++) {
-		newpoint[i] = point[i - ary._ncol];
+		newpoint[i] = point[i - len];
 	}
 	delete[] point;
 	point = newpoint;
 }
 
 template<class elm>
-void vector<elm>::append(agm_elm value, int length)
+void vector<elm>::insert(int lct, agm_vct vct)
 {
-	insert(_ncol, value, length);
+	if (lct < 0 || lct > _ncol) {
+		throw exc_matrix(2, "vector::insert(int lct, agm_vct vct), 'lct' is out of range.");
+	}
+	_ncol += vct._ncol;
+	elm* newpoint = new elm[_ncol];
+	int i(0);
+	for (; i < lct; i++) {
+		newpoint[i] = point[i];
+	}
+	for (; i < lct + vct._ncol; i++) {
+		newpoint[i] = vct.point[i - lct];
+	}
+	for (; i < _ncol; i++) {
+		newpoint[i] = point[i - vct._ncol];
+	}
+	delete[] point;
+	point = newpoint;
 }
 
 template<class elm>
-void vector<elm>::append(agm_vct ary)
+void vector<elm>::append(agm_elm value, int len)
 {
-	insert(_ncol, ary);
+	insert(_ncol, value, len);
+}
+
+template<class elm>
+void vector<elm>::append(c_ary ary, int len)
+{
+	insert(_ncol, ary, len);
+}
+
+template<class elm>
+void vector<elm>::append(agm_vct vct)
+{
+	insert(_ncol, vct);
 }
 
 template<class elm>
@@ -285,62 +351,107 @@ void vector<elm>::remove(int start, int end)
 }
 
 template<class elm>
-void vector<elm>::cutoff(int length)
+void vector<elm>::cutoff(int n)
 {
-	remove(_ncol - length, _ncol - 1);
+	remove(_ncol - n, _ncol - 1);
 }
 
 template<class elm>
-void vector<elm>::add(agm_vct ary)
+void vector<elm>::add(agm_vct vct)
 {
-	if (_ncol != ary._ncol) {
-		throw exc_matrix(3U, "vector::add(agm_vct ary), '_ncol' != 'ary._ncol'.");
+	if (_ncol != vct._ncol) {
+		throw exc_matrix(3U, "vector::add(agm_vct vct), '_ncol' != 'vct._ncol'.");
 	}
 	for (int i(0); i < _ncol; i++) {
-		point[i] += ary.point[i];
-	}
-}
-
-template<class elm>
-void vector<elm>::sub(agm_vct ary)
-{
-	if (_ncol != ary._ncol) {
-		throw exc_matrix(3U, "vector::sub(agm_vct ary), '_ncol' != 'ary._ncol'.");
-	}
-	for (int i(0); i < _ncol; i++) {
-		point[i] -= ary.point[i];
+		point[i] += vct.point[i];
 	}
 }
 
 template<class elm>
-void vector<elm>::mul(agm_vct ary)
+void vector<elm>::sub(agm_vct vct)
 {
-	if (_ncol != ary._ncol) {
-		throw exc_matrix(3U, "vector::mul(agm_vct ary), '_ncol' != 'ary._ncol'.");
+	if (_ncol != vct._ncol) {
+		throw exc_matrix(3U, "vector::sub(agm_vct vct), '_ncol' != 'vct._ncol'.");
 	}
 	for (int i(0); i < _ncol; i++) {
-		point[i] *= ary.point[i];
+		point[i] -= vct.point[i];
 	}
 }
 
 template<class elm>
-void vector<elm>::div(agm_vct ary)
+void vector<elm>::mul(agm_vct vct)
 {
-	if (_ncol != ary._ncol) {
-		throw exc_matrix(3U, "vector::div(agm_vct ary), '_ncol' != 'ary._ncol'.");
+	if (_ncol != vct._ncol) {
+		throw exc_matrix(3U, "vector::mul(agm_vct vct), '_ncol' != 'vct._ncol'.");
 	}
 	for (int i(0); i < _ncol; i++) {
-		point[i] /= ary.point[i];
+		point[i] *= vct.point[i];
+	}
+}
+
+template<class elm>
+void vector<elm>::mul(agm_elm value)
+{
+	for (int i(0); i < _ncol; i++) {
+		point[i] *= value;
+	}
+}
+
+template<class elm>
+void vector<elm>::div(agm_vct vct)
+{
+	if (_ncol != vct._ncol) {
+		throw exc_matrix(3U, "vector::div(agm_vct vct), '_ncol' != 'vct._ncol'.");
+	}
+	for (int i(0); i < _ncol; i++) {
+		point[i] /= vct.point[i];
+	}
+}
+
+template<class elm>
+void vector<elm>::div(agm_elm value)
+{
+	for (int i(0); i < _ncol; i++) {
+		point[i] /= value;
 	}
 }
 
 // Operators ---------------------------------------------------------------
 
 template<class elm>
-inline elm vector<elm>::operator[](int lct)
+inline elm vector<elm>::operator[](int lct) const
 {
 	return at(lct);
 }
+
+BEGIN_OSL
+template<typename elm>
+MATRIX_API inline vector<elm> operator+(const vector<elm>& vct1, const vector<elm>& vct2)
+{
+	vector<elm> rst(vct1);
+	rst.add(vct2);
+	return rst;
+}
+
+template<typename elm>
+MATRIX_API inline vector<elm> operator-(const vector<elm>& vct1, const vector<elm>& vct2)
+{
+	vector<elm> rst(vct1);
+	rst.sub(vct2);
+	return rst;
+}
+
+template<typename elm>
+MATRIX_API elm operator*(const vector<elm>& vct1, const vector<elm>& vct2)
+{
+	elm rst(0.0);
+	int ncol(vct1.ncol());
+	for (int i(0); i < ncol; i++) {
+		rst += vct1.at(i) * vct2.at(i);
+	}
+	return rst;
+}
+END_OSL
 
 namespace {
 	template<typename elm>
@@ -349,18 +460,44 @@ namespace {
 		// Constructors & Destructor
 		vector<elm>* a = new vector<elm>;
 		vector<elm>* b = new vector<elm>(*a);
-		delete a, b;
 		vector<elm>* c = new vector<elm>(1, value);
-		delete c;
+		delete a, b, c; a = NULL; b = NULL; c = NULL;
 		elm ary[] = { value };
-		vector<elm> d(ary, 1);
+		vector<elm>* d = new vector<elm>(ary, 1);
 
 		// Properties
-
+		d->empty();
+		d->ncol();
 
 		// Element
-		d.at(0);
+		d->at(0);
+		d->MAX();
+		d->MIN();
+		d->absmax();
+		d->absmin();
 
+		// Modifiers
+		d->cover(value);
+		d->cover(ary);
+		d->cover(*d);
+		d->append(elm(1.0));
+		d->append(ary, 1);
+		d->append(*d);
+		d->cutoff(d->ncol() - 1);
+		d->add(*d);
+		d->sub(*d);
+		d->mul(*d);
+		d->mul(elm(1.0));
+		d->div(*d);
+		d->div(elm(1.0));
+
+		// Operators
+		(*d)[0];
+		*d + *d;
+		*d - *d;
+		(*d) * (*d);
+
+		delete d;
 	}
 
 	void instantiate()

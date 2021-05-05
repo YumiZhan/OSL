@@ -41,8 +41,8 @@ template<class elm = double>
 class MATRIX_API element {
 public:
 	element();
-	element(int row, int col, const elm& value);
 	element(const element& origin);
+	element(int row, int col, const elm& value);
 	int row();
 	int col();
 	elm value();
@@ -55,46 +55,60 @@ template<class elm = double>
 class MATRIX_API vector {
 	typedef const vector& agm_vct;
 	typedef const elm& agm_elm;
+	typedef const void* c_ary;
 public:
 	// Constructors & Destructor
 	vector();
 	vector(agm_vct origin);
-	vector(int ncol, agm_elm value = 0);
-	vector(const void* c_ary, int length);
+	vector(agm_vct origin, int begin, int end);
+	vector(int n, agm_elm value = 0);
+	vector(c_ary ary, int len);
 	~vector();
 
 	// Properties
-	bool empty();
-	int ncol();
+	bool empty()const;
+	int ncol()const;
 
 	// Element
-	inline elm at(int lct);
-	element<elm> MAX();
-	element<elm> MIN();
-	element<elm> absmax();
-	element<elm> absmin();
+	inline elm at(int lct)const;
+	element<elm> MAX()const;
+	element<elm> MIN()const;
+	element<elm> absmax()const;
+	element<elm> absmin()const;
 
 	// Modifiers
 	void cover(agm_elm value = 0);
-	void insert(int lct, agm_elm value = 0, int length = 1);
-	void insert(int lct, agm_vct ary);
-	void append(agm_elm value = 0, int length = 1);
-	void append(agm_vct ary);
+	void cover(c_ary ary);
+	void cover(agm_vct vct);
+	void insert(int lct, agm_elm value = 0, int n = 1);
+	void insert(int lct, c_ary ary, int len);
+	void insert(int lct, agm_vct vct);
+	void append(agm_elm value, int len = 1);
+	void append(c_ary ary, int len);
+	void append(agm_vct vct);
 	void remove(int lct);
 	void remove(int start, int end);
-	void cutoff(int length);
-	void add(agm_vct ary);
-	void sub(agm_vct ary);
-	void mul(agm_vct ary);
-	void div(agm_vct ary);
+	void cutoff(int n);
+	void add(agm_vct vct);
+	void sub(agm_vct vct);
+	void mul(agm_vct vct);
+	void mul(agm_elm value);
+	void div(agm_vct vct);
+	void div(agm_elm value);
 
 	// Operators
-	inline elm operator[](int lct);
+	inline elm operator[](int lct)const;
 
 private:
 	int _ncol;
 	elm* point;
 };
+template <typename elm>
+MATRIX_API inline vector<elm> operator+(const vector<elm>& vct1, const vector<elm>& vct2);
+template <typename elm>
+MATRIX_API inline vector<elm> operator-(const vector<elm>& vct1, const vector<elm>& vct2);
+template <typename elm>
+MATRIX_API elm operator*(const vector<elm>& vct1, const vector<elm>& vct2);
 
 template<class elm = double>
 class MATRIX_API matrix {
