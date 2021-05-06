@@ -4,7 +4,7 @@ Copyright (C) 2021 YumiZhan, <https://github.com/YumiZhan>
 
 ### Other languages
 
-[简体中文](https://github.com/YumiZhan/OSL/blob/develop/README_zh_CN.md)
+- [简体中文](https://github.com/YumiZhan/OSL/blob/develop/README_zh_CN.md)
 
 
 

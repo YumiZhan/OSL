@@ -19,12 +19,12 @@
 using osl::element;
 
 template<class elm>
-element<elm>::element() :
+inline element<elm>::element() :
 	_row(0), _col(0), _value(0.0)
 {}
 
 template<class elm>
-element<elm>::element(const element & origin) :
+inline element<elm>::element(const element & origin) :
 	_row(origin._row), _col(origin._col), _value(origin._value)
 {}
 
@@ -34,19 +34,19 @@ inline element<elm>::element(int row, int col, const elm& value) :
 {}
 
 template<class elm>
-int element<elm>::row()
+inline int element<elm>::row()
 {
 	return _row;
 }
 
 template<class elm>
-int element<elm>::col()
+inline int element<elm>::col()
 {
 	return _col;
 }
 
 template<class elm>
-elm element<elm>::value()
+inline elm element<elm>::value()
 {
 	return _value;
 }

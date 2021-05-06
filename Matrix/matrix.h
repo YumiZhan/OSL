@@ -40,12 +40,12 @@ BEGIN_OSL // namespace osl {
 template<class elm = double>
 class MATRIX_API element {
 public:
-	element();
-	element(const element& origin);
-	element(int row, int col, const elm& value);
-	int row();
-	int col();
-	elm value();
+	inline element();
+	inline element(const element& origin);
+	inline element(int row, int col, const elm& value);
+	inline int row();
+	inline int col();
+	inline elm value();
 private:
 	int _row, _col;
 	elm _value;
@@ -61,13 +61,13 @@ public:
 	vector();
 	vector(agm_vct origin);
 	vector(agm_vct origin, int begin, int end);
-	vector(int n, agm_elm value = 0);
+	vector(int n, agm_elm value = 0.0);
 	vector(c_ary ary, int len);
 	~vector();
 
 	// Properties
-	bool empty()const;
-	int ncol()const;
+	inline bool empty()const;
+	inline int size()const;
 
 	// Element
 	inline elm at(int lct)const;
@@ -98,17 +98,21 @@ public:
 
 	// Operators
 	inline elm operator[](int lct)const;
+	template <typename elm>
+	friend MATRIX_API inline vector<elm> operator+(const vector<elm>& vct1, const vector<elm>& vct2);
+	template <typename elm>
+	friend MATRIX_API inline vector<elm> operator-(const vector<elm>& vct1, const vector<elm>& vct2);
+	template <typename elm>
+	friend MATRIX_API elm operator*(const vector<elm>& vct1, const vector<elm>& vct2);
+	template <typename elm>
+	friend MATRIX_API std::ostream& operator<<(std::ostream& os, const vector<elm>& vct);
+	template <typename elm>
+	friend MATRIX_API std::istream& operator>>(std::istream& is, vector<elm>& vct);
 
 private:
-	int _ncol;
+	int _size;
 	elm* point;
 };
-template <typename elm>
-MATRIX_API inline vector<elm> operator+(const vector<elm>& vct1, const vector<elm>& vct2);
-template <typename elm>
-MATRIX_API inline vector<elm> operator-(const vector<elm>& vct1, const vector<elm>& vct2);
-template <typename elm>
-MATRIX_API elm operator*(const vector<elm>& vct1, const vector<elm>& vct2);
 
 template<class elm = double>
 class MATRIX_API matrix {
@@ -134,7 +138,7 @@ public:
 	//void remove_rows(int lct_i, int rmv_rows = 1);
 	//void remove_cols(int lct_j, int rmv_cols = 1);
 	//void print(int start_row = 0U, int start_col = 0U,
-	//	int print_nrows = 0U, int print_ncols = 0U);
+	//	int print_nrows = 0U, int print_sizes = 0U);
 
 	//void add(agm_mtr matrix);
 	//void subtract(agm_mtr matrix);
