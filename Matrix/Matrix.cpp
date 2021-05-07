@@ -15,7 +15,7 @@ osl::matrix<elm>::matrix(agm_mtr origin) :
 {
 	point = new vector<elm>[nrow];
 	if (point == NULL) {
-		throw exc_matrix(0U, "matrix::matrix(agm_mtr origin)");
+		throw exception::matrix(0U, "matrix::matrix(agm_mtr origin)");
 	}
 	//!! try
 	for (int i(0); i < nrow; i++) {
@@ -27,10 +27,10 @@ template<class elm>
 osl::matrix<elm>::matrix(agm_mtr origin, int start_row, int start_col, int end_row, int end_col)
 {
 	if (start_row > end_row || start_col > end_col) {
-		throw exc_matrix(5U, "matrix::matrix(agm_mtr origin, int start_row, int start_col, int end_row, int end_col)");
+		throw exception::matrix(5U, "matrix::matrix(agm_mtr origin, int start_row, int start_col, int end_row, int end_col)");
 	}
 	if (start_row < 0 || start_col < 0 || end_row > origin.nrow || end_col > origin.ncol) {
-		throw exc_matrix(2U, "matrix::matrix(agm_mtr origin, int start_row, int start_col, int end_row, int end_col)");
+		throw exception::matrix(2U, "matrix::matrix(agm_mtr origin, int start_row, int start_col, int end_row, int end_col)");
 	}
 	nrow = end_row + 1 - start_row; ncol = end_col + 1 - start_col;
 	point = new vector<elm>[nrow];

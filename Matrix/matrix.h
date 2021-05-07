@@ -59,7 +59,7 @@ namespace osl {
 		inline int size()const;
 
 		// Element
-		inline elm at(int lct)const;
+		inline elm& at(int lct)const;
 		element<elm> MAX()const;
 		element<elm> MIN()const;
 		element<elm> absmax()const;
@@ -68,16 +68,16 @@ namespace osl {
 		// Modifiers
 		void cover(agm_elm value = 0);
 		void cover(c_ary ary);
-		void cover(agm_vct vct);
-		void insert(int lct, agm_elm value = 0, int n = 1);
+		void cover(agm_vct vct, int begin = 0);
+		void insert(int lct, int n = 1, agm_elm value = 0.0);
 		void insert(int lct, c_ary ary, int len);
 		void insert(int lct, agm_vct vct);
-		void append(agm_elm value, int len = 1);
-		void append(c_ary ary, int len);
-		void append(agm_vct vct);
+		inline void append(agm_elm value, int n = 1);
+		inline void append(c_ary ary, int len);
+		inline void append(agm_vct vct);
 		void remove(int lct);
 		void remove(int start, int end);
-		void cutoff(int n);
+		inline void cutoff(int n);
 		void add(agm_vct vct);
 		void sub(agm_vct vct);
 		void mul(agm_vct vct);
@@ -86,7 +86,7 @@ namespace osl {
 		void div(agm_elm value);
 
 		// Operators
-		inline elm operator[](int lct)const;
+		inline elm& operator[](int lct)const;
 		template <typename elm>
 		friend MATRIX_API inline vector<elm> operator+(const vector<elm>& vct1, const vector<elm>& vct2);
 		template <typename elm>
@@ -144,12 +144,23 @@ namespace osl {
 		//void max_and_min();
 	};
 	
-	class MATRIX_API exc_matrix {
-	public:
-		const unsigned num;
-		c_str const discription;
-		static c_str overview_list[];
-		inline exc_matrix(unsigned num, c_str discription);
-		inline c_str overview()const;
-	};
+	namespace exception {
+		class MATRIX_API vector {
+		public:
+			const unsigned code;
+			c_str const discription;
+			static c_str overview_list[];
+			inline vector(unsigned code, c_str discription);
+			inline c_str overview()const;
+		};
+
+		class MATRIX_API matrix {
+		public:
+			const unsigned code;
+			c_str const discription;
+			static c_str overview_list[];
+			inline matrix(unsigned code, c_str discription);
+			inline c_str overview()const;
+		};
+	}
 }

@@ -9,19 +9,18 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Example", "example\example.
 		{3152DAA4-8826-4D54-8250-8F5DADAB764D} = {3152DAA4-8826-4D54-8250-8F5DADAB764D}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{88A33D50-E2F2-4062-ABE9-7CF6A73DDD23}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-		README_zh_CN.md = README_zh_CN.md
-		TODO.md = TODO.md
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Matrix", "Matrix\Matrix.vcxproj", "{3152DAA4-8826-4D54-8250-8F5DADAB764D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7B51D311-A370-4528-8BC9-2B7017E5BAF7} = {7B51D311-A370-4528-8BC9-2B7017E5BAF7}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Number", "Number\Number.vcxproj", "{7B51D311-A370-4528-8BC9-2B7017E5BAF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "General", "General", "{24BC8E1A-4508-42DD-BA7C-49717E51AC5E}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		README_en.md = README_en.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
