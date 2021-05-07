@@ -421,56 +421,56 @@ inline elm vector<elm>::operator[](int lct) const
 	return at(lct);
 }
 
-BEGIN_OSL
-template<typename elm>
-MATRIX_API inline vector<elm> operator+(const vector<elm>& vct1, const vector<elm>& vct2)
-{
-	vector<elm> rst(vct1);
-	rst.add(vct2);
-	return rst;
-}
-
-template<typename elm>
-MATRIX_API inline vector<elm> operator-(const vector<elm>& vct1, const vector<elm>& vct2)
-{
-	vector<elm> rst(vct1);
-	rst.sub(vct2);
-	return rst;
-}
-
-template<typename elm>
-MATRIX_API elm operator*(const vector<elm>& vct1, const vector<elm>& vct2)
-{
-	elm rst(0.0);
-	int size(vct1._size);
-	for (int i(0); i < size; i++) {
-		rst += vct1.at(i) * vct2.at(i);
+namespace osl {
+	template<typename elm>
+	MATRIX_API inline vector<elm> operator+(const vector<elm>& vct1, const vector<elm>& vct2)
+	{
+		vector<elm> rst(vct1);
+		rst.add(vct2);
+		return rst;
 	}
-	return rst;
-}
 
-template<typename elm>
-MATRIX_API std::ostream& operator<<(std::ostream& os, const vector<elm>& vct)
-{
-	os << "[ ";
-	int size(vct._size);
-	int i(0);
-	for (; i < size - 1; i++) {
-		os << vct.at(i) << ", ";
+	template<typename elm>
+	MATRIX_API inline vector<elm> operator-(const vector<elm>& vct1, const vector<elm>& vct2)
+	{
+		vector<elm> rst(vct1);
+		rst.sub(vct2);
+		return rst;
 	}
-	os << vct.at(size - 1) << " ]";
-	return os;
-}
 
-template<typename elm>
-MATRIX_API std::istream& operator>>(std::istream& is, vector<elm>& vct)
-{
-	for (int i(0); i < vct._size; i++) {
-		is >> vct.point[i];
+	template<typename elm>
+	MATRIX_API elm operator*(const vector<elm>& vct1, const vector<elm>& vct2)
+	{
+		elm rst(0.0);
+		int size(vct1._size);
+		for (int i(0); i < size; i++) {
+			rst += vct1.at(i) * vct2.at(i);
+		}
+		return rst;
 	}
-	return is;
+
+	template<typename elm>
+	MATRIX_API std::ostream& operator<<(std::ostream& os, const vector<elm>& vct)
+	{
+		os << "[ ";
+		int size(vct._size);
+		int i(0);
+		for (; i < size - 1; i++) {
+			os << vct.at(i) << ", ";
+		}
+		os << vct.at(size - 1) << " ]";
+		return os;
+	}
+
+	template<typename elm>
+	MATRIX_API std::istream& operator>>(std::istream& is, vector<elm>& vct)
+	{
+		for (int i(0); i < vct._size; i++) {
+			is >> vct.point[i];
+		}
+		return is;
+	}
 }
-END_OSL
 
 namespace {
 	template<typename elm>

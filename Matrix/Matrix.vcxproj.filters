@@ -32,7 +32,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="exc_matrix.cpp">
+    <ClCompile Include="exception.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="vector.cpp">

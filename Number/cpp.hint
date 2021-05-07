@@ -1,4 +1,2 @@
 #define NUMBER_API __declspec(dllexport)
 #define NUMBER_API __declspec(dllimport)
-#define BEGIN_OSL namespace osl {
-#define END_OSL }
