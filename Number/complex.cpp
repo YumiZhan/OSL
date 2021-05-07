@@ -25,10 +25,6 @@ using std::string;
 #define POSITIVE 1.0
 #define NEGATIVE -1.0
 
-inline osl::complex::complex() :
-	_real(0.0), _imag(0.0), known(false)
-{}
-
 inline osl::complex::complex(agm_cpl cpl) :
 	_real(cpl._real), _imag(cpl._imag), known(cpl.known)
 {}

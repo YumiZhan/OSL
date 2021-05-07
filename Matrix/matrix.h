@@ -47,10 +47,9 @@ namespace osl {
 		typedef const void* c_ary;
 	public:
 		// Constructors & Destructor
-		vector();
+		vector(int n = 1, agm_elm value = 0.0);
 		vector(agm_vct origin);
 		vector(agm_vct origin, int begin, int end);
-		vector(int n, agm_elm value = 0.0);
 		vector(c_ary ary, int len);
 		~vector();
 
@@ -97,6 +96,9 @@ namespace osl {
 		friend MATRIX_API std::ostream& operator<<(std::ostream& os, const vector<elm>& vct);
 		template <typename elm>
 		friend MATRIX_API std::istream& operator>>(std::istream& is, vector<elm>& vct);
+
+		// Practical Tools
+		void print(c_str separator = " ", char end = '\n');
 
 	private:
 		int _size;

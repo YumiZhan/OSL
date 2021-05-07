@@ -45,9 +45,8 @@ namespace osl {
 		bool known;
 
 		// rational.cpp
-		inline rational();
 		inline rational(agm_rtn origin);
-		inline rational(double num);
+		inline rational(double num = 0.0);
 		inline rational(double numerator, double denominator);
 		inline rational(c_str c_str);
 		inline rational(const wchar_t* w_str);
@@ -235,9 +234,8 @@ namespace osl {
 
 		// complex.cpp
 		/* Constructor */
-		inline complex();
 		inline complex(agm_cpl cpl);
-		inline complex(double real);
+		inline complex(double real = 0.0);
 		inline complex(double a, double b, int mod = CPL_RECT);
 		complex(c_str str);
 		/* Console Print */

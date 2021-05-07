@@ -6,8 +6,7 @@ using namespace osl;
 
 int main()
 {
-	vector<rational> d(3);
-	cin >> d;
-	cout << d << endl;
+	vector<rational> a(0);
+	a.print();
 	return 0;
 }

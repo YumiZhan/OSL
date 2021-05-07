@@ -20,10 +20,6 @@
 using std::cout;
 using osl::rational;
 
-inline rational::rational() :
-	_denominator(1), _numerator(0), known(false)
-{}
-
 inline rational::rational(agm_rtn origin) :
 	_denominator(origin._denominator), _numerator(origin._numerator), known(origin.known)
 {}

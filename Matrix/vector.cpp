@@ -23,9 +23,22 @@ using osl::vector;
 // Constructors & Destructor ---------------------------------------------------------------
 
 template<class elm>
-vector<elm>::vector() :
-	_size(0), point(NULL)
-{}
+vector<elm>::vector(int n, agm_elm value) :
+	_size(n), point(NULL)
+{
+	if (_size > 0) {
+		point = new elm[_size];
+		if (point == NULL) {
+			throw exception::vector(0U, "vector(int n, agm_elm value)");
+		}
+		for (int i(0); i < _size; i++) {
+			point[i] = value;
+		}
+	}
+	else if (_size < 0) {
+		throw exception::vector(3U, "vector(int n, agm_elm value)");
+	}
+}
 
 template<class elm>
 vector<elm>::vector(agm_vct origin) :
@@ -57,24 +70,6 @@ vector<elm>::vector(agm_vct origin, int begin, int end) :
 	}
 	else if (_size < 0) {
 		throw exception::vector(4U, "vector(agm_vct origin, int begin, int end)");
-	}
-}
-
-template<class elm>
-vector<elm>::vector(int n, agm_elm value) :
-	_size(n), point(NULL)
-{
-	if (_size > 0) {
-		point = new elm[_size];
-		if (point == NULL) {
-			throw exception::vector(0U, "vector(int n, agm_elm value)");
-		}
-		for (int i(0); i < _size; i++) {
-			point[i] = value;
-		}
-	}
-	else if (_size < 0) {
-		throw exception::vector(3U, "vector(int n, agm_elm value)");
 	}
 }
 
@@ -468,11 +463,10 @@ namespace osl {
 	MATRIX_API elm operator*(const vector<elm>& vct1, const vector<elm>& vct2)
 	{
 		elm rst(0.0);
-		int size(vct1._size);
 		if (vct1._size != vct2._size) {
 			throw exception::vector(5U, "operator*(const vector<elm>& vct1, const vector<elm>& vct2)");
 		}
-		for (int i(0); i < size; i++) {
+		for (int i(0); i < vct1._size; i++) {
 			rst += vct1.at(i) * vct2.at(i);
 		}
 		return rst;
@@ -481,17 +475,14 @@ namespace osl {
 	template<typename elm>
 	MATRIX_API std::ostream& operator<<(std::ostream& os, const vector<elm>& vct)
 	{
-		int size(vct._size);
 		os << "[ ";
-		if (size == 0) {
-			os << "]";
-			return os;
+		vct._size;
+		if (vct._size > 0) {
+			for (int i(0); i < vct._size; i++) {
+				os << vct.at(i) << " ";
+			}
 		}
-		int i(0);
-		for (; i < size - 1; i++) {
-			os << vct.at(i) << ", ";
-		}
-		os << vct.at(size - 1) << " ]";
+		os << "]";
 		return os;
 	}
 
@@ -504,6 +495,23 @@ namespace osl {
 		return is;
 	}
 }
+
+// Practical Tools ------------------------------------------------------------------------
+
+template<class elm>
+void vector<elm>::print(c_str separator, char end)
+{
+	std::cout << "[ ";
+	if (_size > 0) {
+		for (int i(0); i < _size - 1; i++) {
+			std::cout << at(i) << separator;
+		}
+		std::cout << at(_size - 1);
+	}
+	std::cout << " ]" << end;
+}
+
+// Instantiate ----------------------------------------------------------------------------
 
 namespace {
 	template<typename elm>
@@ -549,6 +557,10 @@ namespace {
 		(*d) * (*d);
 		std::cout << *d;
 		std::cin >> *d;
+
+		// Practical Tools
+		d->print();
+
 		delete d;
 	}
 
