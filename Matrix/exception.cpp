@@ -1,4 +1,4 @@
-/* OSL/Matrix/exc::matrix.cpp
+/* OSL/Matrix/exception.cpp
  *
  * Copyright (C) 2021 YuminZhan
  *
@@ -22,12 +22,13 @@ using osl::c_str;
 c_str vector::overview_list[] = {
 	"Failed to allocate space",	//0
 	"Unexpected NULL pointer",	//1
-	"Beyond range",				//2
 	"",
-	"Incorrect number of size",	//4
-	"The start number is larger than the end number",	//5
-	""
-	"Size unmatched",			//7
+	"Beyond range of size",		//3
+	"",
+	"Incorrect number of size",	//5
+	"The start number is larger than the end number",	//6
+	"",
+	"Size unmatched",			//8
 };
 
 inline vector::vector(unsigned code, c_str discription) :
@@ -42,12 +43,13 @@ inline c_str osl::exc::vector::overview() const
 c_str matrix::overview_list[] = {
 	"Failed to allocate space",		//0
 	"Unexpected NULL pointer",		//1
-	"Beyond range",					//2
-	"Incorrect number of rows",		//3
-	"Incorrect number of columns",	//4
-	"The start number is large than the end number"	//5
-	"Number of rows unmatched"		//6
-	"Number of columns unmatched",	//7
+	"Beyond range of row",			//2
+	"Beyond range of columns",		//3
+	"Incorrect number of rows",		//4
+	"Incorrect number of columns",	//5
+	"The start number is large than the end number",	//6
+	"Number of rows unmatched",		//7
+	"Number of columns unmatched"	//8
 };
 
 inline matrix::matrix(unsigned code, c_str discription) :

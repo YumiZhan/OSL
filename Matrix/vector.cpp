@@ -26,17 +26,18 @@ template<class elm>
 vector<elm>::vector(int n, agm_elm value) :
 	_size(n), pointer(NULL)
 {
-	if (_size > 0) {
-		pointer = new elm[_size];
-		if (pointer == NULL) {
-			throw exc::vector(0U, "vector(int n, agm_elm value)");
-		}
-		for (int i(0); i < _size; i++) {
-			pointer[i] = value;
-		}
+	if (_size < 0) {
+		throw exc::vector(5U, "vector(int n, agm_elm value)");
 	}
-	else if (_size < 0) {
-		throw exc::vector(4U, "vector(int n, agm_elm value)");
+	if (_size == 0) {
+		return;
+	}
+	pointer = new elm[_size];
+	if (pointer == NULL) {
+		throw exc::vector(0U, "vector(int n, agm_elm value)");
+	}
+	for (int i(0); i < _size; i++) {
+		pointer[i] = value;
 	}
 }
 
@@ -44,14 +45,15 @@ template<class elm>
 vector<elm>::vector(agm_vec origin) :
 	_size(origin._size), pointer(NULL)
 {
-	if (_size > 0) {
-		pointer = new elm[_size];
-		if (pointer == NULL) {
-			throw exc::vector(0U, "vector::vector(agm_vec origin)");
-		}
-		for (int i(0); i < _size; i++) {
-			pointer[i] = origin.pointer[i];
-		}
+	if (_size == 0) {
+		return;
+	}
+	pointer = new elm[_size];
+	if (pointer == NULL) {
+		throw exc::vector(0U, "vector::vector(agm_vec origin)");
+	}
+	for (int i(0); i < _size; i++) {
+		pointer[i] = origin.pointer[i];
 	}
 }
 
@@ -59,17 +61,18 @@ template<class elm>
 vector<elm>::vector(agm_vec origin, int begin, int end) :
 	_size(end + 1 - begin), pointer(NULL)
 {
-	if (_size > 0) {
-		if (begin < 0 || end >= origin._size) {
-			throw exc::vector(2U, "vector(agm_vec origin, int begin, int end)");
-		}
-		pointer = new elm[_size];
-		for (int i(0); i < _size; i++) {
-			pointer[i] = origin.pointer[i + begin];
-		}
+	if (_size == 0) {
+		return;
 	}
-	else if (_size < 0) {
-		throw exc::vector(5U, "vector(agm_vec origin, int begin, int end)");
+	if (_size < 0) {
+		throw exc::vector(6U, "vector(agm_vec origin, int begin, int end)");
+	}
+	if (begin < 0 || end >= origin._size) {
+		throw exc::vector(3U, "vector(agm_vec origin, int begin, int end)");
+	}
+	pointer = new elm[_size];
+	for (int i(0); i < _size; i++) {
+		pointer[i] = origin.pointer[i + begin];
 	}
 }
 
@@ -77,17 +80,21 @@ template<class elm>
 vector<elm>::vector(c_ary ary, int len) :
 	_size(len), pointer(NULL)
 {
-	if (_size > 0) {
-		pointer = new elm[_size];
-		if (pointer == NULL) {
-			throw exc::vector(0U, "vector::vector(c_ary ary, int len)");
-		}
-		for (int i(0); i < _size; i++) {
-			pointer[i] = ((elm*)ary)[i];
-		}
+	if (_size < 0) {
+		throw exc::vector(5U, "vector(c_ary ary, int len)");
 	}
-	else if (_size < 0) {
-		throw exc::vector(4U, "vector(c_ary ary, int len)");
+	if (_size == 0) {
+		return;
+	}
+	if (ary == NULL) {
+		throw exc::vector(1U, "vector(c_ary ary, int len)");
+	}
+	pointer = new elm[_size];
+	if (pointer == NULL) {
+		throw exc::vector(0U, "vector::vector(c_ary ary, int len)");
+	}
+	for (int i(0); i < _size; i++) {
+		pointer[i] = ((elm*)ary)[i];
 	}
 }
 
@@ -118,7 +125,7 @@ template<class elm>
 inline elm& vector<elm>::at(int lct) const
 {
 	if (lct < 0 || lct >= _size) {
-		throw exc::vector(2U, "vector::at(int lct)");
+		throw exc::vector(3U, "vector::at(int lct)");
 	}
 	return pointer[lct];
 }
@@ -196,6 +203,9 @@ void vector<elm>::cover(agm_elm value)
 template<class elm>
 void vector<elm>::cover(c_ary ary)
 {
+	if (ary == NULL) {
+		throw exc::vector(1U, "cover(c_ary ary)");
+	}
 	for (int i(0); i < _size; i++) {
 		pointer[i] = ((elm*)ary)[i];
 	}
@@ -205,7 +215,7 @@ template<class elm>
 void vector<elm>::cover(agm_vec vec, int begin)
 {
 	if (begin < 0 || begin + _size - 1 >= vec._size) {
-		throw exc::vector(2U, "cover(agm_vec vec, int begin)");
+		throw exc::vector(3U, "cover(agm_vec vec, int begin)");
 	}
 	for (int i(0); i < _size; i++) {
 		pointer[i] = vec.pointer[i + begin];
@@ -219,10 +229,10 @@ void vector<elm>::insert(int lct, int n, agm_elm value)
 		return;
 	}
 	if (n < 0) {
-		throw exc::vector(4U, "insert(int lct, int n, agm_elm value)");
+		throw exc::vector(5U, "insert(int lct, int n, agm_elm value)");
 	}
 	if (lct < 0 || lct > _size) {
-		throw exc::vector(2U, "insert(int lct, int n, agm_elm value)");
+		throw exc::vector(3U, "insert(int lct, int n, agm_elm value)");
 	}
 	_size += n;
 	elm* newpointer = new elm[_size];
@@ -250,10 +260,13 @@ void vector<elm>::insert(int lct, c_ary ary, int len)
 		return;
 	}
 	if (len < 0) {
-		throw exc::vector(4U, "insert(int lct, c_ary ary, int len)");
+		throw exc::vector(5U, "insert(int lct, c_ary ary, int len)");
+	}
+	if (ary == NULL) {
+		throw exc::vector(1U, "insert(int lct, c_ary ary, int len)");
 	}
 	if (lct < 0 || lct > _size) {
-		throw exc::vector(2U, "insert(int lct, c_ary ary, int len)");
+		throw exc::vector(3U, "insert(int lct, c_ary ary, int len)");
 	}
 	_size += len;
 	elm* newpointer = new elm[_size];
@@ -281,7 +294,7 @@ void vector<elm>::insert(int lct, agm_vec vec)
 		return;
 	}
 	if (lct < 0 || lct > _size) {
-		throw exc::vector(2U, "insert(int lct, agm_vec vec)");
+		throw exc::vector(3U, "insert(int lct, agm_vec vec)");
 	}
 	_size += vec._size;
 	elm* newpointer = new elm[_size];
@@ -303,28 +316,43 @@ void vector<elm>::insert(int lct, agm_vec vec)
 }
 
 template<class elm>
-inline void vector<elm>::append(agm_elm value, int n)
+inline void vector<elm>::append(int n, agm_elm value)
 {
-	insert(_size, n, value);
+	try {
+		insert(_size, n, value);
+	}
+	catch (exc::vector excv) {
+		throw exc::vector(excv.code, "append(agm_elm value, int n)");
+	}
 }
 
 template<class elm>
 inline void vector<elm>::append(c_ary ary, int len)
 {
-	insert(_size, ary, len);
+	try {
+		insert(_size, ary, len);
+	}
+	catch (exc::vector excv) {
+		throw exc::vector(excv.code, "append(c_ary ary, int len)");
+	}
 }
 
 template<class elm>
 inline void vector<elm>::append(agm_vec vec)
 {
-	insert(_size, vec);
+	try {
+		insert(_size, vec);
+	}
+	catch (exc::vector excv) {
+		throw exc::vector(excv.code, "append(agm_vec vec)");
+	}
 }
 
 template<class elm>
 void vector<elm>::remove(int lct)
 {
 	if (lct < 0 || lct >= _size) {
-		throw exc::vector(2U, "remove(int lct)");
+		throw exc::vector(3U, "remove(int lct)");
 	}
 	if (lct == 0 && lct == _size - 1) {
 		_size = 0;
@@ -352,10 +380,10 @@ template<class elm>
 void vector<elm>::remove(int start, int end)
 {
 	if (start > end) {
-		throw exc::vector(5U, "remove(int start, int end)");
+		throw exc::vector(6U, "remove(int start, int end)");
 	}
 	if (start < 0 || end >= _size) {
-		throw exc::vector(2U, "remove(int start, int end)");
+		throw exc::vector(3U, "remove(int start, int end)");
 	}
 	if (start == end) {
 		return;
@@ -386,6 +414,9 @@ void vector<elm>::remove(int start, int end)
 template<class elm>
 inline void vector<elm>::cutoff(int n)
 {
+	if (n < 0) {
+		throw exc::vector(5U, "cutoff(int n)");
+	}
 	remove(_size - n, _size - 1);
 }
 
@@ -393,7 +424,7 @@ template<class elm>
 void vector<elm>::add(agm_vec vec)
 {
 	if (_size != vec._size) {
-		throw exc::vector(7U, "add(agm_vec vec)");
+		throw exc::vector(8U, "add(agm_vec vec)");
 	}
 	for (int i(0); i < _size; i++) {
 		pointer[i] += vec.pointer[i];
@@ -404,7 +435,7 @@ template<class elm>
 void vector<elm>::sub(agm_vec vec)
 {
 	if (_size != vec._size) {
-		throw exc::vector(7U, "sub(agm_vec vec)");
+		throw exc::vector(8U, "sub(agm_vec vec)");
 	}
 	for (int i(0); i < _size; i++) {
 		pointer[i] -= vec.pointer[i];
@@ -415,7 +446,7 @@ template<class elm>
 void vector<elm>::mul(agm_vec vec)
 {
 	if (_size != vec._size) {
-		throw exc::vector(7U, "mul(agm_vec vec)");
+		throw exc::vector(8U, "mul(agm_vec vec)");
 	}
 	for (int i(0); i < _size; i++) {
 		pointer[i] *= vec.pointer[i];
@@ -434,7 +465,7 @@ template<class elm>
 void vector<elm>::div(agm_vec vec)
 {
 	if (_size != vec._size) {
-		throw exc::vector(7U, "div(agm_vec vec)");
+		throw exc::vector(8U, "div(agm_vec vec)");
 	}
 	for (int i(0); i < _size; i++) {
 		pointer[i] /= vec.pointer[i];
@@ -479,7 +510,7 @@ namespace osl {
 	{
 		elm rst(0.0);
 		if (vec1._size != vec2._size) {
-			throw exc::vector(7U, "operator*(const vector<elm>& vec1, const vector<elm>& vec2)");
+			throw exc::vector(8U, "operator*(const vector<elm>& vec1, const vector<elm>& vec2)");
 		}
 		for (int i(0); i < vec1._size; i++) {
 			rst += vec1.at(i) * vec2.at(i);
@@ -554,7 +585,7 @@ namespace {
 		d->cover(value);
 		d->cover(ary);
 		d->cover(*d);
-		d->append(elm(1.0));
+		d->append(1, elm(1.0));
 		d->append(ary, 1);
 		d->append(*d);
 		d->cutoff(d->size() - 1);

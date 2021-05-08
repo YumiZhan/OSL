@@ -71,7 +71,7 @@ namespace osl {
 		void insert(int lct, int n = 1, agm_elm value = 0.0);
 		void insert(int lct, c_ary ary, int len);
 		void insert(int lct, agm_vec vec);
-		inline void append(agm_elm value = 0.0, int n = 1);
+		inline void append(int n = 1, agm_elm value = 0.0);
 		inline void append(c_ary ary, int len);
 		inline void append(agm_vec vec);
 		void remove(int lct);
@@ -105,21 +105,31 @@ namespace osl {
 		elm* pointer;
 	};
 
-	typedef void** c_rary;
+	typedef const void** c_rary;
 	template<class elm = double>
 	class MATRIX_API matrix {
 		typedef const matrix& agm_mat;
 		typedef const elm& agm_elm;
+		typedef const vector<elm>& agm_vec;
+
 	public:
-		// matrix.cpp
 		matrix(int nrow = 0, int ncol = 0, agm_elm value = 0.0);
 		matrix(agm_mat origin);
 		matrix(agm_mat origin, int start_row, int end_row, int start_col, int end_col);
+		matrix(agm_vec vec, int n = 1);
+		matrix(c_ary ary, int ncol, int n = 1);
+		matrix(c_rary rary, int nrow, int ncol);
 		//matrix(const char* file, int nrow, int ncol);
-		//matrix(int nrow, int ncol, elm num = 0.0);
-		//matrix(void* ary, int n, bool transpose = false);
-		//matrix(void** ary, int nrow, int ncol);
 		~matrix();
+
+		// Properties
+		inline bool empty()const;
+		inline int nrow()const;
+		inline int ncol()const;
+
+		// Element
+		elm& at(int row, int col)const;
+		vector<elm> at(int row)const;
 
 		//inline elm* operator[](int i);
 		//typedef int position;

@@ -413,7 +413,7 @@ OSL 已经开源发布到如下网站中
 
 ##### (六) 实用工具
 
-- `print(c_str separator = " ", char end = '\n')`：将向量流输出到控制台窗口中，`separator` 为分隔符，`end` 为输出最后添加的字符
+- `print(c_str separator, char end)`：将向量流输出到控制台窗口中，`separator` 为分隔符，`end` 为输出最后添加的字符
 
 
 
@@ -431,9 +431,25 @@ OSL 已经开源发布到如下网站中
 
 #### 三、函数
 
+##### 1. 构造函数和析构函数
+
 - `matrix(int nrow, int ncol, agm_elm value)`：构造一个 `nrow` 行 `ncol` 列的矩阵，元素值均初始化为 `value` 
 - 复制构造函数
 - `matrix(agm_mat origin, int start_row, int end_row, int start_col, int end_col)`：用 `origin` 的 `start_row` 至 `end_row` 行、`start_col` 至 `end_col` 列的元素来构造矩阵
+- `matrix(agm_vec vec, int n)`：用 n 行 `vec` 来构造矩阵
+- `matrix(c_ary ary, int ncol, int n)`：用 n 行 C 风格一维数组的前 `ncol` 列来构造矩阵
+- `matrix(c_rary rary, int nrow, int ncol)`：用 C 风格二维数组的前 `nrow` 行和 `ncol` 列来构造矩阵
+
+##### 2. 属性
+
+- `empty()`：判断是否为空矩阵
+- `nrow()`：返回矩阵行数
+- `ncol()`：返回矩阵列数
+
+##### 3.元素
+
+- `at(int row, int col)`：返回 `row` 行 `col` 列元素的引用
+- `at(int row) const`：返回 `row` 行 `vector` 对象的备份
 
 
 
