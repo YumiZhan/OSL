@@ -4,7 +4,7 @@
 
 ### 其它语言
 
-- [English](https://github.com/YumiZhan/OSL/blob/master/README.md) 
+- [English](https://github.com/YumiZhan/OSL/blob/master/README_en.md) 
 
 
 
@@ -361,7 +361,7 @@ OSL 已经开源发布到如下网站中
 
 #### 一、简介
 
-以动态分配一维数组为基础，`vector` 类是一个可表示向量、有序数列或者行矩阵的模板类，支持以 `double` 和 Number 库中的类作为元素类型。比 `std::array` 略胜一筹的是，用户可以随时增加或删去元素。
+以动态分配一维数组为基础，`vector` 类是用于解决向量、有序数列或者行矩阵问题的模板类，支持以 `int`, `double` 和 Number 库中的类作为元素类型。
 
 #### 二、数据成员（均为私有）
 
@@ -372,7 +372,7 @@ OSL 已经开源发布到如下网站中
 
 ##### (一) 构造函数
 
-- `vector(int n, agm_elm value)`：构造有 n 个元素的向量，每个元素的值均为 `value`，所有参数都含默认值（同时作为默认构造函数）
+- `vector(int n, agm_elm value)`：构造有 n 个元素的向量，元素值均初始化为 `value`，所有参数都含默认值（同时作为默认构造函数）
 - 复制构造函数
 - `vector(agm_vct origin, int begin, int end)`：用 `origin` 的 `begin` 到 `end` 之间的元素来构造向量
 - `vector(c_ary ary, int len)`：用 C 风格数组 ary 的前 len 个元素来构造向量
@@ -421,25 +421,29 @@ OSL 已经开源发布到如下网站中
 
 #### 一、简介
 
-
+以动态分配的 `vector` 类数组为基础，`matrix` 类是用于解决矩阵问题的模板类，支持以 `int`, `double` 和 Number 库中的类作为元素类型。
 
 #### 二、数据成员
 
-
+- `_nrow`：行数
+- `_ncol`：列数
+- `pointer`：指向 `vector` 数组的指针
 
 #### 三、函数
 
-
+- `matrix(int nrow, int ncol, agm_elm value)`：构造一个 `nrow` 行 `ncol` 列的矩阵，元素值均初始化为 `value` 
+- 复制构造函数
+- `matrix(agm_mat origin, int start_row, int end_row, int start_col, int end_col)`：用 `origin` 的 `start_row` 至 `end_row` 行、`start_col` 至 `end_col` 列的元素来构造矩阵
 
 
 
 ### 异常处理
 
-#### 简介
+#### 一、简介
 
 不同于简单的数字运算，向量和矩阵的运算将涉及行和列的数量，需要谨慎对待：一是因为这些都对应着内存的地址，处理不当将会引发越界；二是规模不相称的向量和数组的运算是没有意义的。设计此异常接口将有利于编写异常处理程序，从而在发生异常时及时提醒用户。Matrix 库的异常类的定义在 exception.cpp 文件中。为了和 osl 命名空间中的 vector 类和 matrix 类区分，将它们的异常类定义于 osl 的子命名空间 exception 中。
 
-#### vector 类
+#### 二、vector 类
 
 ##### 数据成员
 
@@ -452,7 +456,7 @@ OSL 已经开源发布到如下网站中
 - `vector(unsigned code, c_str discription)`：用异常码和一个字符串来构造对象
 - `overview()`：返回对应异常码的概述
 
-##### matrix 类
+#### 三、matrix 类
 
 成员同上，只是 `overview_list` 的实际内容有差异。
 

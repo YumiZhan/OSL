@@ -6,7 +6,6 @@ using namespace osl;
 
 int main()
 {
-	vector<rational> a(0);
-	a.print();
+	matrix<double> a(3, 2, 1.0);
 	return 0;
 }

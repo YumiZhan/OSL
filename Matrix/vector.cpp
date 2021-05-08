@@ -24,79 +24,79 @@ using osl::vector;
 
 template<class elm>
 vector<elm>::vector(int n, agm_elm value) :
-	_size(n), point(NULL)
+	_size(n), pointer(NULL)
 {
 	if (_size > 0) {
-		point = new elm[_size];
-		if (point == NULL) {
-			throw exception::vector(0U, "vector(int n, agm_elm value)");
+		pointer = new elm[_size];
+		if (pointer == NULL) {
+			throw exc::vector(0U, "vector(int n, agm_elm value)");
 		}
 		for (int i(0); i < _size; i++) {
-			point[i] = value;
+			pointer[i] = value;
 		}
 	}
 	else if (_size < 0) {
-		throw exception::vector(3U, "vector(int n, agm_elm value)");
+		throw exc::vector(4U, "vector(int n, agm_elm value)");
 	}
 }
 
 template<class elm>
-vector<elm>::vector(agm_vct origin) :
-	_size(origin._size), point(NULL)
+vector<elm>::vector(agm_vec origin) :
+	_size(origin._size), pointer(NULL)
 {
 	if (_size > 0) {
-		point = new elm[_size];
-		if (point == NULL) {
-			throw exception::vector(0U, "vector::vector(agm_vct origin)");
+		pointer = new elm[_size];
+		if (pointer == NULL) {
+			throw exc::vector(0U, "vector::vector(agm_vec origin)");
 		}
 		for (int i(0); i < _size; i++) {
-			point[i] = origin.point[i];
+			pointer[i] = origin.pointer[i];
 		}
 	}
 }
 
 template<class elm>
-vector<elm>::vector(agm_vct origin, int begin, int end) :
-	_size(end + 1 - begin), point(NULL)
+vector<elm>::vector(agm_vec origin, int begin, int end) :
+	_size(end + 1 - begin), pointer(NULL)
 {
 	if (_size > 0) {
 		if (begin < 0 || end >= origin._size) {
-			throw exception::vector(2U, "vector(agm_vct origin, int begin, int end)");
+			throw exc::vector(2U, "vector(agm_vec origin, int begin, int end)");
 		}
-		point = new elm[_size];
+		pointer = new elm[_size];
 		for (int i(0); i < _size; i++) {
-			point[i] = origin.point[i + begin];
+			pointer[i] = origin.pointer[i + begin];
 		}
 	}
 	else if (_size < 0) {
-		throw exception::vector(4U, "vector(agm_vct origin, int begin, int end)");
+		throw exc::vector(5U, "vector(agm_vec origin, int begin, int end)");
 	}
 }
 
 template<class elm>
 vector<elm>::vector(c_ary ary, int len) :
-	_size(len), point(NULL)
+	_size(len), pointer(NULL)
 {
 	if (_size > 0) {
-		point = new elm[_size];
-		if (point == NULL) {
-			throw exception::vector(0U, "vector::vector(c_ary ary, int len)");
+		pointer = new elm[_size];
+		if (pointer == NULL) {
+			throw exc::vector(0U, "vector::vector(c_ary ary, int len)");
 		}
 		for (int i(0); i < _size; i++) {
-			point[i] = ((elm*)ary)[i];
+			pointer[i] = ((elm*)ary)[i];
 		}
 	}
 	else if (_size < 0) {
-		throw exception::vector(3U, "vector(c_ary ary, int len)");
+		throw exc::vector(4U, "vector(c_ary ary, int len)");
 	}
 }
 
 template<class elm>
 vector<elm>::~vector()
 {
-	if (point != NULL) {
-		delete[] point;
-		point = NULL;
+	if (pointer != NULL) {
+		delete[] pointer;
+		pointer = NULL;
 	}
 }
 
@@ -118,9 +118,9 @@ template<class elm>
 inline elm& vector<elm>::at(int lct) const
 {
 	if (lct < 0 || lct >= _size) {
-		throw exception::vector(2U, "vector::at(int lct)");
+		throw exc::vector(2U, "vector::at(int lct)");
 	}
-	return point[lct];
+	return pointer[lct];
 }
 
 template<class elm>
@@ -189,7 +189,7 @@ template<class elm>
 void vector<elm>::cover(agm_elm value)
 {
 	for (int i(0); i < _size; i++) {
-		point[i] = value;
+		pointer[i] = value;
 	}
 }
 
@@ -197,18 +197,18 @@ template<class elm>
 void vector<elm>::cover(c_ary ary)
 {
 	for (int i(0); i < _size; i++) {
-		point[i] = ((elm*)ary)[i];
+		pointer[i] = ((elm*)ary)[i];
 	}
 }
 
 template<class elm>
-void vector<elm>::cover(agm_vct vct, int begin)
+void vector<elm>::cover(agm_vec vec, int begin)
 {
-	if (begin < 0 || begin + _size - 1 >= vct._size) {
-		throw exception::vector(2U, "cover(agm_vct vct, int begin)");
+	if (begin < 0 || begin + _size - 1 >= vec._size) {
+		throw exc::vector(2U, "cover(agm_vec vec, int begin)");
 	}
 	for (int i(0); i < _size; i++) {
-		point[i] = vct.point[i + begin];
+		pointer[i] = vec.pointer[i + begin];
 	}
 }
 
@@ -219,25 +219,28 @@ void vector<elm>::insert(int lct, int n, agm_elm value)
 		return;
 	}
 	if (n < 0) {
-		throw exception::vector(3U, "insert(int lct, int n, agm_elm value)");
+		throw exc::vector(4U, "insert(int lct, int n, agm_elm value)");
 	}
 	if (lct < 0 || lct > _size) {
-		throw exception::vector(2U, "insert(int lct, int n, agm_elm value)");
+		throw exc::vector(2U, "insert(int lct, int n, agm_elm value)");
 	}
 	_size += n;
-	elm* newpoint = new elm[_size];
+	elm* newpointer = new elm[_size];
+	if (newpointer == NULL) {
+		throw exc::vector(0U, "insert(int lct, int n, agm_elm value)");
+	}
 	int i(0);
 	for (; i < lct; i++) {
-		newpoint[i] = point[i];
+		newpointer[i] = pointer[i];
 	}
 	for (; i < lct + n; i++) {
-		newpoint[i] = value;
+		newpointer[i] = value;
 	}
 	for (; i < _size; i++) {
-		newpoint[i] = point[i - n];
+		newpointer[i] = pointer[i - n];
 	}
-	delete[] point;
-	point = newpoint;
+	delete[] pointer;
+	pointer = newpointer;
 }
 
 template<class elm>
@@ -247,50 +250,56 @@ void vector<elm>::insert(int lct, c_ary ary, int len)
 		return;
 	}
 	if (len < 0) {
-		throw exception::vector(3U, "insert(int lct, c_ary ary, int len)");
+		throw exc::vector(4U, "insert(int lct, c_ary ary, int len)");
 	}
 	if (lct < 0 || lct > _size) {
-		throw exception::vector(2U, "insert(int lct, c_ary ary, int len)");
+		throw exc::vector(2U, "insert(int lct, c_ary ary, int len)");
 	}
 	_size += len;
-	elm* newpoint = new elm[_size];
+	elm* newpointer = new elm[_size];
+	if (newpointer == NULL) {
+		throw exc::vector(0U, "insert(int lct, c_ary ary, int len)");
+	}
 	int i(0);
 	for (; i < lct; i++) {
-		newpoint[i] = point[i];
+		newpointer[i] = pointer[i];
 	}
 	for (; i < lct + len; i++) {
-		newpoint[i] = ((elm*)ary)[i];
+		newpointer[i] = ((elm*)ary)[i];
 	}
 	for (; i < _size; i++) {
-		newpoint[i] = point[i - len];
+		newpointer[i] = pointer[i - len];
 	}
-	delete[] point;
-	point = newpoint;
+	delete[] pointer;
+	pointer = newpointer;
 }
 
 template<class elm>
-void vector<elm>::insert(int lct, agm_vct vct)
+void vector<elm>::insert(int lct, agm_vec vec)
 {
-	if (vct.empty()) {
+	if (vec.empty()) {
 		return;
 	}
 	if (lct < 0 || lct > _size) {
-		throw exception::vector(2U, "insert(int lct, agm_vct vct)");
+		throw exc::vector(2U, "insert(int lct, agm_vec vec)");
 	}
-	_size += vct._size;
-	elm* newpoint = new elm[_size];
+	_size += vec._size;
+	elm* newpointer = new elm[_size];
+	if (newpointer == NULL) {
+		throw exc::vector(0U, "insert(int lct, agm_vec vec)");
+	}
 	int i(0);
 	for (; i < lct; i++) {
-		newpoint[i] = point[i];
+		newpointer[i] = pointer[i];
 	}
-	for (; i < lct + vct._size; i++) {
-		newpoint[i] = vct.point[i - lct];
+	for (; i < lct + vec._size; i++) {
+		newpointer[i] = vec.pointer[i - lct];
 	}
 	for (; i < _size; i++) {
-		newpoint[i] = point[i - vct._size];
+		newpointer[i] = pointer[i - vec._size];
 	}
-	delete[] point;
-	point = newpoint;
+	delete[] pointer;
+	pointer = newpointer;
 }
 
 template<class elm>
@@ -306,66 +315,72 @@ inline void vector<elm>::append(c_ary ary, int len)
 }
 
 template<class elm>
-inline void vector<elm>::append(agm_vct vct)
+inline void vector<elm>::append(agm_vec vec)
 {
-	insert(_size, vct);
+	insert(_size, vec);
 }
 
 template<class elm>
 void vector<elm>::remove(int lct)
 {
 	if (lct < 0 || lct >= _size) {
-		throw exception::vector(2U, "remove(int lct)");
+		throw exc::vector(2U, "remove(int lct)");
 	}
 	if (lct == 0 && lct == _size - 1) {
 		_size = 0;
-		delete[] point;
-		point = NULL;
+		delete[] pointer;
+		pointer = NULL;
 		return;
 	}
 	_size--;
-	elm* newpoint = new elm[_size];
+	elm* newpointer = new elm[_size];
+	if (newpointer == NULL) {
+		throw exc::vector(0U, "remove(int lct)");
+	}
 	int i(0);
 	for (; i < lct; i++) {
-		newpoint[i] = point[i];
+		newpointer[i] = pointer[i];
 	}
 	for (; i < _size; i++) {
-		newpoint[i] = point[i + 1];
+		newpointer[i] = pointer[i + 1];
 	}
-	delete[] point;
-	point = newpoint;
+	delete[] pointer;
+	pointer = newpointer;
 }
 
 template<class elm>
 void vector<elm>::remove(int start, int end)
 {
 	if (start > end) {
-		throw exception::vector(4U, "remove(int start, int end)");
+		throw exc::vector(5U, "remove(int start, int end)");
 	}
 	if (start < 0 || end >= _size) {
-		throw exception::vector(2U, "remove(int start, int end)");
+		throw exc::vector(2U, "remove(int start, int end)");
 	}
 	if (start == end) {
 		return;
 	}
 	if (start == 0 && end == _size - 1) {
 		_size = 0;
-		delete[] point;
-		point = NULL;
+		delete[] pointer;
+		pointer = NULL;
 		return;
 	}
 	int length(end + 1 - start);
 	_size -= length;
-	elm* newpoint = new elm[_size];
+	elm* newpointer = new elm[_size];
+	if (newpointer == NULL) {
+		throw exc::vector(0U, "remove(int start, int end)");
+	}
 	int i(0);
 	for (; i < start; i++) {
-		newpoint[i] = point[i];
+		newpointer[i] = pointer[i];
 	}
 	for (; i < _size; i++) {
-		newpoint[i] = point[i + length];
+		newpointer[i] = pointer[i + length];
 	}
-	delete[] point;
-	point = newpoint;
+	delete[] pointer;
+	pointer = newpointer;
 }
 
 template<class elm>
@@ -375,35 +390,35 @@ inline void vector<elm>::cutoff(int n)
 }
 
 template<class elm>
-void vector<elm>::add(agm_vct vct)
+void vector<elm>::add(agm_vec vec)
 {
-	if (_size != vct._size) {
-		throw exception::vector(5U, "add(agm_vct vct)");
+	if (_size != vec._size) {
+		throw exc::vector(7U, "add(agm_vec vec)");
 	}
 	for (int i(0); i < _size; i++) {
-		point[i] += vct.point[i];
+		pointer[i] += vec.pointer[i];
 	}
 }
 
 template<class elm>
-void vector<elm>::sub(agm_vct vct)
+void vector<elm>::sub(agm_vec vec)
 {
-	if (_size != vct._size) {
-		throw exception::vector(5U, "sub(agm_vct vct)");
+	if (_size != vec._size) {
+		throw exc::vector(7U, "sub(agm_vec vec)");
 	}
 	for (int i(0); i < _size; i++) {
-		point[i] -= vct.point[i];
+		pointer[i] -= vec.pointer[i];
 	}
 }
 
 template<class elm>
-void vector<elm>::mul(agm_vct vct)
+void vector<elm>::mul(agm_vec vec)
 {
-	if (_size != vct._size) {
-		throw exception::vector(5U, "mul(agm_vct vct)");
+	if (_size != vec._size) {
+		throw exc::vector(7U, "mul(agm_vec vec)");
 	}
 	for (int i(0); i < _size; i++) {
-		point[i] *= vct.point[i];
+		pointer[i] *= vec.pointer[i];
 	}
 }
 
@@ -411,18 +426,18 @@ template<class elm>
 void vector<elm>::mul(agm_elm value)
 {
 	for (int i(0); i < _size; i++) {
-		point[i] *= value;
+		pointer[i] *= value;
 	}
 }
 
 template<class elm>
-void vector<elm>::div(agm_vct vct)
+void vector<elm>::div(agm_vec vec)
 {
-	if (_size != vct._size) {
-		throw exception::vector(5U, "div(agm_vct vct)");
+	if (_size != vec._size) {
+		throw exc::vector(7U, "div(agm_vec vec)");
 	}
 	for (int i(0); i < _size; i++) {
-		point[i] /= vct.point[i];
+		pointer[i] /= vec.pointer[i];
 	}
 }
 
@@ -430,7 +445,7 @@ template<class elm>
 void vector<elm>::div(agm_elm value)
 {
 	for (int i(0); i < _size; i++) {
-		point[i] /= value;
+		pointer[i] /= value;
 	}
 }
 
@@ -444,42 +459,42 @@ inline elm& vector<elm>::operator[](int lct) const
 
 namespace osl {
 	template<typename elm>
-	MATRIX_API inline vector<elm> operator+(const vector<elm>& vct1, const vector<elm>& vct2)
+	MATRIX_API inline vector<elm> operator+(const vector<elm>& vec1, const vector<elm>& vec2)
 	{
-		vector<elm> rst(vct1);
-		rst.add(vct2);
+		vector<elm> rst(vec1);
+		rst.add(vec2);
 		return rst;
 	}
 
 	template<typename elm>
-	MATRIX_API inline vector<elm> operator-(const vector<elm>& vct1, const vector<elm>& vct2)
+	MATRIX_API inline vector<elm> operator-(const vector<elm>& vec1, const vector<elm>& vec2)
 	{
-		vector<elm> rst(vct1);
-		rst.sub(vct2);
+		vector<elm> rst(vec1);
+		rst.sub(vec2);
 		return rst;
 	}
 
 	template<typename elm>
-	MATRIX_API elm operator*(const vector<elm>& vct1, const vector<elm>& vct2)
+	MATRIX_API elm operator*(const vector<elm>& vec1, const vector<elm>& vec2)
 	{
 		elm rst(0.0);
-		if (vct1._size != vct2._size) {
-			throw exception::vector(5U, "operator*(const vector<elm>& vct1, const vector<elm>& vct2)");
+		if (vec1._size != vec2._size) {
+			throw exc::vector(7U, "operator*(const vector<elm>& vec1, const vector<elm>& vec2)");
 		}
-		for (int i(0); i < vct1._size; i++) {
-			rst += vct1.at(i) * vct2.at(i);
+		for (int i(0); i < vec1._size; i++) {
+			rst += vec1.at(i) * vec2.at(i);
 		}
 		return rst;
 	}
 
 	template<typename elm>
-	MATRIX_API std::ostream& operator<<(std::ostream& os, const vector<elm>& vct)
+	MATRIX_API std::ostream& operator<<(std::ostream& os, const vector<elm>& vec)
 	{
 		os << "[ ";
-		vct._size;
-		if (vct._size > 0) {
-			for (int i(0); i < vct._size; i++) {
-				os << vct.at(i) << " ";
+		vec._size;
+		if (vec._size > 0) {
+			for (int i(0); i < vec._size; i++) {
+				os << vec.at(i) << " ";
 			}
 		}
 		os << "]";
@@ -487,10 +502,10 @@ namespace osl {
 	}
 
 	template<typename elm>
-	MATRIX_API std::istream& operator>>(std::istream& is, vector<elm>& vct)
+	MATRIX_API std::istream& operator>>(std::istream& is, vector<elm>& vec)
 	{
-		for (int i(0); i < vct._size; i++) {
-			is >> vct.point[i];
+		for (int i(0); i < vec._size; i++) {
+			is >> vec.pointer[i];
 		}
 		return is;
 	}
@@ -515,7 +530,7 @@ void vector<elm>::print(c_str separator, char end)
 
 namespace {
 	template<typename elm>
-	void instantiate_template(elm value)
+	void template_instantiate(const elm& value)
 	{
 		// Constructors & Destructor
 		vector<elm>* a = new vector<elm>;
@@ -566,9 +581,9 @@ namespace {
 
 	void instantiate()
 	{
-		instantiate_template(int(1));
-		instantiate_template(double(1));
-		instantiate_template(osl::rational(1));
-		// instantiate_template(osl::complex(1));
+		template_instantiate(int(1));
+		template_instantiate(double(1));
+		template_instantiate(osl::rational(1));
+		// template_instantiate(osl::complex(1));
 	}
 }

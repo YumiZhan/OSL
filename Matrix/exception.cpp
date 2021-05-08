@@ -1,4 +1,4 @@
-/* OSL/Matrix/exception::matrix.cpp
+/* OSL/Matrix/exc::matrix.cpp
  *
  * Copyright (C) 2021 YuminZhan
  *
@@ -16,34 +16,38 @@
 
 #include "pch.h"
 #include "matrix.h"
-using namespace osl::exception;
+using namespace osl::exc;
 using osl::c_str;
 
 c_str vector::overview_list[] = {
 	"Failed to allocate space",	//0
 	"Unexpected NULL pointer",	//1
 	"Beyond range",				//2
-	"Incorrect number of size",	//3
-	"The start number is larger than the end number",	//4
-	"Size unmatched"			//5
+	"",
+	"Incorrect number of size",	//4
+	"The start number is larger than the end number",	//5
+	""
+	"Size unmatched",			//7
 };
 
 inline vector::vector(unsigned code, c_str discription) :
 	code(code), discription(discription)
 {}
 
-inline c_str osl::exception::vector::overview() const
+inline c_str osl::exc::vector::overview() const
 {
 	return vector::overview_list[code];
 }
 
 c_str matrix::overview_list[] = {
-	"Failed to allocate space",	//0
-	"Unexpected NULL pointer",	//1
-	"Beyond range",				//2
-	"Incorrect number of columns",	//3
-	"Incorrect number of rows",		//4
+	"Failed to allocate space",		//0
+	"Unexpected NULL pointer",		//1
+	"Beyond range",					//2
+	"Incorrect number of rows",		//3
+	"Incorrect number of columns",	//4
 	"The start number is large than the end number"	//5
+	"Number of rows unmatched"		//6
+	"Number of columns unmatched",	//7
 };
 
 inline matrix::matrix(unsigned code, c_str discription) :

@@ -40,16 +40,16 @@ namespace osl {
 		elm _value;
 	};
 
+	typedef const void* c_ary;
 	template<class elm = double>
 	class MATRIX_API vector {
-		typedef const vector& agm_vct;
+		typedef const vector& agm_vec;
 		typedef const elm& agm_elm;
-		typedef const void* c_ary;
 	public:
 		// Constructors & Destructor
-		vector(int n = 1, agm_elm value = 0.0);
-		vector(agm_vct origin);
-		vector(agm_vct origin, int begin, int end);
+		vector(int n = 0, agm_elm value = 0.0);
+		vector(agm_vec origin);
+		vector(agm_vec origin, int begin, int end);
 		vector(c_ary ary, int len);
 		~vector();
 
@@ -67,52 +67,54 @@ namespace osl {
 		// Modifiers
 		void cover(agm_elm value = 0);
 		void cover(c_ary ary);
-		void cover(agm_vct vct, int begin = 0);
+		void cover(agm_vec vec, int begin = 0);
 		void insert(int lct, int n = 1, agm_elm value = 0.0);
 		void insert(int lct, c_ary ary, int len);
-		void insert(int lct, agm_vct vct);
-		inline void append(agm_elm value, int n = 1);
+		void insert(int lct, agm_vec vec);
+		inline void append(agm_elm value = 0.0, int n = 1);
 		inline void append(c_ary ary, int len);
-		inline void append(agm_vct vct);
+		inline void append(agm_vec vec);
 		void remove(int lct);
 		void remove(int start, int end);
 		inline void cutoff(int n);
-		void add(agm_vct vct);
-		void sub(agm_vct vct);
-		void mul(agm_vct vct);
+		void add(agm_vec vec);
+		void sub(agm_vec vec);
+		void mul(agm_vec vec);
 		void mul(agm_elm value);
-		void div(agm_vct vct);
+		void div(agm_vec vec);
 		void div(agm_elm value);
 
 		// Operators
 		inline elm& operator[](int lct)const;
 		template <typename elm>
-		friend MATRIX_API inline vector<elm> operator+(const vector<elm>& vct1, const vector<elm>& vct2);
+		friend MATRIX_API inline vector<elm> operator+(const vector<elm>& vec1, const vector<elm>& vec2);
 		template <typename elm>
-		friend MATRIX_API inline vector<elm> operator-(const vector<elm>& vct1, const vector<elm>& vct2);
+		friend MATRIX_API inline vector<elm> operator-(const vector<elm>& vec1, const vector<elm>& vec2);
 		template <typename elm>
-		friend MATRIX_API elm operator*(const vector<elm>& vct1, const vector<elm>& vct2);
+		friend MATRIX_API elm operator*(const vector<elm>& vec1, const vector<elm>& vec2);
 		template <typename elm>
-		friend MATRIX_API std::ostream& operator<<(std::ostream& os, const vector<elm>& vct);
+		friend MATRIX_API std::ostream& operator<<(std::ostream& os, const vector<elm>& vec);
 		template <typename elm>
-		friend MATRIX_API std::istream& operator>>(std::istream& is, vector<elm>& vct);
+		friend MATRIX_API std::istream& operator>>(std::istream& is, vector<elm>& vec);
 
 		// Practical Tools
 		void print(c_str separator = " ", char end = '\n');
 
 	private:
 		int _size;
-		elm* point;
+		elm* pointer;
 	};
 
+	typedef void** c_rary;
 	template<class elm = double>
 	class MATRIX_API matrix {
-		typedef const matrix& agm_mtr;
+		typedef const matrix& agm_mat;
+		typedef const elm& agm_elm;
 	public:
 		// matrix.cpp
-		inline matrix();
-		matrix(agm_mtr origin);
-		matrix(agm_mtr origin, int start_row, int start_col, int end_row, int end_col);
+		matrix(int nrow = 0, int ncol = 0, agm_elm value = 0.0);
+		matrix(agm_mat origin);
+		matrix(agm_mat origin, int start_row, int end_row, int start_col, int end_col);
 		//matrix(const char* file, int nrow, int ncol);
 		//matrix(int nrow, int ncol, elm num = 0.0);
 		//matrix(void* ary, int n, bool transpose = false);
@@ -131,22 +133,22 @@ namespace osl {
 		//void print(int start_row = 0U, int start_col = 0U,
 		//	int print_nrows = 0U, int print_sizes = 0U);
 
-		//void add(agm_mtr matrix);
-		//void subtract(agm_mtr matrix);
-		//void multiply(agm_mtr matrix);
+		//void add(agm_mat matrix);
+		//void subtract(agm_mat matrix);
+		//void multiply(agm_mat matrix);
 		//void invert();
 
 	private:
-		int nrow, ncol;
-		vector<elm>* point;
+		int _nrow, _ncol;
+		vector<elm>* pointer;
 		//inline void empty_matrix(bool showtip = NO);
 		//void normal_matrix(int nrows, int ncols, elm num = 0.0);
-		//inline void expmatrix(int nrows, int ncols, agm_mtr origin,
+		//inline void expmatrix(int nrows, int ncols, agm_mat origin,
 		//	int start_row, int start_col, elm num = 0.0);
 		//void max_and_min();
 	};
 	
-	namespace exception {
+	namespace exc {
 		class MATRIX_API vector {
 		public:
 			const unsigned code;
