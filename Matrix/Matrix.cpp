@@ -253,6 +253,7 @@ element<elm> matrix<elm>::MAX() const
 		element<elm> t(pointer[i].MAX());
 		if (t.value > rst.value) {
 			rst = t;
+			rst.row = i;
 		}
 	}
 	return rst;
@@ -270,6 +271,7 @@ element<elm> osl::matrix<elm>::MIN() const
 		element<elm> t(pointer[i].MIN());
 		if (t.value < rst.value) {
 			rst = t;
+			rst.row = i;
 		}
 	}
 	return rst;
@@ -287,6 +289,7 @@ element<elm> osl::matrix<elm>::absmax() const
 		element<elm> t(pointer[i].absmax());
 		if (t.value > rst.value) {
 			rst = t;
+			rst.row = i;
 		}
 	}
 	return rst;
@@ -304,6 +307,7 @@ element<elm> osl::matrix<elm>::absmin() const
 		element<elm> t(pointer[i].absmin());
 		if (t.value < rst.value) {
 			rst = t;
+			rst.row = i;
 		}
 	}
 	return rst;
