@@ -29,15 +29,11 @@ namespace osl {
 	template<class elm = double>
 	class MATRIX_API element {
 	public:
+		int row, col;
+		elm value;
 		inline element();
 		inline element(const element& origin);
 		inline element(int row, int col, const elm& value);
-		inline int row();
-		inline int col();
-		inline elm value();
-	private:
-		int _row, _col;
-		elm _value;
 	};
 
 	typedef const void* c_ary;
@@ -130,6 +126,10 @@ namespace osl {
 		// Element
 		elm& at(int row, int col)const;
 		vector<elm> at(int row)const;
+		element<elm> MAX()const;
+		element<elm> MIN()const;
+		element<elm> absmax()const;
+		element<elm> absmin()const;
 
 		//inline elm* operator[](int i);
 		//typedef int position;

@@ -203,25 +203,25 @@ matrix<elm>::~matrix()
 }
 
 template<class elm>
-inline bool osl::matrix<elm>::empty() const
+inline bool matrix<elm>::empty() const
 {
 	return (_nrow == 0 || _ncol == 0);
 }
 
 template<class elm>
-inline int osl::matrix<elm>::nrow() const
+inline int matrix<elm>::nrow() const
 {
 	return _nrow;
 }
 
 template<class elm>
-inline int osl::matrix<elm>::ncol() const
+inline int matrix<elm>::ncol() const
 {
 	return _ncol;
 }
 
 template<class elm>
-elm& osl::matrix<elm>::at(int row, int col) const
+elm& matrix<elm>::at(int row, int col) const
 {
 	if (row < 0 || row >= _nrow) {
 		throw exc::matrix(2U, "at(int row, int col)");
@@ -233,12 +233,80 @@ elm& osl::matrix<elm>::at(int row, int col) const
 }
 
 template<class elm>
-vector<elm> osl::matrix<elm>::at(int row) const
+vector<elm> matrix<elm>::at(int row) const
 {
 	if (row < 0 || row >= _nrow) {
 		throw exc::matrix(2U, "at(int row, int col)");
 	}
 	return pointer[row];
+}
+
+template<class elm>
+element<elm> matrix<elm>::MAX() const
+{
+	if (empty()) {
+		throw exc::matrix(1U, "MAX()");
+	}
+	int row(0), col(0);
+	element<elm> rst(pointer[0].MAX());
+	for (int i(0); i < _nrow; i++) {
+		element<elm> t(pointer[i].MAX());
+		if (t.value > rst.value) {
+			rst = t;
+		}
+	}
+	return rst;
+}
+
+template<class elm>
+element<elm> osl::matrix<elm>::MIN() const
+{
+	if (empty()) {
+		throw exc::matrix(1U, "MIN()");
+	}
+	int row(0), col(0);
+	element<elm> rst(pointer[0].MIN());
+	for (int i(0); i < _nrow; i++) {
+		element<elm> t(pointer[i].MIN());
+		if (t.value < rst.value) {
+			rst = t;
+		}
+	}
+	return rst;
+}
+
+template<class elm>
+element<elm> osl::matrix<elm>::absmax() const
+{
+	if (empty()) {
+		throw exc::matrix(1U, "absmax()");
+	}
+	int row(0), col(0);
+	element<elm> rst(pointer[0].absmax());
+	for (int i(0); i < _nrow; i++) {
+		element<elm> t(pointer[i].absmax());
+		if (t.value > rst.value) {
+			rst = t;
+		}
+	}
+	return rst;
+}
+
+template<class elm>
+element<elm> osl::matrix<elm>::absmin() const
+{
+	if (empty()) {
+		throw exc::matrix(1U, "absmin()");
+	}
+	int row(0), col(0);
+	element<elm> rst(pointer[0].absmin());
+	for (int i(0); i < _nrow; i++) {
+		element<elm> t(pointer[i].absmin());
+		if (t.value < rst.value) {
+			rst = t;
+		}
+	}
+	return rst;
 }
 
 namespace {
@@ -252,12 +320,12 @@ namespace {
 		vector<elm>* vec = new vector<elm>;
 		matrix<elm>* d = new matrix<elm>(vec, 1);
 		delete d;
-		double* ary = new double[1];
+		double* ary = new double(0.0);
 		matrix<elm>* e = new matrix<elm>(ary, 1);
 		delete e;
 		double** rary = &ary;
 		matrix<elm>* f = new matrix<elm>(rary, 1, 1);
-		delete[] ary; ary = NULL; rary = NULL;
+		delete ary; ary = NULL; rary = NULL;
 
 		// Properties
 		f->empty();
@@ -267,6 +335,12 @@ namespace {
 		// Element
 		f->at(0, 0);
 		f->at(0);
+		f->MAX();
+		f->MIN();
+		f->absmax();
+		f->absmin();
+
+		delete f;
 	}
 
 	void instantiate() {

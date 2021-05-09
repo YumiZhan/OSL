@@ -385,10 +385,10 @@ OSL 已经开源发布到如下网站中
 ##### (三) 元素
 
 - `at(int lct)`：返回第 lct 个元素的引用
-- `MAX()`：返回最大的元素
-- `MIN()`：返回最小的元素
-- `absmax()`：返回绝对值最大的元素
-- `absmin()`：返回绝对值最小的元素
+- `MAX()`：返回值最大的元素的 `element` 对象
+- `MIN()`：返回值最小的元素的 `element` 对象
+- `absmax()`：返回绝对值最大的元素的 `element` 对象
+- `absmin()`：返回绝对值最小的元素的 `element` 对象
 
 ##### (四) 修改器
 
@@ -446,10 +446,14 @@ OSL 已经开源发布到如下网站中
 - `nrow()`：返回矩阵行数
 - `ncol()`：返回矩阵列数
 
-##### 3.元素
+##### 3. 元素
 
 - `at(int row, int col)`：返回 `row` 行 `col` 列元素的引用
 - `at(int row) const`：返回 `row` 行 `vector` 对象的备份
+- `MAX()`：返回值最大的元素的 `element` 对象
+- `MIN()`：返回值最小的元素的 `element` 对象
+- `absmax()`：返回绝对值最大的元素的 `element` 对象
+- `absmin()`：返回绝对值最小的元素的 `element` 对象
 
 
 

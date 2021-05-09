@@ -20,36 +20,18 @@ using osl::element;
 
 template<class elm>
 inline element<elm>::element() :
-	_row(0), _col(0), _value(0.0)
+	row(0), col(0), value(0.0)
 {}
 
 template<class elm>
 inline element<elm>::element(const element & origin) :
-	_row(origin._row), _col(origin._col), _value(origin._value)
+	row(origin.row), col(origin.col), value(origin.value)
 {}
 
 template<class elm>
 inline element<elm>::element(int row, int col, const elm& value) :
-	_row(row), _col(col), _value(value)
+	row(row), col(col), value(value)
 {}
-
-template<class elm>
-inline int element<elm>::row()
-{
-	return _row;
-}
-
-template<class elm>
-inline int element<elm>::col()
-{
-	return _col;
-}
-
-template<class elm>
-inline elm element<elm>::value()
-{
-	return _value;
-}
 
 namespace {
 	template<typename elm>
@@ -57,10 +39,7 @@ namespace {
 	{
 		element<elm>* a = new element<elm>;
 		element<elm>* b = new element<elm>(*a);
-		element<elm>* c = new element<elm>(0, 0, 0.0);
-		c->row();
-		c->col();
-		c->value();
+		element<elm>* c = new element<elm>(0, 0, value);
 		delete a, b, c;
 	}
 

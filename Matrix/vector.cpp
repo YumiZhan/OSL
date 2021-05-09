@@ -133,61 +133,65 @@ inline elm& vector<elm>::at(int lct) const
 template<class elm>
 element<elm> vector<elm>::MAX() const
 {
-	int lct(0);
-	elm value(at(0));
+	if (empty()) {
+		throw exc::vector(1U, "MAX()");
+	}
+	element<elm> _max(0, 0, pointer[0]);
 	for (int i(1); i < _size; i++) {
-		elm ivalue(at(i));
-		if (ivalue > value) {
-			value = ivalue;
-			lct = i;
+		if (pointer[i] > _max.value) {
+			_max.col = i;
+			_max.value = pointer[i];
 		}
 	}
-	return element<elm>(0, lct, value);
+	return _max;
 }
 
 template<class elm>
 element<elm> vector<elm>::MIN() const
 {
-	int lct(0);
-	elm value(at(0));
+	if (empty()) {
+		throw exc::vector(1U, "MIN()");
+	}
+	element<elm> _min(0, 0, pointer[0]);
 	for (int i(1); i < _size; i++) {
-		elm ivalue(at(i));
-		if (ivalue < value) {
-			value = ivalue;
-			lct = i;
+		if (pointer[i] < _min.value) {
+			_min.col = i;
+			_min.value = pointer[i];
 		}
 	}
-	return element<elm>(0, lct, value);
+	return _min;
 }
 
 template<class elm>
 element<elm> vector<elm>::absmax() const
 {
-	int lct(0);
-	elm value(abs(at(0)));
+	if (empty()) {
+		throw exc::vector(1U, "absmax()");
+	}
+	element<elm> _absmax(0, 0, abs(pointer[0]));
 	for (int i(1); i < _size; i++) {
-		elm ivalue(abs(at(i)));
-		if (ivalue > value) {
-			value = ivalue;
-			lct = i;
+		if (abs(pointer[i]) > _absmax.value) {
+			_absmax.col = i;
+			_absmax.value = abs(pointer[i]);
 		}
 	}
-	return element<elm>(0, lct, value);
+	return _absmax;
 }
 
 template<class elm>
 element<elm> vector<elm>::absmin() const
 {
-	int lct(0);
-	elm value(abs(at(0)));
+	if (empty()) {
+		throw exc::vector(1U, "absmin()");
+	}
+	element<elm> _absmin(0, 0, abs(pointer[0]));
 	for (int i(1); i < _size; i++) {
-		elm ivalue(abs(at(i)));
-		if (ivalue < value) {
-			value = ivalue;
-			lct = i;
+		if (abs(pointer[i]) < _absmin.value) {
+			_absmin.col = i;
+			_absmin.value = abs(pointer[i]);
 		}
 	}
-	return element<elm>(0, lct, value);
+	return _absmin;
 }
 
 // Modifiers ------------------------------------------------------------------------------

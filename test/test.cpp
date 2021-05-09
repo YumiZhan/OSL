@@ -8,11 +8,7 @@ int main()
 {
 	double b[] = { 1, 2, 3 };
 	matrix<double> a(b, 3, 2);
-	try {
-		cout << a.at(1, 3) << endl;
-	}
-	catch (exc::matrix excm) {
-		cout << excm.discription << endl << excm.overview() << endl;
-	}
+	element<double> c(a.MAX());
+	cout << c.value << c.row << c.col << endl;
 	return 0;
 }
