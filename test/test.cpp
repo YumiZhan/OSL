@@ -8,7 +8,6 @@ int main()
 {
 	double b[] = { 1, 2, 3 };
 	matrix<double> a(b, 3, 2);
-	element<double> c(a.MAX());
-	cout << c.value << c.row << c.col << endl;
+	cout << a[1] << endl;
 	return 0;
 }

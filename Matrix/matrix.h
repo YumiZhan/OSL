@@ -124,14 +124,15 @@ namespace osl {
 		inline int ncol()const;
 
 		// Element
-		elm& at(int row, int col)const;
-		vector<elm> at(int row)const;
+		inline elm& at(int row, int col)const;
+		inline vector<elm> at(int row)const;
 		element<elm> MAX()const;
 		element<elm> MIN()const;
 		element<elm> absmax()const;
 		element<elm> absmin()const;
 
-		//inline elm* operator[](int i);
+		// Operators
+		inline vector<elm> operator[](int row);
 		//typedef int position;
 		//inline void insert(int lct_i, int lct_j,
 		//	int inst_rows = 1U, int inst_cols = 0U, elm fillnumber = 0.0);

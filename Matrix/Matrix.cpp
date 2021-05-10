@@ -221,7 +221,7 @@ inline int matrix<elm>::ncol() const
 }
 
 template<class elm>
-elm& matrix<elm>::at(int row, int col) const
+inline elm& matrix<elm>::at(int row, int col) const
 {
 	if (row < 0 || row >= _nrow) {
 		throw exc::matrix(2U, "at(int row, int col)");
@@ -233,7 +233,7 @@ elm& matrix<elm>::at(int row, int col) const
 }
 
 template<class elm>
-vector<elm> matrix<elm>::at(int row) const
+inline vector<elm> matrix<elm>::at(int row) const
 {
 	if (row < 0 || row >= _nrow) {
 		throw exc::matrix(2U, "at(int row, int col)");
@@ -313,6 +313,19 @@ element<elm> osl::matrix<elm>::absmin() const
 	return rst;
 }
 
+template<class elm>
+inline vector<elm> matrix<elm>::operator[](int row)
+{
+	try
+	{
+		return at(row);
+	}
+	catch (exc::matrix excm)
+	{
+		throw exc::matrix(excm.code, "operator[](int row)");
+	}
+}
+
 namespace {
 	template <typename elm>
 	void template_instantiate(const elm& value) {
@@ -343,6 +356,9 @@ namespace {
 		f->MIN();
 		f->absmax();
 		f->absmin();
+
+		// Operators
+		(*f)[0];
 
 		delete f;
 	}
