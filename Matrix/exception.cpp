@@ -58,5 +58,5 @@ inline matrix::matrix(unsigned code, c_str discription) :
 
 inline c_str matrix::overview() const
 {
-	return matrix::overview_list[code];
+	return overview_list[code];
 }

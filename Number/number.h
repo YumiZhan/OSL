@@ -33,7 +33,18 @@ namespace osl {
 	extern NUMBER_API double PI; // 3.1415926535897932
 	extern NUMBER_API double ZERO; // 1E-10
 
-	NUMBER_API inline void simplify_fraction(double& denominator, double& numerator);
+	namespace exc {
+		class rational {
+		public:
+			const unsigned code;
+			c_str const discription;
+			static c_str overview_list[];
+			inline rational(unsigned code, c_str discription);
+			inline c_str overview()const;
+		};
+	}
+
+	NUMBER_API void simplify_fraction(double& denominator, double& numerator);
 
 	class NUMBER_API rational {
 		typedef const rational& agm_rtn;
@@ -344,7 +355,6 @@ namespace osl {
 		/* Complex Comparations */
 		friend NUMBER_API inline bool operator ==(agm_cpl cpl1, agm_cpl cpl2);
 		friend NUMBER_API inline bool operator !=(agm_cpl cpl1, agm_cpl cpl2);
-
 	};
 	typedef const complex& agm_cpl;
 	extern NUMBER_API const complex i; // i = complex(0.0, 1.0)
