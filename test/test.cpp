@@ -6,8 +6,8 @@ using namespace osl;
 
 int main()
 {
-	double b[] = { 1, 2, 3 };
-	matrix<double> a(b, 3, 2);
-	cout << a[1] << endl;
+	matrix<double> a(3, 3);
+	cin >> a;
+	a.print();
 	return 0;
 }

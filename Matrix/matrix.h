@@ -94,7 +94,7 @@ namespace osl {
 		friend MATRIX_API std::istream& operator>>(std::istream& is, vector<elm>& vec);
 
 		// Practical Tools
-		void print(c_str separator = " ", char end = '\n');
+		void print(c_str separator = "\t");
 
 	private:
 		int _size;
@@ -131,8 +131,18 @@ namespace osl {
 		element<elm> absmax()const;
 		element<elm> absmin()const;
 
+		// Modifiers
+
 		// Operators
 		inline vector<elm> operator[](int row);
+		template <typename elm>
+		friend MATRIX_API std::ostream& operator<<(std::ostream& os, const matrix<elm>& mat);
+		template <typename elm>
+		friend MATRIX_API std::istream& operator>>(std::istream& is, matrix<elm>& mat);
+
+		// Practical Tools
+		void print(c_str separator = "\t");
+
 		//typedef int position;
 		//inline void insert(int lct_i, int lct_j,
 		//	int inst_rows = 1U, int inst_cols = 0U, elm fillnumber = 0.0);

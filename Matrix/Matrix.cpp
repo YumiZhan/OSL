@@ -19,6 +19,9 @@
 using osl::element;
 using osl::vector;
 using osl::matrix;
+using std::cout;
+using std::cin;
+using std::endl;
 
 // Constructors & Destructor ------------------------------------------------------------
 
@@ -326,6 +329,34 @@ inline vector<elm> matrix<elm>::operator[](int row)
 	}
 }
 
+template<class elm>
+void osl::matrix<elm>::print(c_str separator)
+{
+	for (int i(0); i < _nrow; i++) {
+		pointer[i].print(separator);
+	}
+}
+
+namespace osl {
+	template<typename elm>
+	MATRIX_API std::ostream& operator<<(std::ostream& os, const matrix<elm>& mat)
+	{
+		for (int i(0); i < mat._nrow; i++) {
+			os << mat.pointer[i] << endl;
+		}
+		return os;
+	}
+
+	template<typename elm>
+	MATRIX_API std::istream& operator>>(std::istream& is, matrix<elm>& mat)
+	{
+		for (int i(0); i < mat._nrow; i++) {
+			is >> mat.pointer[i];
+		}
+		return is;
+	}
+}
+
 namespace {
 	template <typename elm>
 	void template_instantiate(const elm& value) {
@@ -359,6 +390,9 @@ namespace {
 
 		// Operators
 		(*f)[0];
+		cout << (*f);
+		cin >> (*f);
+		f->print();
 
 		delete f;
 	}
@@ -370,3 +404,4 @@ namespace {
 		// template_instantiate(osl::complex(1));
 	}
 }
+

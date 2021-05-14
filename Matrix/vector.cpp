@@ -525,14 +525,13 @@ namespace osl {
 	template<typename elm>
 	MATRIX_API std::ostream& operator<<(std::ostream& os, const vector<elm>& vec)
 	{
-		os << "[ ";
-		vec._size;
 		if (vec._size > 0) {
-			for (int i(0); i < vec._size; i++) {
-				os << vec.at(i) << " ";
+			int i(0);
+			for (; i < vec._size - 1; i++) {
+				os << vec.pointer[i] << '\t';
 			}
+			os << vec.pointer[i];
 		}
-		os << "]";
 		return os;
 	}
 
@@ -549,16 +548,15 @@ namespace osl {
 // Practical Tools ------------------------------------------------------------------------
 
 template<class elm>
-void vector<elm>::print(c_str separator, char end)
+void vector<elm>::print(c_str separator)
 {
-	std::cout << "[ ";
 	if (_size > 0) {
-		for (int i(0); i < _size - 1; i++) {
-			std::cout << at(i) << separator;
+		int i(0);
+		for (; i < _size - 1; i++) {
+			std::cout << pointer[i] << separator;
 		}
-		std::cout << at(_size - 1);
+		std::cout << pointer[i] << std::endl;
 	}
-	std::cout << " ]" << end;
 }
 
 // Instantiate ----------------------------------------------------------------------------
